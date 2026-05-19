@@ -1,0 +1,265 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import Container from "../../components/Container.astro";
+import PageHero from "../../components/PageHero.astro";
+import SubNav from "../../components/SubNav.astro";
+import SectionHeading from "../../components/SectionHeading.astro";
+import InquiryCTA from "../../components/InquiryCTA.astro";
+import { aboutLinks } from "../../data/navSections";
+import { images } from "../../data/images";
+
+const milestones = [
+  { value: "2004", label: "Founded in Qinhuangdao" },
+  { value: "~1,000", label: "Resin grades in portfolio" },
+  { value: "30,000 m²", label: "Logistics park area" },
+  { value: "300+", label: "Warehouses nationwide" },
+];
+
+const business = [
+  {
+    title: "Plastic Raw Material Sales",
+    description:
+      "Bulk supply of PE, PP, ABS, PS and SBS series resins with nearly 1,000 grades, serving converters and traders across China and abroad.",
+  },
+  {
+    title: "Network Freight Services",
+    description:
+      "Licensed network freight platform connecting shippers and carriers, supported by digital systems and the group's logistics park.",
+  },
+  {
+    title: "Supply Chain Management",
+    description:
+      "End-to-end services covering sourcing, warehousing, distribution, after-sales and information sharing with our customers.",
+  },
+  {
+    title: "International Trade",
+    description:
+      "Tianhui Baiyao (Hebei) International Trade Co., Ltd. — the group's foreign trade arm — handles cross-border resin business across four continents.",
+  },
+];
+
+const honours = [
+  "Top 500 Chinese Service Enterprises",
+  "Top 100 Enterprises · Beijing-Tianjin-Hebei",
+  "Top 100 Service Enterprises · Beijing-Tianjin-Hebei",
+  "Top 100 Private Enterprises · Hebei Province",
+  "Top 100 Service Enterprises · Hebei Province",
+  "Gold Medal Trusted Customer of the People's Bank of China",
+];
+---
+
+<BaseLayout
+  title="Company Profile"
+  description="Founded in 2004, TIANHUI Group is a diversified enterprise integrating plastic raw material sales, network freight and international trade, headquartered in Qinhuangdao, China."
+>
+  <PageHero
+    eyebrow="About TIANHUI"
+    title="A diversified enterprise in plastic raw materials and supply chain services"
+    description="Tianhui Baiyao (Hebei) International Trade Co., Ltd. — a subsidiary of TIANHUI (Hebei) Supply Chain Management Group — drives our foreign trade business across more than twenty countries."
+    breadcrumb={[
+      { label: "Home", href: "/" },
+      { label: "About", href: "/about/company-profile/" },
+      { label: "Company Profile" },
+    ]}
+    image={images.building1}
+    imagePosition="center 40%"
+    tall
+  />
+
+  <SubNav links={aboutLinks} currentHref="/about/company-profile/" />
+
+  <!-- SECTION: Quick facts strip -->
+  <section id="quick-facts" class="border-b border-slate-200 bg-white py-12">
+    <Container>
+      <dl class="grid grid-cols-2 gap-x-8 gap-y-8 sm:grid-cols-4">
+        {
+          milestones.map((m) => (
+            <div>
+              <dd class="text-3xl font-semibold tracking-tight text-slate-900 sm:text-4xl">
+                {m.value}
+              </dd>
+              <dt class="mt-2 text-sm text-slate-500">{m.label}</dt>
+            </div>
+          ))
+        }
+      </dl>
+    </Container>
+  </section>
+
+  <!-- SECTION: Overview -->
+  <section id="overview" class="bg-white py-24 sm:py-32">
+    <Container>
+      <div class="grid gap-16 lg:grid-cols-12 lg:items-start">
+        <div class="lg:col-span-7">
+          <SectionHeading
+            eyebrow="Group Overview"
+            title="From a Qinhuangdao distributor to a national supply chain platform"
+          />
+          <div class="mt-8 space-y-6 text-base leading-7 text-slate-700">
+            <p>
+              Tianhui Baiyao (Hebei) International Trade Co., Ltd., a
+              subsidiary of TIANHUI (Hebei) Supply Chain Management Group Co.,
+              Ltd. (hereinafter referred to as TIANHUI Group), is a
+              diversified enterprise integrating plastic raw material sales
+              and online freight services. Founded in 2004, the company is
+              located in the beautiful coastal city of Qinhuangdao.
+            </p>
+            <p>
+              In 2019 the Group invested 200 million RMB to build the "Tianhui
+              E-commerce Logistics Park", with a building area of 30,000
+              square metres. This large-scale logistics industrial park
+              integrates sales, logistics, R&D, after-sales service and supply
+              chain management. Under the close attention of leaders at all
+              levels, it has now become the group's headquarters and is
+              officially in operation.
+            </p>
+            <p>
+              TIANHUI Group has subsidiaries including Qinhuangdao Tianhui
+              Plastics Co., Ltd., Qinhuangdao Hengjie Plastics Co., Ltd. and
+              Qinhuangdao Qiheng Plastic Products Co., Ltd., as well as more
+              than ten out-of-town companies such as Ganzhou Tianhui Plastics
+              Co., Ltd. and Shanghai Moming Yulai Plastics Co., Ltd. Tianhui
+              Baiyao (Hebei) International Trade Co., Ltd. is in charge of the
+              foreign trade sector.
+            </p>
+          </div>
+        </div>
+        <aside class="lg:col-span-5 lg:sticky lg:top-28">
+          <div class="overflow-hidden rounded-3xl shadow-xl ring-1 ring-slate-200">
+            <img
+              src={images.lobby1}
+              alt="TIANHUI Group headquarters lobby"
+              class="aspect-[4/5] w-full object-cover"
+              loading="lazy"
+            />
+          </div>
+        </aside>
+      </div>
+    </Container>
+  </section>
+
+  <!-- SECTION: Products & network -->
+  <section id="products-network" class="bg-slate-50 py-24 sm:py-32">
+    <Container>
+      <div class="grid gap-16 lg:grid-cols-12">
+        <div class="lg:col-span-5">
+          <SectionHeading
+            eyebrow="Products & Network"
+            title="Nearly 1,000 grades, 30+ provinces, 300+ warehouses"
+          />
+        </div>
+        <div class="space-y-6 text-base leading-7 text-slate-700 lg:col-span-7">
+          <p>
+            The company's main products include PE, PP, ABS, PS and SBS series
+            resins, with nearly 1,000 grades. It boasts a professional
+            marketing team, extensive product channels and a large customer
+            base, providing full-chain marketing services and solutions.
+          </p>
+          <p>
+            Over the years, TIANHUI has established strong partnerships with
+            major petrochemical companies, becoming a regional agent and
+            strategic partner for companies such as North China Huajin
+            Chemical Industry, PetroChina (CNPC), Sinopec, Shaanxi Yanchang
+            New Energy, Yanchang Petroleum (Hubei / Shanghai / Tianjin),
+            Ningxia Baofeng Energy Group, China National Coal Group, Shandong
+            Dongfang Hongye Chemical and Sinopec Sales.
+          </p>
+          <p>
+            Adhering to a "win-win" approach with its customers, our marketing
+            network covers more than 30 provinces and municipalities including
+            Beijing, Tianjin, Hebei, Shandong, Henan, Shanxi, Shaanxi,
+            Zhejiang, Sichuan, Jiangxi, Hubei, Hunan, Guangdong, the three
+            northeastern provinces and Inner Mongolia, with offices and over
+            300 warehouses across major hubs.
+          </p>
+        </div>
+      </div>
+    </Container>
+  </section>
+
+  <!-- SECTION: Four pillars -->
+  <section id="business" class="bg-white py-24 sm:py-32">
+    <Container>
+      <SectionHeading
+        eyebrow="Core Business"
+        title="Four pillars supporting our customers"
+        description="From upstream sourcing to downstream delivery, TIANHUI provides an end-to-end resin supply experience."
+      />
+      <div class="mt-16 grid gap-6 md:grid-cols-2">
+        {
+          business.map((item) => (
+            <article class="rounded-3xl border border-slate-200 bg-slate-50 p-8 shadow-sm transition hover:-translate-y-0.5 hover:bg-white hover:shadow-lg">
+              <h3 class="text-lg font-semibold text-slate-900">{item.title}</h3>
+              <p class="mt-3 text-sm leading-7 text-slate-600">{item.description}</p>
+            </article>
+          ))
+        }
+      </div>
+    </Container>
+  </section>
+
+  <!-- SECTION: Honours -->
+  <section id="honours" class="bg-slate-50 py-24 sm:py-32">
+    <Container>
+      <div class="grid gap-12 lg:grid-cols-12 lg:items-center">
+        <div class="lg:col-span-5">
+          <SectionHeading
+            eyebrow="Recognitions"
+            title="Trusted by industry and government"
+            description="In 2020 TIANHUI became a key enterprise supported by the Hebei Provincial Party Committee, a 'double top 100' Hebei enterprise, and a Gold Medal Trusted Customer of the People's Bank of China."
+          />
+        </div>
+        <ul class="grid gap-3 sm:grid-cols-2 lg:col-span-7">
+          {
+            honours.map((h) => (
+              <li class="rounded-2xl border border-slate-200 bg-white px-5 py-4 text-sm font-medium text-slate-800 shadow-sm">
+                {h}
+              </li>
+            ))
+          }
+        </ul>
+      </div>
+    </Container>
+  </section>
+
+  <!-- SECTION: Social responsibility -->
+  <section id="responsibility" class="bg-white py-24 sm:py-32">
+    <Container>
+      <div class="grid gap-16 lg:grid-cols-12 lg:items-center">
+        <div class="lg:col-span-6">
+          <div class="overflow-hidden rounded-3xl shadow-xl ring-1 ring-slate-200">
+            <img
+              src={images.top500Celebration}
+              alt="TIANHUI Group celebrates entering the Top 500 Chinese Service Enterprises"
+              class="aspect-[4/3] w-full object-cover"
+              loading="lazy"
+            />
+          </div>
+        </div>
+        <div class="lg:col-span-6">
+          <SectionHeading
+            eyebrow="Social Responsibility"
+            title="Doing well by doing good"
+            description="TIANHUI Group has always regarded assuming greater social responsibility as an important corporate mission, actively participating in public welfare undertakings and fulfilling its corporate social responsibility."
+          />
+          <p class="mt-6 text-base leading-7 text-slate-700">
+            This includes not only economic assistance and material support
+            but also spiritual encouragement and support. Since its
+            establishment, the company has donated over 3 million RMB to
+            charitable causes. We will continue to support public welfare
+            undertakings and contribute our due strength to the country.
+          </p>
+          <a
+            href="/sustainability/our-initiatives-in-china/"
+            class="mt-8 inline-flex items-center gap-2 text-sm font-semibold text-brand-700 hover:text-brand-800"
+          >
+            See our sustainability initiatives
+            <span aria-hidden="true">&rarr;</span>
+          </a>
+        </div>
+      </div>
+    </Container>
+  </section>
+
+  <InquiryCTA />
+</BaseLayout>

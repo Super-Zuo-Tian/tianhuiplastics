@@ -1,0 +1,310 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import Container from "../components/Container.astro";
+import PageHero from "../components/PageHero.astro";
+import SectionHeading from "../components/SectionHeading.astro";
+import { site, primaryNav } from "../data/site";
+import { images } from "../data/images";
+
+const productOptions = primaryNav
+  .find((item) => item.label === "Products")
+  ?.children?.filter((c) => c.href !== "/products/") ?? [];
+
+const channels = [
+  {
+    label: "Export Inquiries",
+    value: site.email,
+    href: `mailto:${site.email}`,
+    icon: "M2.25 6.75c0-1.243 1.007-2.25 2.25-2.25h15c1.243 0 2.25 1.007 2.25 2.25v10.5c0 1.243-1.007 2.25-2.25 2.25h-15a2.25 2.25 0 0 1-2.25-2.25V6.75Zm2.25 0v.243l7.5 4.5 7.5-4.5V6.75H4.5Z",
+  },
+  {
+    label: "Phone",
+    value: site.phone,
+    href: `tel:${site.phone.replace(/\s+/g, "")}`,
+    icon: "M2.25 6.75c0-1.243 1.007-2.25 2.25-2.25h2.25l1.5 4.5-2.25 1.5a12.057 12.057 0 0 0 6.75 6.75l1.5-2.25 4.5 1.5v2.25c0 1.243-1.007 2.25-2.25 2.25h-2.25C8.65 21 3 15.35 3 8.25V6.75Z",
+  },
+  {
+    label: "Headquarters",
+    value: site.address,
+    icon: "M11.42 21.815a.998.998 0 0 0 1.16 0C13.91 20.882 20 15.5 20 10a8 8 0 1 0-16 0c0 5.5 6.09 10.882 7.42 11.815ZM12 12a2 2 0 1 0 0-4 2 2 0 0 0 0 4Z",
+  },
+  {
+    label: "Working Hours",
+    value: "Mon–Fri · 09:00–18:00 (UTC+8)",
+    icon: "M12 6v6l4 2m6-2a10 10 0 1 1-20 0 10 10 0 0 1 20 0Z",
+  },
+];
+
+const offices = [
+  {
+    name: "International Trade Desk",
+    role: "Export inquiries, FOB / CFR / CIF quotations",
+    email: site.email,
+  },
+  {
+    name: "Domestic Sales (PE & PP)",
+    role: "China-based PE and PP customers",
+    email: "sales-pe-pp@tianhui-group.com",
+  },
+  {
+    name: "Domestic Sales (PS & ABS)",
+    role: "China-based PS, ABS and SBS customers",
+    email: "sales-ps-abs@tianhui-group.com",
+  },
+  {
+    name: "Logistics & Network Freight",
+    role: "Transport, carriers, network freight platform",
+    email: "logistics@tianhui-group.com",
+  },
+];
+---
+
+<BaseLayout
+  title="Contact"
+  description="Contact TIANHUI Group for resin quotations, sourcing inquiries and partnership opportunities. Our export team responds within one business day."
+>
+  <PageHero
+    eyebrow="Contact"
+    title="Let's talk resins"
+    description="Tell us the grade, quantity, packaging and destination port. Our bilingual export team replies within one business day."
+    breadcrumb={[
+      { label: "Home", href: "/" },
+      { label: "Contact" },
+    ]}
+    image={images.building2}
+    imagePosition="center 65%"
+  />
+
+  <!-- SECTION: Contact channels -->
+  <section id="channels" class="bg-white py-20 sm:py-24">
+    <Container>
+      <ul class="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+        {
+          channels.map((channel) => (
+            <li class="rounded-3xl border border-slate-200 bg-slate-50 p-6 shadow-sm">
+              <span class="inline-flex size-10 items-center justify-center rounded-xl bg-brand-600 text-white">
+                <svg
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="1.8"
+                  aria-hidden="true"
+                  class="size-5"
+                >
+                  <path d={channel.icon} stroke-linecap="round" stroke-linejoin="round" />
+                </svg>
+              </span>
+              <p class="mt-4 text-xs font-semibold tracking-wider text-slate-500 uppercase">
+                {channel.label}
+              </p>
+              {channel.href ? (
+                <a
+                  href={channel.href}
+                  class="mt-2 block text-base font-semibold text-slate-900 hover:text-brand-700"
+                >
+                  {channel.value}
+                </a>
+              ) : (
+                <p class="mt-2 text-base font-semibold text-slate-900">{channel.value}</p>
+              )}
+            </li>
+          ))
+        }
+      </ul>
+    </Container>
+  </section>
+
+  <!-- SECTION: Inquiry form -->
+  <section id="inquiry" class="bg-slate-50 py-24 sm:py-28">
+    <Container>
+      <div class="grid gap-12 lg:grid-cols-12">
+        <div class="lg:col-span-5">
+          <SectionHeading
+            eyebrow="Inquiry"
+            title="Request a quotation"
+            description="Provide as much detail as possible (resin family, grade, quantity, packaging and destination port) — this helps us prepare a precise quotation faster."
+          />
+          <ul class="mt-8 space-y-4 text-base leading-7 text-slate-700">
+            <li class="flex gap-3">
+              <span class="mt-2 size-2 flex-none rounded-full bg-brand-600"></span>
+              Response within one business day from our export team.
+            </li>
+            <li class="flex gap-3">
+              <span class="mt-2 size-2 flex-none rounded-full bg-brand-600"></span>
+              Quotations issued in USD on FOB / CFR / CIF basis.
+            </li>
+            <li class="flex gap-3">
+              <span class="mt-2 size-2 flex-none rounded-full bg-brand-600"></span>
+              Sample bags can be arranged on request.
+            </li>
+          </ul>
+        </div>
+        <div class="lg:col-span-7">
+          <form
+            method="post"
+            action="#"
+            class="rounded-3xl border border-slate-200 bg-white p-8 shadow-sm sm:p-10"
+          >
+            <p class="text-xs text-slate-500">
+              The form below is a static template. Connect it to your preferred
+              service (Formspree, Getform, your own API, etc.) by updating the
+              <code class="rounded bg-slate-100 px-1.5 py-0.5">action</code> attribute.
+            </p>
+
+            <div class="mt-6 grid gap-5 sm:grid-cols-2">
+              <label class="block text-sm">
+                <span class="font-medium text-slate-700">Full name *</span>
+                <input
+                  type="text"
+                  name="name"
+                  required
+                  class="mt-2 w-full rounded-xl border border-slate-300 bg-white px-4 py-2.5 text-sm shadow-sm placeholder:text-slate-400 focus:border-brand-600 focus:ring-2 focus:ring-brand-200 focus:outline-none"
+                  placeholder="Jane Doe"
+                />
+              </label>
+              <label class="block text-sm">
+                <span class="font-medium text-slate-700">Company *</span>
+                <input
+                  type="text"
+                  name="company"
+                  required
+                  class="mt-2 w-full rounded-xl border border-slate-300 bg-white px-4 py-2.5 text-sm shadow-sm placeholder:text-slate-400 focus:border-brand-600 focus:ring-2 focus:ring-brand-200 focus:outline-none"
+                  placeholder="Your company"
+                />
+              </label>
+              <label class="block text-sm">
+                <span class="font-medium text-slate-700">Work email *</span>
+                <input
+                  type="email"
+                  name="email"
+                  required
+                  class="mt-2 w-full rounded-xl border border-slate-300 bg-white px-4 py-2.5 text-sm shadow-sm placeholder:text-slate-400 focus:border-brand-600 focus:ring-2 focus:ring-brand-200 focus:outline-none"
+                  placeholder="you@company.com"
+                />
+              </label>
+              <label class="block text-sm">
+                <span class="font-medium text-slate-700">Phone / WhatsApp</span>
+                <input
+                  type="tel"
+                  name="phone"
+                  class="mt-2 w-full rounded-xl border border-slate-300 bg-white px-4 py-2.5 text-sm shadow-sm placeholder:text-slate-400 focus:border-brand-600 focus:ring-2 focus:ring-brand-200 focus:outline-none"
+                  placeholder="+xx xxx xxxx xxxx"
+                />
+              </label>
+              <label class="block text-sm">
+                <span class="font-medium text-slate-700">Country / destination port</span>
+                <input
+                  type="text"
+                  name="destination"
+                  class="mt-2 w-full rounded-xl border border-slate-300 bg-white px-4 py-2.5 text-sm shadow-sm placeholder:text-slate-400 focus:border-brand-600 focus:ring-2 focus:ring-brand-200 focus:outline-none"
+                  placeholder="e.g. Ho Chi Minh, Vietnam"
+                />
+              </label>
+              <label class="block text-sm">
+                <span class="font-medium text-slate-700">Resin of interest</span>
+                <select
+                  name="resin"
+                  class="mt-2 w-full rounded-xl border border-slate-300 bg-white px-4 py-2.5 text-sm shadow-sm focus:border-brand-600 focus:ring-2 focus:ring-brand-200 focus:outline-none"
+                >
+                  <option value="">Select a resin family</option>
+                  {
+                    productOptions.map((option) => (
+                      <option value={option.label}>{option.label}</option>
+                    ))
+                  }
+                  <option value="Other">Other / Mixed</option>
+                </select>
+              </label>
+              <label class="block text-sm sm:col-span-2">
+                <span class="font-medium text-slate-700">Quantity & packaging</span>
+                <input
+                  type="text"
+                  name="quantity"
+                  class="mt-2 w-full rounded-xl border border-slate-300 bg-white px-4 py-2.5 text-sm shadow-sm placeholder:text-slate-400 focus:border-brand-600 focus:ring-2 focus:ring-brand-200 focus:outline-none"
+                  placeholder="e.g. 1 x 40'HQ, 25 kg bags"
+                />
+              </label>
+              <label class="block text-sm sm:col-span-2">
+                <span class="font-medium text-slate-700">Inquiry details *</span>
+                <textarea
+                  name="message"
+                  required
+                  rows="5"
+                  class="mt-2 w-full rounded-xl border border-slate-300 bg-white px-4 py-2.5 text-sm shadow-sm placeholder:text-slate-400 focus:border-brand-600 focus:ring-2 focus:ring-brand-200 focus:outline-none"
+                  placeholder="Tell us about your application, target price level, Incoterms, delivery timing, etc."
+                ></textarea>
+              </label>
+            </div>
+
+            <div class="mt-8 flex flex-wrap items-center justify-between gap-4">
+              <p class="text-xs text-slate-500">
+                By submitting this form you agree to be contacted by TIANHUI
+                about your inquiry.
+              </p>
+              <button
+                type="submit"
+                class="inline-flex items-center gap-2 rounded-full bg-slate-900 px-6 py-3 text-sm font-semibold text-white transition hover:bg-brand-700"
+              >
+                Send Inquiry
+                <span aria-hidden="true">&rarr;</span>
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </Container>
+  </section>
+
+  <!-- SECTION: Department contacts -->
+  <section id="departments" class="bg-white py-24 sm:py-28">
+    <Container>
+      <SectionHeading
+        eyebrow="Department Contacts"
+        title="Talk to the right team faster"
+        description="If you already know which team you need, drop them an email directly. Otherwise our export desk will route your inquiry internally."
+      />
+      <div class="mt-14 grid gap-6 sm:grid-cols-2">
+        {
+          offices.map((office) => (
+            <article class="rounded-3xl border border-slate-200 bg-slate-50 p-8">
+              <h3 class="text-lg font-semibold text-slate-900">{office.name}</h3>
+              <p class="mt-2 text-sm text-slate-600">{office.role}</p>
+              <a
+                href={`mailto:${office.email}`}
+                class="mt-4 inline-flex items-center gap-2 text-sm font-semibold text-brand-700 hover:text-brand-800"
+              >
+                {office.email}
+                <span aria-hidden="true">&rarr;</span>
+              </a>
+            </article>
+          ))
+        }
+      </div>
+    </Container>
+  </section>
+
+  <!-- SECTION: Map placeholder -->
+  <section id="map" class="bg-slate-50 py-24 sm:py-28">
+    <Container>
+      <SectionHeading
+        eyebrow="Location"
+        title="Find us in Qinhuangdao"
+        description="TIANHUI Logistics Park is located in Qinhuangdao, Hebei, with convenient access to Qinhuangdao Port and the national logistics network."
+      />
+      <div
+        class="mt-12 aspect-[16/7] overflow-hidden rounded-3xl border border-slate-200 bg-gradient-to-br from-brand-50 via-white to-slate-100 ring-1 ring-slate-200"
+      >
+        <div class="flex h-full items-center justify-center">
+          <div class="text-center">
+            <p class="text-xs font-semibold tracking-wider text-brand-700 uppercase">
+              Map placeholder
+            </p>
+            <p class="mt-2 max-w-md text-sm text-slate-500">
+              Embed a Google Maps / Baidu Maps / OpenStreetMap iframe here, or replace this block with a static map image.
+            </p>
+          </div>
+        </div>
+      </div>
+    </Container>
+  </section>
+</BaseLayout>

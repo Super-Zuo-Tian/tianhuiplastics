@@ -1,0 +1,210 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import Container from "../../components/Container.astro";
+import PageHero from "../../components/PageHero.astro";
+import SubNav from "../../components/SubNav.astro";
+import SectionHeading from "../../components/SectionHeading.astro";
+import InquiryCTA from "../../components/InquiryCTA.astro";
+import { aboutLinks } from "../../data/navSections";
+import { images } from "../../data/images";
+
+const capabilityStats = [
+  { value: "30,000 m²", label: "Total built area" },
+  { value: "CNY 200M", label: "Capital invested in 2019" },
+  { value: "300+", label: "Warehouses nationwide" },
+  { value: "24/7", label: "Logistics operations" },
+];
+
+const facilities = [
+  {
+    title: "Sales Operations Centre",
+    description:
+      "Domestic and export sales teams organised by resin family, supported by bilingual account managers and digital quotation tools.",
+    image: images.office1,
+  },
+  {
+    title: "Bulk Warehousing",
+    description:
+      "Dedicated indoor and outdoor warehousing zones with strict moisture and contamination control for each resin type.",
+    image: images.lobby2,
+  },
+  {
+    title: "Logistics & Freight",
+    description:
+      "Multi-bay loading docks with 24/7 operations, dedicated truck fleet partners and direct port connections via Qinhuangdao Port.",
+    image: images.trucks,
+  },
+  {
+    title: "After-sales Service",
+    description:
+      "On-site quality inspection, application support and a structured customer feedback loop for every shipment.",
+    image: images.office2,
+  },
+  {
+    title: "Network Freight Platform",
+    description:
+      "Digital freight matching system connecting shippers and licensed carriers to optimise transportation cost and timing.",
+    image: images.freightPlatform,
+  },
+  {
+    title: "Headquarters Campus",
+    description:
+      "A modern headquarters reflecting the group's scale, with a grand lobby and full-service amenities for staff and visitors.",
+    image: images.lobbyLogoWall,
+  },
+];
+
+const amenities = [
+  { title: "Library & reading room", image: images.library },
+  { title: "Staff canteen", image: images.canteen },
+  { title: "Basketball court", image: images.basketball },
+  { title: "Badminton court", image: images.badminton },
+];
+---
+
+<BaseLayout
+  title="Factory & Capability"
+  description="TIANHUI Logistics Park covers 30,000 m² in Qinhuangdao with integrated sales, warehousing, logistics, R&D and after-sales facilities."
+>
+  <PageHero
+    eyebrow="About TIANHUI"
+    title="Factory & Capability"
+    description="An integrated 30,000 m² logistics park supporting bulk resin trading, supply chain management and international fulfilment — under one roof in Qinhuangdao."
+    breadcrumb={[
+      { label: "Home", href: "/" },
+      { label: "About", href: "/about/company-profile/" },
+      { label: "Factory & Capability" },
+    ]}
+    image={images.building2}
+    imagePosition="center 55%"
+  />
+
+  <SubNav links={aboutLinks} currentHref="/about/factory-capability/" />
+
+  <!-- SECTION: Capability stats -->
+  <section id="capability-overview" class="bg-white py-24 sm:py-32">
+    <Container>
+      <div class="grid gap-16 lg:grid-cols-12 lg:items-start">
+        <div class="lg:col-span-7">
+          <SectionHeading
+            eyebrow="Tianhui E-commerce Logistics Park"
+            title="A 30,000 m² campus, purpose-built for resin trading"
+            description="Commissioned in 2019 with a CNY 200 million investment, the park integrates sales, logistics, R&D, after-sales service and supply chain management into one operational platform — and serves as the group's headquarters today."
+          />
+        </div>
+        <dl class="grid grid-cols-2 gap-4 lg:col-span-5">
+          {
+            capabilityStats.map((stat) => (
+              <div class="rounded-3xl border border-slate-200 bg-slate-50 p-6">
+                <dd class="text-3xl font-semibold tracking-tight text-slate-900">
+                  {stat.value}
+                </dd>
+                <dt class="mt-2 text-sm text-slate-500">{stat.label}</dt>
+              </div>
+            ))
+          }
+        </dl>
+      </div>
+    </Container>
+  </section>
+
+  <!-- SECTION: Park overview photo -->
+  <section id="overview-photo" class="bg-slate-50">
+    <Container>
+      <div class="overflow-hidden rounded-3xl shadow-xl ring-1 ring-slate-200">
+        <img
+          src={images.building1}
+          alt="TIANHUI Logistics Park exterior"
+          class="aspect-[21/9] w-full object-cover"
+          loading="lazy"
+        />
+      </div>
+    </Container>
+  </section>
+
+  <!-- SECTION: Facilities -->
+  <section id="facilities" class="bg-slate-50 py-24 sm:py-32">
+    <Container>
+      <SectionHeading
+        eyebrow="Facilities"
+        title="A campus designed around resin supply"
+        description="Each zone within the park is purpose-built to handle bulk resin flow safely, cleanly and on-time."
+      />
+      <div class="mt-16 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+        {
+          facilities.map((item) => (
+            <article class="overflow-hidden rounded-3xl border border-slate-200 bg-white shadow-sm transition hover:-translate-y-1 hover:shadow-lg">
+              <div class="aspect-[4/3] w-full overflow-hidden bg-slate-100">
+                <img
+                  src={item.image}
+                  alt={item.title}
+                  class="size-full object-cover transition duration-500 hover:scale-105"
+                  loading="lazy"
+                />
+              </div>
+              <div class="p-7">
+                <h3 class="text-lg font-semibold text-slate-900">{item.title}</h3>
+                <p class="mt-3 text-sm leading-7 text-slate-600">{item.description}</p>
+              </div>
+            </article>
+          ))
+        }
+      </div>
+    </Container>
+  </section>
+
+  <!-- SECTION: Lobby showcase -->
+  <section id="lobby" class="bg-white py-24 sm:py-32">
+    <Container>
+      <div class="grid gap-16 lg:grid-cols-12 lg:items-center">
+        <div class="lg:col-span-7">
+          <div class="overflow-hidden rounded-3xl shadow-xl ring-1 ring-slate-200">
+            <img
+              src={images.lobby1}
+              alt="TIANHUI Group headquarters lobby"
+              class="aspect-[4/3] w-full object-cover"
+              loading="lazy"
+            />
+          </div>
+        </div>
+        <div class="lg:col-span-5">
+          <SectionHeading
+            eyebrow="Headquarters Lobby"
+            title="A welcoming space for global partners"
+            description="From the grand lobby to the meeting suites and showrooms, our headquarters is designed to host domestic and international partners with the dignity that long-term cooperation deserves."
+          />
+        </div>
+      </div>
+    </Container>
+  </section>
+
+  <!-- SECTION: Staff amenities -->
+  <section id="amenities" class="bg-slate-50 py-24 sm:py-32">
+    <Container>
+      <SectionHeading
+        eyebrow="Staff Amenities"
+        title="A place where our people can thrive"
+        description="The Tianhui Logistics Park houses staff amenities that support a healthy, balanced and engaged workforce."
+      />
+      <ul class="mt-16 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+        {
+          amenities.map((a) => (
+            <li class="overflow-hidden rounded-3xl bg-white shadow-sm ring-1 ring-slate-200">
+              <div class="aspect-[4/3] w-full overflow-hidden bg-slate-100">
+                <img
+                  src={a.image}
+                  alt={a.title}
+                  class="size-full object-cover"
+                  loading="lazy"
+                />
+              </div>
+              <div class="p-5 text-sm font-semibold text-slate-800">{a.title}</div>
+            </li>
+          ))
+        }
+      </ul>
+    </Container>
+  </section>
+
+  <InquiryCTA />
+</BaseLayout>

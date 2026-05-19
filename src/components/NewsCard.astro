@@ -1,0 +1,60 @@
+---
+import type { NewsPost } from "../data/news";
+
+interface Props {
+  post: NewsPost;
+  featured?: boolean;
+}
+
+const { post, featured = false } = Astro.props;
+
+const dateLabel = new Date(post.date).toLocaleDateString("en-US", {
+  year: "numeric",
+  month: "short",
+  day: "numeric",
+});
+
+const categoryLabel = post.category === "company" ? "Company News" : "Global News";
+const href = `/news/posts/${post.slug}/`;
+---
+
+<article
+  class:list={[
+    "group flex h-full flex-col rounded-3xl border border-slate-200 bg-white shadow-sm transition hover:-translate-y-1 hover:shadow-xl",
+    featured ? "lg:col-span-2" : "",
+  ]}
+>
+  <a href={href} class="flex flex-1 flex-col p-8">
+    <div class="flex items-center gap-3 text-xs">
+      <span class="rounded-full bg-brand-50 px-3 py-1 font-semibold tracking-wider text-brand-700 uppercase">
+        {categoryLabel}
+      </span>
+      <time class="text-slate-500" datetime={post.date}>{dateLabel}</time>
+    </div>
+    <h3
+      class:list={[
+        "mt-5 font-semibold text-slate-900 group-hover:text-brand-700",
+        featured ? "text-2xl sm:text-3xl" : "text-lg",
+      ]}
+    >
+      {post.title}
+    </h3>
+    <p class:list={["mt-4 flex-1 leading-7 text-slate-600", featured ? "text-base" : "text-sm"]}>
+      {post.excerpt}
+    </p>
+    {
+      post.tags && post.tags.length > 0 && (
+        <ul class="mt-6 flex flex-wrap gap-2">
+          {post.tags.map((tag) => (
+            <li class="rounded-full bg-slate-100 px-3 py-1 text-xs font-medium text-slate-700">
+              {tag}
+            </li>
+          ))}
+        </ul>
+      )
+    }
+    <span class="mt-6 inline-flex items-center gap-2 text-sm font-semibold text-brand-700 group-hover:text-brand-800">
+      Read article <span aria-hidden="true">&rarr;</span>
+    </span>
+  </a>
+</article>

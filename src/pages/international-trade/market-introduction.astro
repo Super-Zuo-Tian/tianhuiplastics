@@ -1,0 +1,206 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import Container from "../../components/Container.astro";
+import PageHero from "../../components/PageHero.astro";
+import SectionHeading from "../../components/SectionHeading.astro";
+import InquiryCTA from "../../components/InquiryCTA.astro";
+import { images } from "../../data/images";
+
+const exportMarkets = [
+  { region: "Southeast Asia", countries: ["Vietnam", "Indonesia", "Singapore"] },
+  { region: "South Asia", countries: ["Pakistan", "Bangladesh", "India"] },
+  { region: "Middle East & Turkey", countries: ["Turkey"] },
+  { region: "Africa & Oceania", countries: ["Tanzania", "Australia"] },
+  { region: "Americas", countries: ["South America (multiple)"] },
+];
+
+const importMarkets = [
+  "United Arab Emirates",
+  "Qatar",
+  "United States",
+  "South Korea",
+  "Iran",
+];
+
+const services = [
+  {
+    title: "FOB / CFR / CIF Quotations",
+    description:
+      "Flexible Incoterms tailored to your destination port and preferred logistics arrangement.",
+  },
+  {
+    title: "Documentation Support",
+    description:
+      "COA, MSDS, Certificate of Origin, packing list, commercial invoice and other export documents prepared by our team.",
+  },
+  {
+    title: "Container & FCL Loading",
+    description:
+      "20'GP and 40'HQ container loading from our logistics park, port stuffing and bulk-bag options available.",
+  },
+  {
+    title: "Inspection & Compliance",
+    description:
+      "SGS / BV / CCIC third-party inspection arranged on request; compliance with destination market requirements.",
+  },
+];
+---
+
+<BaseLayout
+  title="International Trade — Market Introduction"
+  description="TIANHUI's international trade operations span four continents. Explore our export destinations, import sources and export services."
+>
+  <PageHero
+    eyebrow="International Trade"
+    title="Market Introduction"
+    description="Active export and import operations across four continents, supported by a bilingual export team and an integrated supply chain."
+    breadcrumb={[
+      { label: "Home", href: "/" },
+      { label: "International Trade" },
+      { label: "Market Introduction" },
+    ]}
+    image={images.citySkyline}
+    imagePosition="center 60%"
+  />
+
+  <!-- SECTION: Overview -->
+  <section id="overview" class="bg-white py-24 sm:py-28">
+    <Container>
+      <SectionHeading
+        eyebrow="Overview"
+        title="A global resin trading footprint"
+        description="TIANHUI's international trade business connects Chinese petrochemical producers with converters and traders around the world. Our export operations cover Southeast Asia, South Asia, the Middle East, Africa, Oceania and the Americas; imports bring in speciality grades from the UAE, Qatar, the United States, South Korea and Iran."
+      />
+      <dl class="mt-12 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+        <div class="rounded-3xl border border-slate-200 bg-slate-50 p-6">
+          <dt class="text-sm text-slate-500">Export destinations</dt>
+          <dd class="mt-2 text-3xl font-semibold text-slate-900">10+</dd>
+        </div>
+        <div class="rounded-3xl border border-slate-200 bg-slate-50 p-6">
+          <dt class="text-sm text-slate-500">Import sources</dt>
+          <dd class="mt-2 text-3xl font-semibold text-slate-900">5+</dd>
+        </div>
+        <div class="rounded-3xl border border-slate-200 bg-slate-50 p-6">
+          <dt class="text-sm text-slate-500">Continents served</dt>
+          <dd class="mt-2 text-3xl font-semibold text-slate-900">4</dd>
+        </div>
+        <div class="rounded-3xl border border-slate-200 bg-slate-50 p-6">
+          <dt class="text-sm text-slate-500">Response SLA</dt>
+          <dd class="mt-2 text-3xl font-semibold text-slate-900">&lt; 24h</dd>
+        </div>
+      </dl>
+    </Container>
+  </section>
+
+  <!-- SECTION: Export markets -->
+  <section id="exports" class="bg-slate-50 py-24 sm:py-28">
+    <Container>
+      <SectionHeading
+        eyebrow="Export Markets"
+        title="Where TIANHUI resins are shipped"
+        description="TIANHUI exports PE, PP, PS and ABS resins to converters and traders across the following regions."
+      />
+      <div class="mt-14 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+        {
+          exportMarkets.map((market) => (
+            <article class="rounded-3xl border border-slate-200 bg-white p-8 shadow-sm">
+              <h3 class="text-base font-semibold text-slate-900">{market.region}</h3>
+              <ul class="mt-4 flex flex-wrap gap-2">
+                {market.countries.map((c) => (
+                  <li class="rounded-full bg-slate-100 px-3 py-1 text-xs font-medium text-slate-700">
+                    {c}
+                  </li>
+                ))}
+              </ul>
+            </article>
+          ))
+        }
+      </div>
+    </Container>
+  </section>
+
+  <!-- SECTION: Import sources -->
+  <section id="imports" class="bg-white py-24 sm:py-28">
+    <Container>
+      <div class="grid gap-12 lg:grid-cols-12 lg:items-center">
+        <div class="lg:col-span-6">
+          <SectionHeading
+            eyebrow="Import Sources"
+            title="Speciality resins sourced internationally"
+            description="Beyond our domestic supply network, TIANHUI imports speciality and high-performance resin grades to meet specific customer requirements."
+          />
+        </div>
+        <div class="lg:col-span-6">
+          <ul class="grid gap-3 sm:grid-cols-2">
+            {
+              importMarkets.map((country) => (
+                <li class="flex items-center gap-3 rounded-2xl border border-slate-200 bg-slate-50 px-5 py-4 text-sm font-medium text-slate-800">
+                  <span class="inline-flex size-2 rounded-full bg-brand-600" />
+                  {country}
+                </li>
+              ))
+            }
+          </ul>
+        </div>
+      </div>
+    </Container>
+  </section>
+
+  <!-- SECTION: Trade services -->
+  <section id="services" class="bg-slate-50 py-24 sm:py-28">
+    <Container>
+      <SectionHeading
+        eyebrow="Trade Services"
+        title="What our export desk delivers"
+        description="From the first inquiry to the final BL, our export team handles every step so your sourcing operation runs smoothly."
+      />
+      <div class="mt-14 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+        {
+          services.map((service) => (
+            <article class="rounded-3xl border border-slate-200 bg-white p-8 shadow-sm transition hover:-translate-y-0.5 hover:shadow-md">
+              <h3 class="text-base font-semibold text-slate-900">{service.title}</h3>
+              <p class="mt-3 text-sm leading-7 text-slate-600">{service.description}</p>
+            </article>
+          ))
+        }
+      </div>
+    </Container>
+  </section>
+
+  <!-- SECTION: Logistics highlight -->
+  <section id="logistics" class="bg-white py-24 sm:py-32">
+    <Container>
+      <div class="grid gap-16 lg:grid-cols-12 lg:items-center">
+        <div class="lg:col-span-6">
+          <div class="overflow-hidden rounded-3xl shadow-xl ring-1 ring-slate-200">
+            <img
+              src={images.trucks}
+              alt="TIANHUI logistics fleet — long-haul trucks"
+              class="aspect-[4/3] w-full object-cover"
+              loading="lazy"
+            />
+          </div>
+        </div>
+        <div class="lg:col-span-6">
+          <SectionHeading
+            eyebrow="Logistics"
+            title="From Qinhuangdao Port to your port"
+            description="TIANHUI's logistics park is located near Qinhuangdao Port, with direct truck and container access. Combined with our network freight platform, we move resins to ports and inland destinations efficiently and reliably."
+          />
+          <a
+            href="/about/factory-capability/"
+            class="mt-8 inline-flex items-center gap-2 text-sm font-semibold text-brand-700 hover:text-brand-800"
+          >
+            Inside the logistics park
+            <span aria-hidden="true">&rarr;</span>
+          </a>
+        </div>
+      </div>
+    </Container>
+  </section>
+
+  <InquiryCTA
+    title="Looking for resins delivered to your port?"
+    description="Tell us the grade, quantity, packaging and destination — we'll come back with a CFR or CIF quote within one business day."
+  />
+</BaseLayout>

@@ -1,0 +1,180 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import Container from "../../components/Container.astro";
+import PageHero from "../../components/PageHero.astro";
+import SubNav from "../../components/SubNav.astro";
+import SectionHeading from "../../components/SectionHeading.astro";
+import InquiryCTA from "../../components/InquiryCTA.astro";
+import { aboutLinks } from "../../data/navSections";
+import { images } from "../../data/images";
+
+const certifications = [
+  {
+    title: "Road Transport Operating License",
+    description:
+      "Authorised by the People's Republic of China Ministry of Transport, certifying TIANHUI as a licensed network freight operator.",
+    issuer: "Ministry of Transport, PRC",
+    image: images.certTransport,
+  },
+  {
+    title: "Computer Software Copyright Certificate",
+    description:
+      "National copyright registration for the Tianhui Haojun General Freight Technical Service Backend Management System V1.0, issued by the National Copyright Administration of the PRC.",
+    issuer: "National Copyright Administration, PRC",
+    image: images.certSoftware,
+  },
+];
+
+const awards = [
+  "Top 500 Chinese Service Enterprises (2020)",
+  "Top 100 Enterprises · Beijing-Tianjin-Hebei Region",
+  "Top 100 Service Enterprises · Beijing-Tianjin-Hebei Region",
+  "Top 100 Private Enterprises · Hebei Province",
+  "Top 100 Service Enterprises · Hebei Province",
+  "Hebei Provincial Party Committee Key Supported Enterprise",
+  "Gold Medal Trusted Customer · People's Bank of China",
+];
+
+const reports = [
+  {
+    title: "Certificate of Analysis (COA)",
+    description:
+      "Each shipment is accompanied by a COA covering melt flow rate, density, ash content and other indices.",
+  },
+  {
+    title: "Mill Test Reports",
+    description:
+      "Original mill test reports from our upstream petrochemical partners are available on request.",
+  },
+  {
+    title: "Third-party Inspection",
+    description:
+      "We accept SGS, BV and CCIC inspections at customer request to support international procurement standards.",
+  },
+];
+---
+
+<BaseLayout
+  title="Awards & Recognitions"
+  description="Certifications, awards and quality reports that document TIANHUI's commitment to quality, compliance and traceability."
+>
+  <PageHero
+    eyebrow="About TIANHUI"
+    title="Awards & Recognitions"
+    description="Quality and compliance are not slogans. They are documented in our certifications, awards and customer feedback."
+    breadcrumb={[
+      { label: "Home", href: "/" },
+      { label: "About", href: "/about/company-profile/" },
+      { label: "Awards & Recognitions" },
+    ]}
+    image={images.top500Celebration}
+    imagePosition="center 35%"
+  />
+
+  <SubNav links={aboutLinks} currentHref="/about/awards-recognitions/" />
+
+  <!-- SECTION: Featured awards strip -->
+  <section id="featured" class="border-b border-slate-200 bg-white py-12">
+    <Container>
+      <p class="text-xs font-semibold tracking-[0.2em] text-brand-700 uppercase">
+        Featured Recognitions
+      </p>
+      <ul class="mt-6 grid gap-3 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
+        {
+          awards.map((a) => (
+            <li class="rounded-2xl border border-slate-200 bg-slate-50 px-4 py-3 text-sm font-medium text-slate-800">
+              {a}
+            </li>
+          ))
+        }
+      </ul>
+    </Container>
+  </section>
+
+  <!-- SECTION: Top 500 photo + intro -->
+  <section id="top500" class="bg-white py-24 sm:py-32">
+    <Container>
+      <div class="grid gap-16 lg:grid-cols-12 lg:items-center">
+        <div class="lg:col-span-7">
+          <div class="overflow-hidden rounded-3xl shadow-xl ring-1 ring-slate-200">
+            <img
+              src={images.top500Celebration}
+              alt="TIANHUI Group leadership marking the entry into China's Top 500 Service Enterprises"
+              class="aspect-[4/3] w-full object-cover"
+              loading="lazy"
+            />
+          </div>
+        </div>
+        <div class="lg:col-span-5">
+          <SectionHeading
+            eyebrow="China Top 500 Service Enterprises"
+            title="Recognised among China's leading service enterprises"
+            description="In 2020 TIANHUI was named one of China's Top 500 Service Enterprises — a milestone reflecting our scale, service quality and contribution to the plastic supply chain industry."
+          />
+          <p class="mt-6 text-base leading-7 text-slate-700">
+            The same year, TIANHUI also joined the Top 100 Private Enterprises
+            and Top 100 Service Enterprises of Hebei Province (a "double top
+            100" enterprise), and was honoured as a Gold Medal Trusted Customer
+            of the People's Bank of China.
+          </p>
+        </div>
+      </div>
+    </Container>
+  </section>
+
+  <!-- SECTION: Certificates -->
+  <section id="certificates" class="bg-slate-50 py-24 sm:py-32">
+    <Container>
+      <SectionHeading
+        eyebrow="Certificates & Licenses"
+        title="Licensed operations, documented quality"
+      />
+      <div class="mt-16 grid gap-8 lg:grid-cols-2">
+        {
+          certifications.map((cert) => (
+            <article class="overflow-hidden rounded-3xl border border-slate-200 bg-white shadow-sm">
+              <div class="aspect-[4/3] w-full overflow-hidden bg-slate-100">
+                <img
+                  src={cert.image}
+                  alt={cert.title}
+                  class="size-full object-contain p-6"
+                  loading="lazy"
+                />
+              </div>
+              <div class="p-8">
+                <h3 class="text-lg font-semibold text-slate-900">{cert.title}</h3>
+                <p class="mt-3 text-sm leading-7 text-slate-600">{cert.description}</p>
+                <p class="mt-4 text-xs font-semibold tracking-[0.18em] text-slate-500 uppercase">
+                  Issued by · {cert.issuer}
+                </p>
+              </div>
+            </article>
+          ))
+        }
+      </div>
+    </Container>
+  </section>
+
+  <!-- SECTION: Reports -->
+  <section id="reports" class="bg-white py-24 sm:py-32">
+    <Container>
+      <SectionHeading
+        eyebrow="Quality Reports"
+        title="Documentation for every shipment"
+        description="We provide the documentation international buyers expect, so your QA, customs and procurement teams can move quickly."
+      />
+      <div class="mt-16 grid gap-6 md:grid-cols-3">
+        {
+          reports.map((rep) => (
+            <article class="rounded-3xl border border-slate-200 bg-slate-50 p-8">
+              <h3 class="text-base font-semibold text-slate-900">{rep.title}</h3>
+              <p class="mt-3 text-sm leading-7 text-slate-600">{rep.description}</p>
+            </article>
+          ))
+        }
+      </div>
+    </Container>
+  </section>
+
+  <InquiryCTA />
+</BaseLayout>

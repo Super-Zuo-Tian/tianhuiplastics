@@ -1,445 +1,500 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
+import Container from "../components/Container.astro";
+import SectionHeading from "../components/SectionHeading.astro";
+import InquiryCTA from "../components/InquiryCTA.astro";
+import { productFamilies } from "../data/products";
+import { newsPosts } from "../data/news";
+import { site } from "../data/site";
+import { images } from "../data/images";
+
+const stats = [
+  { value: "2004", label: "Established in Qinhuangdao" },
+  { value: "~1,000", label: "Resin grades in portfolio" },
+  { value: "30,000 m²", label: "Tianhui Logistics Park" },
+  { value: "300+", label: "Warehouses nationwide" },
+  { value: "30+", label: "Provinces & municipalities" },
+  { value: "20+", label: "Export destinations" },
+];
+
+const honours = [
+  "Top 500 Chinese Service Enterprises",
+  "Top 100 Enterprises · Beijing-Tianjin-Hebei",
+  "Top 100 Service Enterprises · Beijing-Tianjin-Hebei",
+  "Top 100 Enterprises · Hebei Province",
+  "Top 100 Service Enterprises · Hebei Province",
+];
+
+const services = [
+  {
+    title: "Plastic raw material supply",
+    description:
+      "PE, PP, ABS, PS, SBS and other resin series — nearly 1,000 grades in stock, meeting the demands of multiple industries.",
+  },
+  {
+    title: "Stable and reliable channels",
+    description:
+      "Long-term agency and strategic partnerships with PetroChina, Sinopec, China Coal, Yanchang Petroleum and Baofeng Energy.",
+  },
+  {
+    title: "Nationwide warehousing",
+    description:
+      "Offices and over 300 warehouses across 30+ provinces and municipalities enable local distribution and lower logistics costs.",
+  },
+  {
+    title: "Integrated supply chain",
+    description:
+      "Full-chain services: procurement, warehousing, logistics, distribution and after-sales — sharing resources and information.",
+  },
+  {
+    title: "International trade services",
+    description:
+      "Import & export agency, international procurement and cross-border logistics, helping customers expand global markets.",
+  },
+  {
+    title: "Customised solutions & R&D",
+    description:
+      "Tailored product solutions, application guidance and R&D support based on each customer's production process.",
+  },
+  {
+    title: "Network freight & logistics",
+    description:
+      "Backed by the group's logistics park and digital network freight platform, enabling transparency and cost optimisation.",
+  },
+  {
+    title: "7×24 customer service",
+    description:
+      "Always-on customer service for orders, logistics and after-sales — keeping cooperation smooth and worry-free.",
+  },
+];
+
+const partners = [
+  "PetroChina (CNPC)",
+  "Sinopec",
+  "China National Coal Group",
+  "Shaanxi Yanchang New Energy",
+  "Yanchang Petroleum (Hubei / Shanghai / Tianjin)",
+  "Ningxia Baofeng Energy Group",
+  "North China Huajin Chemical",
+  "Shandong Dongfang Hongye Chemical",
+];
+
+const recentNews = newsPosts.slice(0, 3);
 ---
 
-<BaseLayout
-  title="天汇科技 · 企业宣传"
-  description="轻量化企业官网示例：产品、团队与联系方式一站式展示。"
->
-  <header class="top">
-    <div class="wrap top__inner">
-      <a class="logo" href="/">天汇<span>科技</span></a>
-      <nav class="nav">
-        <a href="#about">关于我们</a>
-        <a href="#services">业务</a>
-        <a href="#contact">联系</a>
-      </nav>
-      <a class="btn btn--ghost" href="#contact">预约沟通</a>
+<BaseLayout description={site.description}>
+  <!-- SECTION: Hero (full-bleed photo of TIANHUI Logistics Park) -->
+  <section
+    id="hero"
+    class="relative isolate flex min-h-[78vh] items-center overflow-hidden bg-slate-950"
+  >
+    <img
+      src={images.building1}
+      alt="TIANHUI Logistics Park headquarters building"
+      class="absolute inset-0 -z-20 size-full object-cover"
+      loading="eager"
+    />
+    <div
+      class="absolute inset-0 -z-10 bg-gradient-to-r from-slate-950/85 via-slate-950/55 to-slate-950/10"
+    >
     </div>
-  </header>
-
-  <main>
-    <section class="hero wrap">
-      <div class="hero__copy">
-        <p class="eyebrow">轻量化 · 高性能 · 易维护</p>
-        <h1>用清晰叙事，传递可信赖的企业形象</h1>
-        <p class="lede">
-          基于 Astro 的静态站点：首屏快、结构简单、部署成本低，适合企业宣传、活动落地与品牌官网。
+    <div
+      class="absolute inset-0 -z-10 bg-gradient-to-t from-slate-950/70 via-transparent to-slate-950/30"
+    >
+    </div>
+    <Container class="relative py-32">
+      <div class="max-w-3xl">
+        <span
+          class="inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/5 px-3 py-1 text-xs font-medium tracking-[0.2em] text-brand-200 uppercase backdrop-blur"
+        >
+          <span class="size-1.5 rounded-full bg-brand-400"></span>
+          Plastic Resins · Supply Chain · Network Freight
+        </span>
+        <h1 class="mt-8 text-5xl font-semibold tracking-tight text-white sm:text-6xl lg:text-7xl">
+          A diversified enterprise<br />building leadership in plastic
+          supply chain services.
+        </h1>
+        <p class="mt-8 max-w-2xl text-lg leading-8 text-slate-200 sm:text-xl">
+          Mainly engaged in the sales of plastic raw materials, TIANHUI is
+          dedicated to becoming a leader in the supply chain services of the
+          plastic industry — serving converters and traders across China and
+          more than twenty countries worldwide.
         </p>
-        <div class="hero__actions">
-          <a class="btn btn--primary" href="#services">了解业务</a>
-          <a class="btn btn--outline" href="#contact">获取方案</a>
+        <div class="mt-10 flex flex-wrap items-center gap-4">
+          <a
+            href="/contact/"
+            class="inline-flex items-center gap-2 rounded-full bg-white px-6 py-3.5 text-sm font-semibold text-slate-900 shadow-sm transition hover:bg-slate-100"
+          >
+            Request a Quotation
+            <span aria-hidden="true">&rarr;</span>
+          </a>
+          <a
+            href="/products/"
+            class="inline-flex items-center gap-2 rounded-full border border-white/30 px-6 py-3.5 text-sm font-semibold text-white transition hover:bg-white/10"
+          >
+            Browse Resin Catalogue
+          </a>
         </div>
-        <ul class="metrics">
-          <li><strong>99.9%</strong><span>可用性目标</span></li>
-          <li><strong>&lt; 1s</strong><span>首屏体验（静态部署）</span></li>
-          <li><strong>0</strong><span>默认运行时 JS 负担</span></li>
-        </ul>
       </div>
-      <div class="hero__panel" aria-hidden="true">
-        <div class="card">
-          <h3>今日要点</h3>
-          <ul>
-            <li>统一品牌语气与视觉层级</li>
-            <li>突出核心业务与差异化</li>
-            <li>明确的行动召唤（CTA）</li>
+    </Container>
+  </section>
+
+  <!-- SECTION: Stats strip -->
+  <section id="stats" class="border-b border-slate-200 bg-white py-16 sm:py-20">
+    <Container>
+      <dl
+        class="grid grid-cols-2 gap-x-8 gap-y-10 sm:grid-cols-3 lg:grid-cols-6"
+      >
+        {
+          stats.map((stat) => (
+            <div>
+              <dd class="text-3xl font-semibold tracking-tight text-slate-900 sm:text-4xl">
+                {stat.value}
+              </dd>
+              <dt class="mt-2 text-sm text-slate-500">{stat.label}</dt>
+            </div>
+          ))
+        }
+      </dl>
+    </Container>
+  </section>
+
+  <!-- SECTION: About the group -->
+  <section id="about" class="bg-white py-24 sm:py-32">
+    <Container>
+      <div class="grid gap-16 lg:grid-cols-12 lg:items-center">
+        <div class="lg:col-span-5">
+          <SectionHeading
+            eyebrow="Who we are"
+            title="Twenty years of plastic resin trading and supply chain expertise"
+          />
+          <div class="mt-8 space-y-6 text-base leading-7 text-slate-700">
+            <p>
+              Established in 2004 and located in Qinhuangdao, Hebei Province,
+              TIANHUI Group is a diversified enterprise integrating plastic
+              raw material sales and online freight services. In 2019 the
+              group invested 200 million RMB to build the "Tianhui E-commerce
+              Logistics Park" — a 30,000 m² campus integrating sales,
+              logistics, R&D, after-sales service and supply chain management
+              that today serves as our headquarters.
+            </p>
+            <p>
+              Our main products include PE, PP, ABS, PS and SBS series
+              resins with nearly 1,000 grades. With a professional marketing
+              team, extensive channels and a large customer base, we provide
+              full-chain marketing services and solutions to converters,
+              traders and brand owners around the world.
+            </p>
+          </div>
+          <a
+            href="/about/company-profile/"
+            class="mt-10 inline-flex items-center gap-2 rounded-full bg-slate-900 px-5 py-3 text-sm font-semibold text-white transition hover:bg-brand-700"
+          >
+            About TIANHUI <span aria-hidden="true">&rarr;</span>
+          </a>
+        </div>
+        <div class="lg:col-span-7">
+          <div class="relative overflow-hidden rounded-3xl shadow-xl ring-1 ring-slate-200">
+            <img
+              src={images.lobby1}
+              alt="TIANHUI Group headquarters lobby"
+              class="aspect-[4/3] w-full object-cover"
+              loading="lazy"
+            />
+            <div
+              class="pointer-events-none absolute inset-0 bg-gradient-to-t from-slate-900/30 to-transparent"
+            >
+            </div>
+          </div>
+          <ul
+            class="mt-6 grid grid-cols-2 gap-3 text-sm font-medium text-slate-700 sm:grid-cols-3"
+          >
+            {
+              honours.map((h) => (
+                <li class="rounded-2xl border border-slate-200 bg-slate-50 px-4 py-3">
+                  {h}
+                </li>
+              ))
+            }
           </ul>
         </div>
       </div>
-    </section>
+    </Container>
+  </section>
 
-    <section id="about" class="section wrap">
-      <h2 class="section__title">关于我们</h2>
-      <p class="section__intro">
-        我们帮助成长型企业用更少的复杂度完成对外表达：文案精炼、版式克制、技术栈轻量，让访客快速理解「你是谁、你能做什么、如何联系你」。
-      </p>
-      <div class="grid-3">
-        <article class="tile">
-          <h3>专注</h3>
-          <p>围绕核心产品线组织信息，避免堆砌模块，降低维护成本。</p>
-        </article>
-        <article class="tile">
-          <h3>可信</h3>
-          <p>用事实与案例说话，配合合规展示资质与客户背书。</p>
-        </article>
-        <article class="tile">
-          <h3>可扩展</h3>
-          <p>后续可接入博客、招聘或表单，而不推翻现有结构。</p>
-        </article>
+  <!-- SECTION: Product lines -->
+  <section id="products" class="bg-slate-50 py-24 sm:py-32">
+    <Container>
+      <div class="flex flex-wrap items-end justify-between gap-8">
+        <SectionHeading
+          eyebrow="Our Business"
+          title="Six resin families, nearly 1,000 grades in stock"
+          description="From general-purpose PS to engineering-grade ABS, TIANHUI offers a complete portfolio with consistent quality, traceable origin and on-time delivery."
+        />
+        <a
+          href="/products/"
+          class="text-sm font-semibold text-brand-700 hover:text-brand-800"
+        >
+          View full catalogue <span aria-hidden="true">&rarr;</span>
+        </a>
       </div>
-    </section>
 
-    <section id="services" class="section section--alt">
-      <div class="wrap">
-        <h2 class="section__title">核心业务</h2>
-        <div class="grid-2">
-          <article class="feature">
-            <h3>品牌与官网建设</h3>
-            <p>信息架构、视觉规范与落地页制作，交付可迭代的组件化页面。</p>
-          </article>
-          <article class="feature">
-            <h3>内容运营支持</h3>
-            <p>新闻稿、案例故事与多语言版本协作，保持对外口径一致。</p>
-          </article>
-          <article class="feature">
-            <h3>技术与部署</h3>
-            <p>静态托管、CDN 与基础监控建议，控制总拥有成本。</p>
-          </article>
-          <article class="feature">
-            <h3>数据与线索</h3>
-            <p>轻量表单与统计对接，便于市场团队跟进商机。</p>
-          </article>
+      <div class="mt-16 grid gap-6 lg:grid-cols-3">
+        <a
+          href="/products/"
+          class="group relative col-span-1 row-span-2 overflow-hidden rounded-3xl bg-slate-900 shadow-lg lg:col-span-1"
+        >
+          <img
+            src={images.resinPelletsGrid}
+            alt="Plastic resin pellets"
+            class="size-full object-cover transition duration-500 group-hover:scale-105"
+            loading="lazy"
+          />
+          <div
+            class="absolute inset-0 bg-gradient-to-t from-slate-900/80 via-slate-900/30 to-transparent"
+          >
+          </div>
+          <div class="absolute inset-x-0 bottom-0 p-8">
+            <p class="text-xs font-semibold tracking-[0.2em] text-brand-200 uppercase">
+              Full portfolio
+            </p>
+            <h3 class="mt-3 text-2xl font-semibold text-white">
+              PE · PP · PS · ABS · SBS
+            </h3>
+            <p class="mt-3 text-sm leading-6 text-slate-200">
+              Nearly 1,000 grades sourced directly from leading Chinese
+              petrochemical producers.
+            </p>
+          </div>
+        </a>
+        <ul class="contents">
+          {
+            productFamilies.map((family) => (
+              <li>
+                <a
+                  href={`/products/${family.slug}/`}
+                  class="group flex h-full flex-col overflow-hidden rounded-3xl border border-slate-200 bg-white shadow-sm transition hover:-translate-y-1 hover:shadow-xl"
+                >
+                  <div
+                    class:list={[
+                      "relative flex h-32 items-center justify-center bg-gradient-to-br",
+                      family.cover,
+                    ]}
+                  >
+                    <span class="text-5xl font-semibold tracking-tight text-slate-800/70">
+                      {family.abbreviation}
+                    </span>
+                  </div>
+                  <div class="flex flex-1 flex-col p-6">
+                    <h3 class="text-lg font-semibold text-slate-900">
+                      {family.name}
+                    </h3>
+                    <p class="mt-3 flex-1 text-sm leading-6 text-slate-600">
+                      {family.summary}
+                    </p>
+                    <span class="mt-5 inline-flex items-center gap-2 text-sm font-semibold text-brand-700 group-hover:text-brand-800">
+                      Explore {family.abbreviation}
+                      <span aria-hidden="true">&rarr;</span>
+                    </span>
+                  </div>
+                </a>
+              </li>
+            ))
+          }
+        </ul>
+      </div>
+    </Container>
+  </section>
+
+  <!-- SECTION: Services -->
+  <section id="services" class="bg-white py-24 sm:py-32">
+    <Container>
+      <SectionHeading
+        eyebrow="Our Services"
+        title="One-stop solution from procurement to after-sales"
+        description="TIANHUI focuses on providing a comprehensive range of plastic raw materials, integrated supply chain services, specialised international trade and customised marketing support."
+      />
+      <div class="mt-16 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+        {
+          services.map((service, idx) => (
+            <article class="group flex h-full flex-col rounded-3xl border border-slate-200 bg-slate-50 p-7 transition hover:-translate-y-1 hover:bg-white hover:shadow-lg">
+              <span class="text-xs font-semibold tracking-[0.2em] text-brand-700 uppercase">
+                0{idx + 1}
+              </span>
+              <h3 class="mt-4 text-base font-semibold text-slate-900">
+                {service.title}
+              </h3>
+              <p class="mt-3 flex-1 text-sm leading-6 text-slate-600">
+                {service.description}
+              </p>
+            </article>
+          ))
+        }
+      </div>
+    </Container>
+  </section>
+
+  <!-- SECTION: Logistics park photo strip -->
+  <section
+    id="logistics-park"
+    class="relative isolate overflow-hidden bg-slate-950 py-24 sm:py-32"
+  >
+    <img
+      src={images.building3}
+      alt="Tianhui Logistics Park"
+      class="absolute inset-0 -z-20 size-full object-cover opacity-30"
+      loading="lazy"
+    />
+    <div class="absolute inset-0 -z-10 bg-slate-950/70"></div>
+    <Container>
+      <div class="grid gap-12 lg:grid-cols-12 lg:items-center">
+        <div class="lg:col-span-7">
+          <SectionHeading
+            eyebrow="Tianhui E-commerce Logistics Park"
+            title="30,000 m² of integrated operations in Qinhuangdao"
+            description="Commissioned in 2019 with a CNY 200 million investment, the park integrates sales, logistics, R&D, after-sales service and supply chain management — and serves as the group's headquarters today."
+            invert
+          />
+          <a
+            href="/about/factory-capability/"
+            class="mt-10 inline-flex items-center gap-2 rounded-full border border-white/30 px-5 py-3 text-sm font-semibold text-white transition hover:bg-white/10"
+          >
+            Inside the logistics park
+            <span aria-hidden="true">&rarr;</span>
+          </a>
+        </div>
+        <ul class="grid gap-4 lg:col-span-5">
+          {
+            [
+              ["Sales operations centre", "Bilingual export team & digital quoting"],
+              ["Bulk warehousing", "Indoor/outdoor zones for each resin family"],
+              ["Logistics & freight", "24/7 outbound + network freight platform"],
+              ["After-sales service", "Quality follow-up for every shipment"],
+            ].map(([title, desc]) => (
+              <li class="rounded-2xl border border-white/10 bg-white/[0.04] p-5 backdrop-blur">
+                <p class="text-sm font-semibold text-white">{title}</p>
+                <p class="mt-1 text-xs leading-5 text-slate-300">{desc}</p>
+              </li>
+            ))
+          }
+        </ul>
+      </div>
+    </Container>
+  </section>
+
+  <!-- SECTION: Partners -->
+  <section id="partners" class="bg-white py-24 sm:py-32">
+    <Container>
+      <div class="grid gap-12 lg:grid-cols-12">
+        <div class="lg:col-span-4">
+          <SectionHeading
+            eyebrow="Strategic Partners"
+            title="Trusted by China's leading petrochemical producers"
+            description="Over the years TIANHUI has established strong partnerships with major petrochemical companies, becoming a regional agent and strategic partner."
+          />
+          <a
+            href="/market-marketing/long-term-strategic-partners/"
+            class="mt-8 inline-flex items-center gap-2 rounded-full bg-slate-900 px-5 py-3 text-sm font-semibold text-white transition hover:bg-brand-700"
+          >
+            Long-term partners
+            <span aria-hidden="true">&rarr;</span>
+          </a>
+        </div>
+        <ul class="grid gap-3 sm:grid-cols-2 lg:col-span-8">
+          {
+            partners.map((p) => (
+              <li class="flex items-center gap-3 rounded-2xl border border-slate-200 bg-slate-50 px-5 py-4 text-sm font-medium text-slate-800">
+                <span class="inline-flex size-2 rounded-full bg-brand-600" />
+                {p}
+              </li>
+            ))
+          }
+        </ul>
+      </div>
+    </Container>
+  </section>
+
+  <!-- SECTION: International trade highlight -->
+  <section
+    id="international-trade"
+    class="bg-slate-50 py-24 sm:py-32"
+  >
+    <Container>
+      <div class="grid gap-12 lg:grid-cols-12 lg:items-center">
+        <div class="order-2 lg:order-1 lg:col-span-7">
+          <div class="overflow-hidden rounded-3xl shadow-lg ring-1 ring-slate-200">
+            <img
+              src={images.internationalChamber}
+              alt="TIANHUI at Qinhuangdao International Chamber of Commerce"
+              class="aspect-[4/3] w-full object-cover"
+              loading="lazy"
+            />
+          </div>
+        </div>
+        <div class="order-1 lg:order-2 lg:col-span-5">
+          <SectionHeading
+            eyebrow="International Trade"
+            title="A trading footprint across four continents"
+            description="TIANHUI exports resins to Vietnam, Indonesia, Pakistan, Bangladesh, Singapore, Turkey, Tanzania, Australia and South America, and imports speciality grades from the UAE, Qatar, the United States, South Korea and Iran."
+          />
+          <a
+            href="/international-trade/market-introduction/"
+            class="mt-8 inline-flex items-center gap-2 text-sm font-semibold text-brand-700 hover:text-brand-800"
+          >
+            Markets we serve <span aria-hidden="true">&rarr;</span>
+          </a>
         </div>
       </div>
-    </section>
+    </Container>
+  </section>
 
-    <section id="contact" class="section wrap contact">
-      <div class="contact__card">
-        <h2 class="section__title">联系我们</h2>
-        <p class="section__intro">
-          留下你的需求简述，我们会在 1–2 个工作日内回复。以下内容仅为示例，请替换为真实信息。
-        </p>
-        <dl class="contact__list">
-          <div>
-            <dt>邮箱</dt>
-            <dd><a href="mailto:hello@example.com">hello@example.com</a></dd>
-          </div>
-          <div>
-            <dt>地址</dt>
-            <dd>中国 · 某市某区某路 88 号</dd>
-          </div>
-        </dl>
-        <a class="btn btn--primary" href="mailto:hello@example.com">发送邮件</a>
+  <!-- SECTION: News -->
+  <section id="news" class="bg-white py-24 sm:py-32">
+    <Container>
+      <div class="flex flex-wrap items-end justify-between gap-6">
+        <SectionHeading
+          eyebrow="News & Updates"
+          title="Latest from TIANHUI"
+          description="Corporate updates, exhibitions and industry intelligence from our markets."
+        />
+        <a
+          href="/news/company-news/"
+          class="text-sm font-semibold text-brand-700 hover:text-brand-800"
+        >
+          View all news <span aria-hidden="true">&rarr;</span>
+        </a>
       </div>
-    </section>
-  </main>
+      <ul class="mt-12 grid gap-6 md:grid-cols-3">
+        {
+          recentNews.map((post) => (
+            <li>
+              <a
+                href={`/news/posts/${post.slug}/`}
+                class="group flex h-full flex-col rounded-3xl border border-slate-200 bg-slate-50/40 p-7 transition hover:bg-white hover:shadow-md"
+              >
+                <span class="text-xs font-semibold tracking-[0.2em] text-brand-700 uppercase">
+                  {post.category === "company" ? "Company News" : "Global News"}
+                </span>
+                <h3 class="mt-3 text-lg font-semibold text-slate-900 group-hover:text-brand-700">
+                  {post.title}
+                </h3>
+                <p class="mt-3 flex-1 text-sm leading-6 text-slate-600">
+                  {post.excerpt}
+                </p>
+                <time class="mt-6 text-xs text-slate-500" datetime={post.date}>
+                  {new Date(post.date).toLocaleDateString("en-US", {
+                    year: "numeric",
+                    month: "short",
+                    day: "numeric",
+                  })}
+                </time>
+              </a>
+            </li>
+          ))
+        }
+      </ul>
+    </Container>
+  </section>
 
-  <footer class="footer">
-    <div class="wrap footer__inner">
-      <span>© {new Date().getFullYear()} 天汇科技 · 保留所有权利</span>
-      <span class="footer__note">由 Astro 构建</span>
-    </div>
-  </footer>
+  <InquiryCTA />
 </BaseLayout>
-
-<style>
-  .wrap {
-    width: min(1120px, calc(100% - 40px));
-    margin-inline: auto;
-  }
-
-  .top {
-    position: sticky;
-    top: 0;
-    z-index: 10;
-    background: color-mix(in srgb, var(--bg) 88%, transparent);
-    backdrop-filter: blur(10px);
-    border-bottom: 1px solid var(--border);
-  }
-
-  .top__inner {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 16px;
-    padding: 14px 0;
-  }
-
-  .logo {
-    font-weight: 700;
-    letter-spacing: 0.02em;
-  }
-
-  .logo span {
-    color: var(--brand);
-  }
-
-  .nav {
-    display: flex;
-    gap: 22px;
-    font-size: 0.95rem;
-    color: var(--muted);
-  }
-
-  .nav a:hover {
-    color: var(--text);
-  }
-
-  .btn {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    padding: 10px 18px;
-    border-radius: 999px;
-    font-weight: 600;
-    font-size: 0.95rem;
-    border: 1px solid transparent;
-    transition:
-      background 0.15s ease,
-      color 0.15s ease,
-      border-color 0.15s ease,
-      box-shadow 0.15s ease;
-  }
-
-  .btn--primary {
-    background: var(--brand);
-    color: #fff;
-    box-shadow: 0 8px 24px rgba(29, 78, 216, 0.25);
-  }
-
-  .btn--primary:hover {
-    background: #1e40af;
-  }
-
-  .btn--outline {
-    border-color: var(--border);
-    background: var(--surface);
-    color: var(--text);
-  }
-
-  .btn--outline:hover {
-    border-color: #cbd5f5;
-  }
-
-  .btn--ghost {
-    border-color: transparent;
-    background: transparent;
-    color: var(--brand);
-  }
-
-  .btn--ghost:hover {
-    background: var(--brand-soft);
-  }
-
-  .hero {
-    display: grid;
-    gap: 40px;
-    padding: 64px 0 48px;
-    align-items: start;
-  }
-
-  @media (min-width: 900px) {
-    .hero {
-      grid-template-columns: 1.1fr 0.9fr;
-      padding: 88px 0 64px;
-    }
-  }
-
-  .eyebrow {
-    display: inline-block;
-    padding: 6px 12px;
-    border-radius: 999px;
-    background: var(--brand-soft);
-    color: #1e3a8a;
-    font-weight: 600;
-    font-size: 0.85rem;
-    margin: 0 0 16px;
-  }
-
-  .hero h1 {
-    font-size: clamp(2rem, 4vw, 2.75rem);
-    line-height: 1.15;
-    margin: 0 0 16px;
-    letter-spacing: -0.02em;
-  }
-
-  .lede {
-    margin: 0 0 28px;
-    color: var(--muted);
-    font-size: 1.05rem;
-    max-width: 52ch;
-  }
-
-  .hero__actions {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 12px;
-    margin-bottom: 28px;
-  }
-
-  .metrics {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
-    gap: 16px;
-  }
-
-  .metrics li {
-    padding: 14px 16px;
-    border-radius: var(--radius);
-    background: var(--surface);
-    border: 1px solid var(--border);
-    box-shadow: var(--shadow);
-  }
-
-  .metrics strong {
-    display: block;
-    font-size: 1.25rem;
-    margin-bottom: 4px;
-  }
-
-  .metrics span {
-    font-size: 0.85rem;
-    color: var(--muted);
-  }
-
-  .hero__panel .card {
-    background: var(--surface);
-    border-radius: 16px;
-    padding: 24px;
-    border: 1px solid var(--border);
-    box-shadow: var(--shadow);
-  }
-
-  .hero__panel h3 {
-    margin: 0 0 12px;
-    font-size: 1.1rem;
-  }
-
-  .hero__panel ul {
-    margin: 0;
-    padding-left: 18px;
-    color: var(--muted);
-  }
-
-  .hero__panel li + li {
-    margin-top: 8px;
-  }
-
-  .section {
-    padding: 64px 0;
-  }
-
-  .section--alt {
-    background: #eef2ff;
-    border-block: 1px solid #e0e7ff;
-  }
-
-  .section__title {
-    margin: 0 0 12px;
-    font-size: 1.75rem;
-    letter-spacing: -0.02em;
-  }
-
-  .section__intro {
-    margin: 0 0 32px;
-    color: var(--muted);
-    max-width: 62ch;
-  }
-
-  .grid-3 {
-    display: grid;
-    gap: 18px;
-  }
-
-  @media (min-width: 768px) {
-    .grid-3 {
-      grid-template-columns: repeat(3, 1fr);
-    }
-  }
-
-  .tile {
-    background: var(--surface);
-    border-radius: var(--radius);
-    padding: 22px;
-    border: 1px solid var(--border);
-    box-shadow: var(--shadow);
-  }
-
-  .tile h3 {
-    margin: 0 0 8px;
-    font-size: 1.1rem;
-  }
-
-  .tile p {
-    margin: 0;
-    color: var(--muted);
-    font-size: 0.95rem;
-  }
-
-  .grid-2 {
-    display: grid;
-    gap: 18px;
-  }
-
-  @media (min-width: 768px) {
-    .grid-2 {
-      grid-template-columns: repeat(2, 1fr);
-    }
-  }
-
-  .feature {
-    background: var(--surface);
-    border-radius: var(--radius);
-    padding: 22px;
-    border: 1px solid #c7d2fe;
-  }
-
-  .feature h3 {
-    margin: 0 0 8px;
-  }
-
-  .feature p {
-    margin: 0;
-    color: var(--muted);
-  }
-
-  .contact {
-    padding-bottom: 80px;
-  }
-
-  .contact__card {
-    background: var(--surface);
-    border-radius: 18px;
-    padding: 32px;
-    border: 1px solid var(--border);
-    box-shadow: var(--shadow);
-    max-width: 640px;
-  }
-
-  .contact__list {
-    margin: 0 0 24px;
-  }
-
-  .contact__list > div {
-    margin-bottom: 14px;
-  }
-
-  .contact__list dt {
-    font-size: 0.8rem;
-    text-transform: uppercase;
-    letter-spacing: 0.08em;
-    color: var(--muted);
-  }
-
-  .contact__list dd {
-    margin: 4px 0 0;
-    font-weight: 500;
-  }
-
-  .footer {
-    border-top: 1px solid var(--border);
-    padding: 22px 0 32px;
-    color: var(--muted);
-    font-size: 0.9rem;
-  }
-
-  .footer__inner {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-between;
-    gap: 10px;
-  }
-
-  .footer__note {
-    opacity: 0.85;
-  }
-
-  @media (max-width: 720px) {
-    .nav {
-      display: none;
-    }
-  }
-</style>

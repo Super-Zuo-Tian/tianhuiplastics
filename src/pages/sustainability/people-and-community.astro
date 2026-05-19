@@ -1,0 +1,230 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import Container from "../../components/Container.astro";
+import PageHero from "../../components/PageHero.astro";
+import SubNav from "../../components/SubNav.astro";
+import SectionHeading from "../../components/SectionHeading.astro";
+import InquiryCTA from "../../components/InquiryCTA.astro";
+import { sustainabilityLinks } from "../../data/navSections";
+import { images } from "../../data/images";
+
+const peoplePillars = [
+  {
+    title: "Safe & Inclusive Workplace",
+    description:
+      "We design our sites and processes around employee safety, with regular training, ergonomic working conditions and a zero-tolerance approach to discrimination.",
+  },
+  {
+    title: "Continuous Learning",
+    description:
+      "Functional training, cross-departmental rotation and a dedicated library and reading room support our colleagues' professional growth.",
+  },
+  {
+    title: "Health & Recreation",
+    description:
+      "On-site basketball court, badminton court, canteen and reading room help colleagues stay healthy, balanced and energised.",
+  },
+];
+
+const amenities = [
+  {
+    title: "Basketball Court",
+    image: images.basketball,
+    description: "Indoor full-size basketball court for daily play and friendly tournaments.",
+  },
+  {
+    title: "Badminton Court",
+    image: images.badminton,
+    description: "Multi-lane badminton court for staff matches and leisure.",
+  },
+  {
+    title: "Library & Reading Room",
+    image: images.library,
+    description: "Quiet space for reading, learning and small-group discussions.",
+  },
+  {
+    title: "Staff Canteen",
+    image: images.canteen,
+    description: "Spacious canteen serving healthy meals every working day.",
+  },
+];
+
+const teamMoments = [
+  {
+    image: images.teamBuilding,
+    label: "2023 Team-building Activity",
+  },
+  {
+    image: images.basketballMatch,
+    label: "Staff Basketball Match",
+  },
+  {
+    image: images.badmintonMatch,
+    label: "Staff Badminton Match",
+  },
+  {
+    image: images.annualMeeting,
+    label: "Annual Customer Meeting",
+  },
+];
+
+const communityActions = [
+  {
+    title: "Local Employment",
+    description:
+      "TIANHUI is a long-term employer in Qinhuangdao, prioritising local hiring and supporting families across multiple generations.",
+  },
+  {
+    title: "Charitable Donations",
+    description:
+      "Over 3 million RMB has been donated to charitable causes since the group was founded — and this is only the beginning.",
+  },
+  {
+    title: "Partnerships with NGOs",
+    description:
+      "We cooperate with local NGOs on education, elderly care and environmental projects in our home region.",
+  },
+];
+---
+
+<BaseLayout
+  title="People & Community"
+  description="TIANHUI's commitment to its people and to the local community — from safety and learning to sport, education and volunteering."
+>
+  <PageHero
+    eyebrow="Sustainability"
+    title="People & Community"
+    description="Our people are the engine of TIANHUI. We invest in their well-being and in the communities where we operate."
+    breadcrumb={[
+      { label: "Home", href: "/" },
+      { label: "Sustainability" },
+      { label: "People & Community" },
+    ]}
+    image={images.basketballMatch}
+    imagePosition="center 60%"
+  />
+
+  <SubNav links={sustainabilityLinks} currentHref="/sustainability/people-and-community/" />
+
+  <!-- SECTION: Our people -->
+  <section id="people" class="bg-white py-24 sm:py-32">
+    <Container>
+      <SectionHeading
+        eyebrow="Our People"
+        title="People at the heart of the company"
+        description="From the warehouse floor to the export desk, TIANHUI is built by the people who show up every day. We are committed to giving them a safe, fair and rewarding place to work."
+      />
+      <div class="mt-16 grid gap-6 md:grid-cols-3">
+        {
+          peoplePillars.map((p) => (
+            <article class="rounded-3xl border border-slate-200 bg-slate-50 p-8">
+              <h3 class="text-lg font-semibold text-slate-900">{p.title}</h3>
+              <p class="mt-3 text-sm leading-7 text-slate-600">{p.description}</p>
+            </article>
+          ))
+        }
+      </div>
+    </Container>
+  </section>
+
+  <!-- SECTION: Amenities -->
+  <section id="amenities" class="bg-slate-50 py-24 sm:py-32">
+    <Container>
+      <SectionHeading
+        eyebrow="On-site Amenities"
+        title="Where work, sport and learning meet"
+        description="The Tianhui Logistics Park houses on-site amenities that support a healthy, balanced and engaged workforce."
+      />
+      <ul class="mt-16 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+        {
+          amenities.map((a) => (
+            <li class="overflow-hidden rounded-3xl border border-slate-200 bg-white shadow-sm transition hover:-translate-y-1 hover:shadow-lg">
+              <div class="aspect-[4/3] w-full overflow-hidden bg-slate-100">
+                <img
+                  src={a.image}
+                  alt={a.title}
+                  class="size-full object-cover"
+                  loading="lazy"
+                />
+              </div>
+              <div class="p-6">
+                <h3 class="text-base font-semibold text-slate-900">{a.title}</h3>
+                <p class="mt-2 text-sm leading-6 text-slate-600">{a.description}</p>
+              </div>
+            </li>
+          ))
+        }
+      </ul>
+    </Container>
+  </section>
+
+  <!-- SECTION: Community -->
+  <section id="community" class="bg-white py-24 sm:py-32">
+    <Container>
+      <div class="grid gap-16 lg:grid-cols-12 lg:items-center">
+        <div class="lg:col-span-6">
+          <div class="overflow-hidden rounded-3xl shadow-xl ring-1 ring-slate-200">
+            <img
+              src={images.teamGroupPhoto}
+              alt="TIANHUI Group annual team photo"
+              class="aspect-[4/3] w-full object-cover"
+              loading="lazy"
+            />
+          </div>
+        </div>
+        <div class="lg:col-span-6">
+          <SectionHeading
+            eyebrow="Community"
+            title="Engaged in the place we call home"
+            description="Qinhuangdao is where TIANHUI was born, and where we continue to invest in long-term community relationships."
+          />
+          <ul class="mt-8 space-y-5">
+            {
+              communityActions.map((c) => (
+                <li class="rounded-2xl border border-slate-200 bg-slate-50 p-5">
+                  <h3 class="text-base font-semibold text-slate-900">{c.title}</h3>
+                  <p class="mt-2 text-sm leading-6 text-slate-600">{c.description}</p>
+                </li>
+              ))
+            }
+          </ul>
+        </div>
+      </div>
+    </Container>
+  </section>
+
+  <!-- SECTION: Moments from the team -->
+  <section id="moments" class="bg-slate-50 py-24 sm:py-32">
+    <Container>
+      <SectionHeading
+        eyebrow="Moments"
+        title="Snapshots from our team and partners"
+      />
+      <ul class="mt-16 grid gap-6 sm:grid-cols-2">
+        {
+          teamMoments.map((m) => (
+            <li class="overflow-hidden rounded-3xl shadow-sm ring-1 ring-slate-200">
+              <div class="aspect-[16/10] w-full overflow-hidden bg-slate-100">
+                <img
+                  src={m.image}
+                  alt={m.label}
+                  class="size-full object-cover"
+                  loading="lazy"
+                />
+              </div>
+              <p class="bg-white px-6 py-4 text-sm font-medium text-slate-800">
+                {m.label}
+              </p>
+            </li>
+          ))
+        }
+      </ul>
+    </Container>
+  </section>
+
+  <InquiryCTA
+    title="Interested in collaborating on community work?"
+    description="If you represent a local school, NGO or community organisation in our regions of operation, we would love to hear from you."
+    primaryLabel="Get in touch"
+  />
+</BaseLayout>

@@ -1,0 +1,169 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import Container from "../../components/Container.astro";
+import PageHero from "../../components/PageHero.astro";
+import SectionHeading from "../../components/SectionHeading.astro";
+import InquiryCTA from "../../components/InquiryCTA.astro";
+import { images } from "../../data/images";
+
+const upstream = [
+  "PetroChina (CNPC)",
+  "Sinopec",
+  "China National Coal Group",
+  "Shaanxi Yanchang New Energy",
+  "Yanchang Petroleum Hubei / Shanghai / Tianjin Sales",
+  "Ningxia Baofeng Energy Group",
+  "North China Huajin Chemical",
+  "Shandong Dongfang Hongye Chemical",
+];
+
+const downstream = [
+  "FMCG packaging brands",
+  "Pipe and fitting manufacturers",
+  "Home appliance OEMs",
+  "Automotive Tier-1 suppliers",
+  "Agricultural film producers",
+  "Industrial bag converters",
+];
+
+const partnerCategories = [
+  {
+    title: "Upstream Petrochemical Partners",
+    description:
+      "Long-term cooperation agreements with leading Chinese petrochemical mills give TIANHUI stable allocations of PE, PP, PS and ABS resins.",
+    bullets: upstream,
+  },
+  {
+    title: "Downstream Converter Network",
+    description:
+      "We supply converters across packaging, appliances, pipe extrusion, automotive interiors and agricultural film, both in China and abroad.",
+    bullets: downstream,
+  },
+  {
+    title: "Logistics & Service Partners",
+    description:
+      "Licensed inland carriers, port-side warehouses, shipping lines and inspection bodies form an extended fulfilment network.",
+    bullets: [
+      "Licensed network freight carriers",
+      "Container shipping lines",
+      "Port-side warehousing",
+      "Third-party inspection (SGS, BV, CCIC)",
+    ],
+  },
+];
+---
+
+<BaseLayout
+  title="Long-term Strategic Partners"
+  description="TIANHUI's long-term partnerships with petrochemical producers, converters and logistics partners provide a stable foundation for global resin trading."
+>
+  <PageHero
+    eyebrow="Market & Marketing"
+    title="Long-term Strategic Partners"
+    description="Stable resin supply, reliable logistics and growing demand — built on long-term partnerships with China's leading petrochemical producers and the converters we serve every day."
+    breadcrumb={[
+      { label: "Home", href: "/" },
+      { label: "Market & Marketing" },
+      { label: "Long-term Strategic Partners" },
+    ]}
+    image={images.annualMeeting}
+    imagePosition="center 40%"
+  />
+
+  <!-- SECTION: Intro -->
+  <section id="intro" class="bg-white py-24 sm:py-28">
+    <Container>
+      <SectionHeading
+        eyebrow="Network Strength"
+        title="Three layers of long-term partnerships"
+        description="TIANHUI's market position is built on long-term collaboration with upstream petrochemical producers, downstream converters and a network of logistics and service partners."
+      />
+    </Container>
+  </section>
+
+  <!-- SECTION: Partner pillars -->
+  <section id="partners" class="bg-slate-50 py-24 sm:py-28">
+    <Container>
+      <div class="grid gap-6 md:grid-cols-3">
+        {
+          partnerCategories.map((cat) => (
+            <article class="flex h-full flex-col rounded-3xl border border-slate-200 bg-white p-8 shadow-sm">
+              <h3 class="text-lg font-semibold text-slate-900">{cat.title}</h3>
+              <p class="mt-3 text-sm leading-7 text-slate-600">{cat.description}</p>
+              <ul class="mt-6 space-y-2 text-sm text-slate-700">
+                {cat.bullets.map((b) => (
+                  <li class="flex gap-3">
+                    <span class="mt-2 size-1.5 flex-none rounded-full bg-brand-600" />
+                    <span>{b}</span>
+                  </li>
+                ))}
+              </ul>
+            </article>
+          ))
+        }
+      </div>
+    </Container>
+  </section>
+
+  <!-- SECTION: Partner logos placeholder -->
+  <section id="logos" class="bg-white py-24 sm:py-28">
+    <Container>
+      <SectionHeading
+        eyebrow="Selected Partners"
+        title="A snapshot of our partner ecosystem"
+        description="Replace the placeholders below with partner logos when permissions are confirmed."
+      />
+      <ul class="mt-12 grid grid-cols-2 gap-4 sm:grid-cols-3 lg:grid-cols-6">
+        {
+          Array.from({ length: 12 }).map((_, idx) => (
+            <li class="flex aspect-[3/2] items-center justify-center rounded-2xl border border-dashed border-slate-300 bg-slate-50 text-xs font-medium text-slate-500">
+              Logo #{idx + 1}
+            </li>
+          ))
+        }
+      </ul>
+    </Container>
+  </section>
+
+  <!-- SECTION: Why partner with TIANHUI -->
+  <section id="why-partner" class="bg-slate-50 py-24 sm:py-28">
+    <Container>
+      <div class="grid gap-12 lg:grid-cols-12 lg:items-center">
+        <div class="lg:col-span-6">
+          <SectionHeading
+            eyebrow="Become a Partner"
+            title="Grow with TIANHUI"
+            description="Whether you are a petrochemical producer seeking a national distributor, a converter looking for stable resin supply, or a logistics provider scaling cross-border services, TIANHUI is ready to collaborate."
+          />
+        </div>
+        <div class="lg:col-span-6">
+          <div class="rounded-3xl border border-slate-200 bg-white p-10 shadow-sm">
+            <ul class="space-y-4 text-base leading-7 text-slate-700">
+              <li class="flex gap-3">
+                <span class="mt-2 size-2 flex-none rounded-full bg-brand-600"></span>
+                Direct access to ~1000 resin grades across PE, PP, PS, ABS and SBS.
+              </li>
+              <li class="flex gap-3">
+                <span class="mt-2 size-2 flex-none rounded-full bg-brand-600"></span>
+                Owned 30,000 m² logistics park for stable inventory and fulfilment.
+              </li>
+              <li class="flex gap-3">
+                <span class="mt-2 size-2 flex-none rounded-full bg-brand-600"></span>
+                Bilingual export team experienced in international documentation.
+              </li>
+            </ul>
+            <a
+              href="/contact/"
+              class="mt-8 inline-flex items-center gap-2 rounded-full bg-slate-900 px-5 py-2.5 text-sm font-semibold text-white hover:bg-brand-700"
+            >
+              Start a partnership conversation
+              <span aria-hidden="true">&rarr;</span>
+            </a>
+          </div>
+        </div>
+      </div>
+    </Container>
+  </section>
+
+  <InquiryCTA />
+</BaseLayout>

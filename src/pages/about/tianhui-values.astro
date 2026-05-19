@@ -1,0 +1,181 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import Container from "../../components/Container.astro";
+import PageHero from "../../components/PageHero.astro";
+import SubNav from "../../components/SubNav.astro";
+import SectionHeading from "../../components/SectionHeading.astro";
+import InquiryCTA from "../../components/InquiryCTA.astro";
+import { aboutLinks } from "../../data/navSections";
+import { images } from "../../data/images";
+
+const values = [
+  {
+    title: "Honesty as the Foundation",
+    description:
+      "We build long-term trust with suppliers, partners and customers by saying what we mean and meaning what we say.",
+  },
+  {
+    title: "Harmony as the Most Important",
+    description:
+      "Inside the company and across the value chain, we work to create cooperative, win-win relationships rather than zero-sum ones.",
+  },
+  {
+    title: "Integrity as the Top Priority",
+    description:
+      "Every transaction is documented, every shipment is traceable. We never compromise on integrity for short-term gain.",
+  },
+  {
+    title: "Pioneering Spirit",
+    description:
+      "We embrace change, invest in new capabilities and continuously seek better ways to serve customers — from digital platforms to international trade.",
+  },
+];
+
+const principles = [
+  {
+    label: "Mission",
+    text: "To make plastic resins more reliable, transparent and accessible for converters and brand owners around the world.",
+  },
+  {
+    label: "Vision",
+    text: "To become a leader in supply chain services for the national — and global — plastic industry.",
+  },
+  {
+    label: "Service Pledge",
+    text: "Respond promptly. Quote transparently. Deliver consistently. Improve continuously.",
+  },
+];
+---
+
+<BaseLayout
+  title="TIANHUI Values"
+  description="The TIANHUI culture of honesty, harmony, integrity and pioneering spirit shapes how we serve customers and partners every day."
+>
+  <PageHero
+    eyebrow="About TIANHUI"
+    title="Honesty. Harmony. Integrity. Pioneering Spirit."
+    description="The TIANHUI culture is summed up in a few short phrases — but it shows in every quote, every shipment and every customer relationship."
+    breadcrumb={[
+      { label: "Home", href: "/" },
+      { label: "About", href: "/about/company-profile/" },
+      { label: "TIANHUI Values" },
+    ]}
+    image={images.lobbyLogoWall}
+    imagePosition="center"
+  />
+
+  <SubNav links={aboutLinks} currentHref="/about/tianhui-values/" />
+
+  <!-- SECTION: Group culture statement -->
+  <section id="statement" class="bg-white py-24 sm:py-32">
+    <Container>
+      <div class="grid gap-16 lg:grid-cols-12 lg:items-center">
+        <div class="lg:col-span-6">
+          <SectionHeading
+            eyebrow="Group Culture"
+            title="A culture of honesty, harmony, integrity and pioneering spirit"
+          />
+          <p class="mt-8 text-base leading-7 text-slate-700">
+            Looking to the future, TIANHUI Group will remain true to its
+            original aspiration and continue to uphold the group's culture of
+            <strong class="font-semibold">"honesty as the foundation, harmony as the most valuable, integrity as the top priority, and pioneering and enterprising spirit."</strong>
+          </p>
+          <p class="mt-4 text-base leading-7 text-slate-700">
+            We will deepen and refine our expertise in the plastics field,
+            expand our reach in an orderly manner, and strive to build
+            ourselves into a leader in supply chain services for the national
+            plastics industry.
+          </p>
+        </div>
+        <div class="lg:col-span-6">
+          <div class="overflow-hidden rounded-3xl shadow-xl ring-1 ring-slate-200">
+            <img
+              src={images.lobbyLogoWall}
+              alt="TIANHUI Group logo wall — Gather Hearts and Strength, Create Brilliance"
+              class="aspect-[4/3] w-full object-cover"
+              loading="lazy"
+            />
+          </div>
+        </div>
+      </div>
+    </Container>
+  </section>
+
+  <!-- SECTION: Mission / Vision / Pledge -->
+  <section id="principles" class="bg-slate-50 py-24 sm:py-32">
+    <Container>
+      <SectionHeading
+        eyebrow="Purpose"
+        title="What we stand for"
+        description="TIANHUI's purpose extends beyond resin trading. We aim to be a trusted partner that simplifies sourcing for our customers."
+      />
+      <div class="mt-16 grid gap-6 md:grid-cols-3">
+        {
+          principles.map((p) => (
+            <article class="rounded-3xl border border-slate-200 bg-white p-8 shadow-sm">
+              <p class="text-xs font-semibold tracking-[0.2em] text-brand-700 uppercase">
+                {p.label}
+              </p>
+              <p class="mt-4 text-base leading-7 text-slate-800">{p.text}</p>
+            </article>
+          ))
+        }
+      </div>
+    </Container>
+  </section>
+
+  <!-- SECTION: Four values -->
+  <section id="values" class="bg-white py-24 sm:py-32">
+    <Container>
+      <SectionHeading
+        eyebrow="Core Values"
+        title="Four phrases that guide our decisions"
+        description="From quoting a single bag to managing an annual contract, these values define how we operate."
+      />
+      <div class="mt-16 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+        {
+          values.map((value, idx) => (
+            <article class="group relative overflow-hidden rounded-3xl border border-slate-200 bg-slate-50 p-8 shadow-sm transition hover:-translate-y-1 hover:bg-white hover:shadow-lg">
+              <span class="text-5xl font-semibold tracking-tight text-brand-100 group-hover:text-brand-200">
+                0{idx + 1}
+              </span>
+              <h3 class="mt-3 text-lg font-semibold text-slate-900">
+                {value.title}
+              </h3>
+              <p class="mt-3 text-sm leading-7 text-slate-600">
+                {value.description}
+              </p>
+            </article>
+          ))
+        }
+      </div>
+    </Container>
+  </section>
+
+  <!-- SECTION: Team photo -->
+  <section id="team" class="bg-slate-50 py-24 sm:py-32">
+    <Container>
+      <div class="grid gap-16 lg:grid-cols-12 lg:items-center">
+        <div class="lg:col-span-7">
+          <div class="overflow-hidden rounded-3xl shadow-xl ring-1 ring-slate-200">
+            <img
+              src={images.teamBuilding}
+              alt="TIANHUI Group team building activity in front of the headquarters"
+              class="aspect-[4/3] w-full object-cover"
+              loading="lazy"
+            />
+          </div>
+        </div>
+        <div class="lg:col-span-5">
+          <SectionHeading
+            eyebrow="Values in Action"
+            title="Lived through our team, every day"
+            description="Our employees translate values into daily behaviour: returning quotes within hours, double-checking documents, taking ownership of every shipment, and treating customers as long-term partners."
+          />
+        </div>
+      </div>
+    </Container>
+  </section>
+
+  <InquiryCTA />
+</BaseLayout>

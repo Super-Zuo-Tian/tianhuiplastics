@@ -1,0 +1,24 @@
+---
+interface Props {
+  class?: string;
+  /** Container width. `default` = 1440px, `wide` = 1680px, `narrow` = 1080px */
+  size?: "default" | "wide" | "narrow";
+  as?: keyof HTMLElementTagNameMap;
+}
+const {
+  class: className = "",
+  size = "default",
+  as: As = "div",
+} = Astro.props;
+
+const maxW =
+  size === "wide"
+    ? "max-w-[1680px]"
+    : size === "narrow"
+      ? "max-w-[1080px]"
+      : "max-w-[1440px]";
+---
+
+<As class:list={["mx-auto w-full px-6 sm:px-8 lg:px-12 xl:px-16", maxW, className]}>
+  <slot />
+</As>

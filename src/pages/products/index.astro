@@ -1,0 +1,133 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import Container from "../../components/Container.astro";
+import PageHero from "../../components/PageHero.astro";
+import SectionHeading from "../../components/SectionHeading.astro";
+import InquiryCTA from "../../components/InquiryCTA.astro";
+import { productFamilies } from "../../data/products";
+import { images } from "../../data/images";
+
+const services = [
+  {
+    title: "Bulk Resin Trading",
+    description:
+      "Stable monthly volumes across PE, PP, PS, ABS and SBS, with multiple packaging formats (25 kg bags, FIBC, bulk containers).",
+  },
+  {
+    title: "Sourcing & Procurement",
+    description:
+      "Direct relationships with leading Chinese petrochemical producers reduce sourcing risk and improve quote turnaround.",
+  },
+  {
+    title: "Warehousing & Logistics",
+    description:
+      "30,000 m² owned logistics park with dedicated zones for each resin family and 24/7 outbound operations.",
+  },
+  {
+    title: "Export & Documentation",
+    description:
+      "Bilingual export team handles COA, MSDS, invoices, packing lists and customs paperwork for every shipment.",
+  },
+];
+---
+
+<BaseLayout
+  title="Products & Services"
+  description="Explore TIANHUI's six core resin families — PS, HDPE, LLDPE, LDPE, PP and ABS — together with our integrated supply chain services."
+>
+  <PageHero
+    eyebrow="Products"
+    title="Products & Services"
+    description="Six resin families. Nearly 1,000 grades in stock. Backed by an integrated supply chain and a bilingual export team."
+    breadcrumb={[
+      { label: "Home", href: "/" },
+      { label: "Products & Services" },
+    ]}
+    image={images.resinPelletsGrid}
+    imagePosition="center"
+  />
+
+  <!-- SECTION: Intro -->
+  <section id="intro" class="bg-white py-24 sm:py-28">
+    <Container>
+      <SectionHeading
+        eyebrow="Core Portfolio"
+        title="An end-to-end resin offering"
+        description="TIANHUI's product strategy is centred on six resin families that together cover most of the converter market — from commodity packaging grades to engineering-grade ABS. We pair this catalogue with sourcing, warehousing and export services so customers can buy with confidence."
+      />
+    </Container>
+  </section>
+
+  <!-- SECTION: Product family cards -->
+  <section id="families" class="bg-slate-50 py-24 sm:py-28">
+    <Container>
+      <SectionHeading
+        eyebrow="Resin Families"
+        title="Browse by resin family"
+        description="Each family page lists subcategories, typical applications and grade descriptions. Replace the cover gradients with product photos as you populate detail content."
+      />
+      <ul class="mt-14 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+        {
+          productFamilies.map((family) => (
+            <li>
+              <a
+                href={`/products/${family.slug}/`}
+                class="group flex h-full flex-col overflow-hidden rounded-3xl border border-slate-200 bg-white shadow-sm transition hover:-translate-y-1 hover:shadow-xl"
+              >
+                <div
+                  class:list={[
+                    "relative flex h-36 items-center justify-center bg-gradient-to-br",
+                    family.cover,
+                  ]}
+                >
+                  <span class="text-5xl font-semibold tracking-tight text-slate-800/70">
+                    {family.abbreviation}
+                  </span>
+                  <span class="absolute top-4 right-4 rounded-full bg-white/80 px-3 py-1 text-[10px] font-semibold tracking-wider text-slate-700 uppercase backdrop-blur">
+                    {family.grades.length} grade group
+                    {family.grades.length === 1 ? "" : "s"}
+                  </span>
+                </div>
+                <div class="flex flex-1 flex-col p-6">
+                  <h3 class="text-lg font-semibold text-slate-900">
+                    {family.name}
+                  </h3>
+                  <p class="mt-3 flex-1 text-sm leading-6 text-slate-600">
+                    {family.summary}
+                  </p>
+                  <span class="mt-5 inline-flex items-center gap-2 text-sm font-semibold text-brand-700 group-hover:text-brand-800">
+                    View {family.abbreviation} grades
+                    <span aria-hidden="true">&rarr;</span>
+                  </span>
+                </div>
+              </a>
+            </li>
+          ))
+        }
+      </ul>
+    </Container>
+  </section>
+
+  <!-- SECTION: Services -->
+  <section id="services" class="bg-white py-24 sm:py-28">
+    <Container>
+      <SectionHeading
+        eyebrow="Services"
+        title="Beyond the resin itself"
+        description="A reliable resin supplier delivers more than material. TIANHUI's services keep your procurement, logistics and quality teams moving smoothly."
+      />
+      <div class="mt-14 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+        {
+          services.map((service) => (
+            <article class="rounded-3xl border border-slate-200 bg-slate-50 p-8 transition hover:bg-white hover:shadow-md">
+              <h3 class="text-base font-semibold text-slate-900">{service.title}</h3>
+              <p class="mt-3 text-sm leading-7 text-slate-600">{service.description}</p>
+            </article>
+          ))
+        }
+      </div>
+    </Container>
+  </section>
+
+  <InquiryCTA />
+</BaseLayout>

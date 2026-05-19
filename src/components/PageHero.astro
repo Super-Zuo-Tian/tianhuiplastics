@@ -1,0 +1,101 @@
+---
+interface Props {
+  eyebrow?: string;
+  title: string;
+  description?: string;
+  breadcrumb?: { label: string; href?: string }[];
+  /** Optional background image path (under /public). When set, hero shows a full-bleed photo. */
+  image?: string;
+  /** Image focal point (object-position). */
+  imagePosition?: string;
+  /** Make hero taller (Apple/Aramco style). Defaults to standard height. */
+  tall?: boolean;
+}
+
+const {
+  eyebrow,
+  title,
+  description,
+  breadcrumb = [],
+  image,
+  imagePosition = "center",
+  tall = false,
+} = Astro.props;
+
+const padding = tall
+  ? "py-32 sm:py-40 lg:py-48"
+  : "py-24 sm:py-28 lg:py-36";
+---
+
+<section class="relative isolate overflow-hidden bg-slate-950">
+  {
+    image ? (
+      <>
+        <img
+          src={image}
+          alt=""
+          class="absolute inset-0 -z-20 size-full object-cover"
+          style={`object-position: ${imagePosition}`}
+          loading="eager"
+        />
+        <div class="absolute inset-0 -z-10 bg-gradient-to-r from-slate-950/85 via-slate-950/60 to-slate-950/20" />
+        <div class="absolute inset-0 -z-10 bg-gradient-to-t from-slate-950/70 via-transparent to-slate-950/30" />
+      </>
+    ) : (
+      <>
+        <div class="absolute inset-0 -z-10 bg-[radial-gradient(60%_120%_at_0%_0%,rgba(59,102,245,0.35),transparent),radial-gradient(60%_120%_at_100%_100%,rgba(15,31,107,0.55),transparent)]" />
+        <div class="absolute inset-0 -z-10 opacity-30 [background-image:linear-gradient(to_right,rgba(255,255,255,0.08)_1px,transparent_1px),linear-gradient(to_bottom,rgba(255,255,255,0.08)_1px,transparent_1px)] [background-size:48px_48px]" />
+      </>
+    )
+  }
+
+  <div class:list={["mx-auto w-full max-w-[1440px] px-6 sm:px-8 lg:px-12 xl:px-16", padding]}>
+    {
+      breadcrumb.length > 0 && (
+        <nav aria-label="Breadcrumb" class="mb-6">
+          <ol class="flex flex-wrap items-center gap-2 text-xs font-medium text-slate-400">
+            {breadcrumb.map((item, idx) => (
+              <li class="flex items-center gap-2">
+                {item.href ? (
+                  <a href={item.href} class="transition hover:text-white">
+                    {item.label}
+                  </a>
+                ) : (
+                  <span class="text-slate-200">{item.label}</span>
+                )}
+                {idx < breadcrumb.length - 1 && (
+                  <span class="text-slate-600">/</span>
+                )}
+              </li>
+            ))}
+          </ol>
+        </nav>
+      )
+    }
+    {
+      eyebrow && (
+        <p class="text-sm font-semibold tracking-[0.2em] text-brand-300 uppercase">
+          {eyebrow}
+        </p>
+      )
+    }
+    <h1
+      class:list={[
+        "mt-3 max-w-4xl font-semibold tracking-tight text-white",
+        tall
+          ? "text-5xl sm:text-6xl lg:text-7xl"
+          : "text-4xl sm:text-5xl lg:text-6xl",
+      ]}
+    >
+      {title}
+    </h1>
+    {
+      description && (
+        <p class="mt-6 max-w-3xl text-lg leading-8 text-slate-200 sm:text-xl">
+          {description}
+        </p>
+      )
+    }
+    <slot />
+  </div>
+</section>

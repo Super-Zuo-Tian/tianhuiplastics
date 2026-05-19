@@ -1,71 +1,69 @@
 ---
+import "../styles/tailwind.css";
+import SiteHeader from "../components/SiteHeader.astro";
+import SiteFooter from "../components/SiteFooter.astro";
+import { site } from "../data/site";
+
 interface Props {
   title?: string;
   description?: string;
+  /** Override the absolute page title; otherwise `${title} | ${site.name}` is used. */
+  fullTitle?: string;
+  ogImage?: string;
 }
 
 const {
-  title = "企业官网",
-  description = "专业、可靠的企业形象展示。",
+  title = site.name,
+  description = site.description,
+  fullTitle,
+  ogImage = "/favicon.svg",
 } = Astro.props;
+
+const pageTitle = fullTitle ?? (title === site.name ? `${site.name} — ${site.tagline}` : `${title} | ${site.name}`);
+const canonical = new URL(Astro.url.pathname, Astro.site ?? "https://example.com").toString();
 ---
 
 <!doctype html>
-<html lang="zh-CN">
+<html lang="en">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="description" content={description} />
+    <meta name="generator" content={Astro.generator} />
+    <link rel="canonical" href={canonical} />
+
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content={pageTitle} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonical} />
+    <meta property="og:image" content={ogImage} />
+    <meta name="twitter:card" content="summary_large_image" />
+
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-    <title>{title}</title>
+    <title>{pageTitle}</title>
+
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,600;0,9..40,700;1,9..40,400&family=Noto+Sans+SC:wght@400;500;600;700&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=DM+Sans:wght@400;500;600;700&display=swap"
       rel="stylesheet"
     />
   </head>
-  <body>
-    <slot />
+  <body class="bg-white">
+    <a
+      href="#main"
+      class="sr-only focus:not-sr-only focus:fixed focus:top-3 focus:left-3 focus:z-50 focus:rounded-lg focus:bg-slate-900 focus:px-3 focus:py-2 focus:text-sm focus:text-white"
+      >Skip to main content</a
+    >
+    <div class="flex min-h-screen flex-col bg-white">
+      <SiteHeader />
+      <main id="main" class="flex-1">
+        <slot />
+      </main>
+      <SiteFooter />
+    </div>
+    <script>
+      import "@tailwindplus/elements";
+    </script>
   </body>
 </html>
-
-<style is:global>
-  :root {
-    --bg: #f6f7fb;
-    --surface: #ffffff;
-    --text: #0f172a;
-    --muted: #64748b;
-    --brand: #1d4ed8;
-    --brand-soft: #dbeafe;
-    --border: #e2e8f0;
-    --radius: 12px;
-    --shadow: 0 10px 40px rgba(15, 23, 42, 0.06);
-    font-family: "Noto Sans SC", "DM Sans", system-ui, sans-serif;
-    color: var(--text);
-    background: var(--bg);
-    line-height: 1.6;
-  }
-
-  *,
-  *::before,
-  *::after {
-    box-sizing: border-box;
-  }
-
-  body {
-    margin: 0;
-    min-height: 100vh;
-  }
-
-  a {
-    color: inherit;
-    text-decoration: none;
-  }
-
-  img {
-    max-width: 100%;
-    height: auto;
-    display: block;
-  }
-</style>
