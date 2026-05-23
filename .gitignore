@@ -1,4 +1,6 @@
 dist/
+public/images-original/
+public/images-compressed/
 .astro/
 .vercel/
 node_modules/
