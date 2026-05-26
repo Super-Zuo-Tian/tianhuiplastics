@@ -5,6 +5,8 @@ import PageHero from "../../components/PageHero.astro";
 import SectionHeading from "../../components/SectionHeading.astro";
 import InquiryCTA from "../../components/InquiryCTA.astro";
 import { images } from "../../data/images";
+import PartnerLogos from "../../components/PartnerLogos.astro";
+
 
 const upstream = [
   "PetroChina (CNPC)",
@@ -106,24 +108,16 @@ const partnerCategories = [
   </section>
 
   <!-- SECTION: Partner logos placeholder -->
-  <section id="logos" class="bg-white py-24 sm:py-28">
-    <Container>
-      <SectionHeading
-        eyebrow="Selected Partners"
-        title="A snapshot of our partner ecosystem"
-        description="Replace the placeholders below with partner logos when permissions are confirmed."
-      />
-      <ul class="mt-12 grid grid-cols-2 gap-4 sm:grid-cols-3 lg:grid-cols-6">
-        {
-          Array.from({ length: 12 }).map((_, idx) => (
-            <li class="flex aspect-[3/2] items-center justify-center rounded-2xl border border-dashed border-slate-300 bg-slate-50 text-xs font-medium text-slate-500">
-              Logo #{idx + 1}
-            </li>
-          ))
-        }
-      </ul>
-    </Container>
-  </section>
+  <PartnerLogos
+  title="Trusted by the world's most innovative teams"
+  partners={[
+    { name: "PetroChina", logo: "/partner-1.svg" },
+    { name: "Sinopec", logo: "/partner-2.svg" },
+    { name: "China Coal", logo: "/partner-3.svg" },
+    { name: "Yanchang Petroleum", logo: "/partner-4.svg" },
+    { name: "Baofeng Energy", logo: "/partner-5.svg" },
+  ]}
+/>
 
   <!-- SECTION: Why partner with TIANHUI -->
   <section id="why-partner" class="bg-slate-50 py-24 sm:py-28">

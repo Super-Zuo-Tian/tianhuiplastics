@@ -1,0 +1,50 @@
+---
+import Container from "./Container.astro";
+
+interface Partner {
+  name: string;
+  logo: string;
+}
+
+interface Props {
+  title?: string;
+  partners?: Partner[];
+}
+
+const defaultPartners: Partner[] = [
+  { name: "Partner 1", logo: "/partner-1.svg" },
+  { name: "Partner 2", logo: "/partner-2.svg" },
+  { name: "Partner 3", logo: "/partner-3.svg" },
+  { name: "Partner 4", logo: "/partner-4.svg" },
+  { name: "Partner 5", logo: "/partner-5.svg" },
+];
+
+const {
+  title = "Trusted by China's leading petrochemical producers",
+  partners = defaultPartners,
+} = Astro.props;
+---
+
+<section class="bg-white py-12 sm:py-20">
+  <Container>
+    <h2 class="text-center text-lg/8 font-semibold text-slate-800">
+      {title}
+    </h2>
+    <div
+      class="mx-auto mt-10 grid max-w-lg grid-cols-2 items-center gap-x-8 gap-y-10 sm:max-w-xl sm:grid-cols-3 lg:mx-0 lg:max-w-none lg:grid-cols-5 lg:gap-x-10"
+    >
+      {
+        partners.map((partner) => (
+          <img
+            src={partner.logo}
+            alt={partner.name}
+            width="158"
+            height="48"
+            loading="lazy"
+            class="max-h-20 w-full object-contain"
+          />
+        ))
+      }
+    </div>
+  </Container>
+</section>

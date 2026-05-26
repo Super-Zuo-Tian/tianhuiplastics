@@ -1,0 +1,242 @@
+{
+  "totalBeforeKB": 42134,
+  "totalAfterKB": 6510,
+  "files": [
+    {
+      "file": "annual-meeting.jpg",
+      "outName": "annual-meeting.jpg",
+      "converted": false,
+      "beforeKB": 3936,
+      "afterKB": 271,
+      "width": 4464,
+      "height": 2976
+    },
+    {
+      "file": "badminton-match.jpg",
+      "outName": "badminton-match.jpg",
+      "converted": false,
+      "beforeKB": 1664,
+      "afterKB": 49,
+      "width": 5184,
+      "height": 3456
+    },
+    {
+      "file": "badminton.jpg",
+      "outName": "badminton.jpg",
+      "converted": false,
+      "beforeKB": 287,
+      "afterKB": 57,
+      "width": 1706,
+      "height": 1279
+    },
+    {
+      "file": "basketball-match.jpg",
+      "outName": "basketball-match.jpg",
+      "converted": false,
+      "beforeKB": 2023,
+      "afterKB": 287,
+      "width": 5184,
+      "height": 3456
+    },
+    {
+      "file": "basketball.jpg",
+      "outName": "basketball.jpg",
+      "converted": false,
+      "beforeKB": 403,
+      "afterKB": 82,
+      "width": 1706,
+      "height": 1279
+    },
+    {
+      "file": "building-1.jpg",
+      "outName": "building-1.jpg",
+      "converted": false,
+      "beforeKB": 1338,
+      "afterKB": 323,
+      "width": 4032,
+      "height": 3024
+    },
+    {
+      "file": "building-2.jpg",
+      "outName": "building-2.jpg",
+      "converted": false,
+      "beforeKB": 467,
+      "afterKB": 213,
+      "width": 1492,
+      "height": 1080
+    },
+    {
+      "file": "building-3.png",
+      "outName": "building-3.png",
+      "converted": false,
+      "beforeKB": 2740,
+      "afterKB": 1909,
+      "width": 2664,
+      "height": 1500
+    },
+    {
+      "file": "canteen.jpg",
+      "outName": "canteen.jpg",
+      "converted": false,
+      "beforeKB": 1896,
+      "afterKB": 52,
+      "width": 5184,
+      "height": 3456
+    },
+    {
+      "file": "cert-software.png",
+      "outName": "cert-software.jpg",
+      "converted": true,
+      "beforeKB": 806,
+      "afterKB": 58,
+      "width": 591,
+      "height": 800
+    },
+    {
+      "file": "cert-transport.jpg",
+      "outName": "cert-transport.jpg",
+      "converted": false,
+      "beforeKB": 5923,
+      "afterKB": 173,
+      "width": 4672,
+      "height": 3338
+    },
+    {
+      "file": "city-skyline.jpg",
+      "outName": "city-skyline.jpg",
+      "converted": false,
+      "beforeKB": 1205,
+      "afterKB": 251,
+      "width": 3808,
+      "height": 1347
+    },
+    {
+      "file": "freight-platform.png",
+      "outName": "freight-platform.png",
+      "converted": false,
+      "beforeKB": 9516,
+      "afterKB": 1125,
+      "width": 3696,
+      "height": 1980
+    },
+    {
+      "file": "international-chamber.jpg",
+      "outName": "international-chamber.jpg",
+      "converted": false,
+      "beforeKB": 341,
+      "afterKB": 73,
+      "width": 1760,
+      "height": 1080
+    },
+    {
+      "file": "library.jpg",
+      "outName": "library.jpg",
+      "converted": false,
+      "beforeKB": 253,
+      "afterKB": 49,
+      "width": 1706,
+      "height": 1279
+    },
+    {
+      "file": "lobby-1.jpg",
+      "outName": "lobby-1.jpg",
+      "converted": false,
+      "beforeKB": 1810,
+      "afterKB": 103,
+      "width": 5184,
+      "height": 3456
+    },
+    {
+      "file": "lobby-2.jpg",
+      "outName": "lobby-2.jpg",
+      "converted": false,
+      "beforeKB": 311,
+      "afterKB": 63,
+      "width": 1706,
+      "height": 1279
+    },
+    {
+      "file": "lobby-logo-wall.jpg",
+      "outName": "lobby-logo-wall.jpg",
+      "converted": false,
+      "beforeKB": 291,
+      "afterKB": 226,
+      "width": 1706,
+      "height": 1279
+    },
+    {
+      "file": "office-1.jpg",
+      "outName": "office-1.jpg",
+      "converted": false,
+      "beforeKB": 1880,
+      "afterKB": 113,
+      "width": 5184,
+      "height": 3456
+    },
+    {
+      "file": "office-2.jpg",
+      "outName": "office-2.jpg",
+      "converted": false,
+      "beforeKB": 234,
+      "afterKB": 57,
+      "width": 1920,
+      "height": 1080
+    },
+    {
+      "file": "resin-pellets-grid.png",
+      "outName": "resin-pellets-grid.png",
+      "converted": false,
+      "beforeKB": 585,
+      "afterKB": 175,
+      "width": 792,
+      "height": 600
+    },
+    {
+      "file": "team-building.jpg",
+      "outName": "team-building.jpg",
+      "converted": false,
+      "beforeKB": 1557,
+      "afterKB": 292,
+      "width": 4802,
+      "height": 3201
+    },
+    {
+      "file": "team-group-photo.jpg",
+      "outName": "team-group-photo.jpg",
+      "converted": false,
+      "beforeKB": 1478,
+      "afterKB": 232,
+      "width": 5184,
+      "height": 2880
+    },
+    {
+      "file": "top500-celebration.jpg",
+      "outName": "top500-celebration.jpg",
+      "converted": false,
+      "beforeKB": 593,
+      "afterKB": 100,
+      "width": 900,
+      "height": 600
+    },
+    {
+      "file": "trucks.png",
+      "outName": "trucks.png",
+      "converted": false,
+      "beforeKB": 597,
+      "afterKB": 177,
+      "width": 819,
+      "height": 614
+    }
+  ],
+  "conversions": [
+    {
+      "file": "cert-software.png",
+      "outName": "cert-software.jpg",
+      "converted": true,
+      "beforeKB": 806,
+      "afterKB": 58,
+      "width": 591,
+      "height": 800
+    }
+  ]
+}
