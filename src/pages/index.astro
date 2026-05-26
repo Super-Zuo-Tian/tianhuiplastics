@@ -239,15 +239,15 @@ const recentNews = newsPosts.slice(0, 3);
         </a>
       </div>
 
-      <div class="mt-16 grid gap-6 lg:grid-cols-3">
+      <div class="mt-16 grid gap-6 sm:grid-cols-2 lg:grid-cols-4 lg:grid-rows-2">
         <a
           href="/products/"
-          class="group relative col-span-1 row-span-2 overflow-hidden rounded-3xl bg-slate-900 shadow-lg lg:col-span-1"
+          class="group relative min-h-72 overflow-hidden rounded-3xl bg-slate-900 shadow-lg sm:col-span-2 lg:col-span-1 lg:row-span-2 lg:min-h-0"
         >
           <img
             src={images.resinPelletsGrid}
             alt="Plastic resin pellets"
-            class="size-full object-cover transition duration-500 group-hover:scale-105"
+            class="absolute inset-0 size-full object-cover transition duration-500 group-hover:scale-105"
             loading="lazy"
           />
           <div
@@ -267,41 +267,37 @@ const recentNews = newsPosts.slice(0, 3);
             </p>
           </div>
         </a>
-        <ul class="contents">
-          {
-            productFamilies.map((family) => (
-              <li>
-                <a
-                  href={`/products/${family.slug}/`}
-                  class="group flex h-full flex-col overflow-hidden rounded-3xl border border-slate-200 bg-white shadow-sm transition hover:-translate-y-1 hover:shadow-xl"
-                >
-                  <div
-                    class:list={[
-                      "relative flex h-32 items-center justify-center bg-gradient-to-br",
-                      family.cover,
-                    ]}
-                  >
-                    <span class="text-5xl font-semibold tracking-tight text-slate-800/70">
-                      {family.abbreviation}
-                    </span>
-                  </div>
-                  <div class="flex flex-1 flex-col p-6">
-                    <h3 class="text-lg font-semibold text-slate-900">
-                      {family.name}
-                    </h3>
-                    <p class="mt-3 flex-1 text-sm leading-6 text-slate-600">
-                      {family.summary}
-                    </p>
-                    <span class="mt-5 inline-flex items-center gap-2 text-sm font-semibold text-brand-700 group-hover:text-brand-800">
-                      Explore {family.abbreviation}
-                      <span aria-hidden="true">&rarr;</span>
-                    </span>
-                  </div>
-                </a>
-              </li>
-            ))
-          }
-        </ul>
+        {
+          productFamilies.map((family) => (
+            <a
+              href={`/products/${family.slug}/`}
+              class="group flex h-full min-h-0 flex-col overflow-hidden rounded-3xl border border-slate-200 bg-white shadow-sm transition hover:-translate-y-1 hover:shadow-xl"
+            >
+              <div
+                class:list={[
+                  "relative flex h-24 shrink-0 items-center justify-center bg-gradient-to-br lg:h-28",
+                  family.cover,
+                ]}
+              >
+                <span class="text-4xl font-semibold tracking-tight text-slate-800/70 lg:text-5xl">
+                  {family.abbreviation}
+                </span>
+              </div>
+              <div class="flex min-h-0 flex-1 flex-col p-5 lg:p-6">
+                <h3 class="text-base font-semibold text-slate-900 lg:text-lg">
+                  {family.name}
+                </h3>
+                <p class="mt-2 flex-1 text-sm leading-6 text-slate-600 line-clamp-3">
+                  {family.summary}
+                </p>
+                <span class="mt-4 inline-flex items-center gap-2 text-sm font-semibold text-brand-700 group-hover:text-brand-800">
+                  Explore {family.abbreviation}
+                  <span aria-hidden="true">&rarr;</span>
+                </span>
+              </div>
+            </a>
+          ))
+        }
       </div>
     </Container>
   </section>

@@ -16,7 +16,7 @@ const {
   title = site.name,
   description = site.description,
   fullTitle,
-  ogImage = "/favicon.svg",
+  ogImage = site.logoSrc,
 } = Astro.props;
 
 const pageTitle = fullTitle ?? (title === site.name ? `${site.name} — ${site.tagline}` : `${title} | ${site.name}`);
@@ -39,7 +39,7 @@ const canonical = new URL(Astro.url.pathname, Astro.site ?? "https://example.com
     <meta property="og:image" content={ogImage} />
     <meta name="twitter:card" content="summary_large_image" />
 
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="icon" type="image/svg+xml" href={site.faviconSrc} />
     <title>{pageTitle}</title>
 
     <link rel="preconnect" href="https://fonts.googleapis.com" />

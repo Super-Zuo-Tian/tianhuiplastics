@@ -1,15 +1,20 @@
 export const site = {
   name: "TIANHUI Group",
   shortName: "TIANHUI",
+  /** 完整品牌 logo（页头、页脚）；JPG 兼容性最好，SVG 见 /tianhui-logo.svg */
+  logoSrc: "/logo-2.svg",
+  logoAlt: "TIANHUI Group — 天晖集团",
+  /** 浏览器标签图标（仅图形 emblem） */
+  faviconSrc: "/favicon.svg",
   legalName: "TIANHUI (Hebei) Supply Chain Management Group Co., Ltd.",
   tagline: "Reliable Plastic Resin Solutions for the World",
   description:
     "TIANHUI Group is an integrated plastic resin trading and supply chain company based in Qinhuangdao, China. We supply PE, PP, PS, ABS and SBS resins to global manufacturers.",
-  email: "export@tianhui-group.com",
-  phone: "+86 (335) 000-0000",
+  email: "customer@tianhuiplastics.com",
+  phone: "+86 13012185678",
   address: "Tianhui Logistics Park, Qinhuangdao, Hebei, China",
   founded: 2004,
-  domain: "tianhui-group.com",
+  domain: "tianhuiplastics.com",
 };
 
 export type NavChild = {
@@ -152,5 +157,5 @@ export const primaryNav: NavItem[] = [
       },
     ],
   },
-  { label: "Contact", href: "/contact/" },
+  // { label: "Contact", href: "/contact/" },
 ];

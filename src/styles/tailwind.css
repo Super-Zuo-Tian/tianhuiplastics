@@ -45,8 +45,23 @@ h4 {
   letter-spacing: -0.01em;
 }
 
-img {
+img:not(.site-logo) {
   max-width: 100%;
   height: auto;
   display: block;
+}
+
+.site-logo {
+  display: block;
+  height: 2.75rem;
+  width: auto;
+  max-width: none;
+  flex-shrink: 0;
+  object-fit: contain;
+}
+
+@media (min-width: 640px) {
+  .site-logo {
+    height: 3rem;
+  }
 }
