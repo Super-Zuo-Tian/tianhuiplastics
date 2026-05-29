@@ -11,7 +11,7 @@
 export const images = {
   building1: "/images/building-1.jpg",
   building2: "/images/building-2.jpg",
-  building3: "/images/building-3.png",
+  building3: "/images/building-3.jpg",
   lobby1: "/images/lobby-1.jpg",
   lobby2: "/images/lobby-2.jpg",
   lobbyLogoWall: "/images/lobby-logo-wall.jpg",
@@ -26,13 +26,15 @@ export const images = {
   teamBuilding: "/images/team-building.jpg",
   teamGroupPhoto: "/images/team-group-photo.jpg",
   top500Celebration: "/images/top500-celebration.jpg",
+  fupin: "/images/fupin.webp",
   annualMeeting: "/images/annual-meeting.jpg",
   internationalChamber: "/images/international-chamber.jpg",
+  vietnamMeeting: "/images/vietnamMeeting.webp",
   resinPelletsGrid: "/images/resin-pellets-grid.png",
-  trucks: "/images/trucks.png",
-  freightPlatform: "/images/freight-platform.png",
+  trucks: "/images/trucks.jpg",
+  freightPlatform: "/images/freight-platform.jpg",
   certTransport: "/images/cert-transport.jpg",
-  certSoftware: "/images/cert-software.png",
+  certSoftware: "/images/cert-software.jpg",
   citySkyline: "/images/city-skyline.jpg",
 } as const;
 

@@ -3,8 +3,7 @@ import BaseLayout from "../../layouts/BaseLayout.astro";
 import Container from "../../components/Container.astro";
 import SectionHeading from "../../components/SectionHeading.astro";
 import InquiryCTA from "../../components/InquiryCTA.astro";
-import { productFamilies } from "../../data/products";
-import { images } from "../../data/images";
+import { productFamilies, productFamilyImages } from "../../data/products";
 
 export async function getStaticPaths() {
   return productFamilies.map((family) => ({
@@ -15,18 +14,9 @@ export async function getStaticPaths() {
 
 const { family } = Astro.props;
 
-const productHeroImages: Record<string, { src: string; position?: string }> = {
-  polystyrene: { src: "/images/products/polystyrene.webp", position: "center" },
-  hdpe: { src: "/images/products/hdpe.webp", position: "center" },
-  lldpe: { src: "/images/products/lldpe.webp", position: "center" },
-  ldpe: { src: "/images/products/ldpe.webp", position: "center" },
-  polypropylene: { src: "/images/products/polypropylene.webp", position: "center" },
-  abs: { src: "/images/products/abs.webp", position: "center" },
-};
-
-const heroVisual = productHeroImages[family.slug] ?? {
-  src: images.resinPelletsGrid,
-  position: "center",
+const heroVisual = {
+  src: productFamilyImages[family.slug],
+  position: "center" as const,
 };
 ---
 
@@ -106,9 +96,9 @@ const heroVisual = productHeroImages[family.slug] ?? {
           <p class="mt-6 text-base leading-7 text-slate-700">
             {family.description}
           </p>
-          <p class="mt-4 text-sm text-slate-500">
+          <!-- <p class="mt-4 text-sm text-slate-500">
             Source-material reference: <span class="font-medium text-slate-700">{family.cnName}</span>
-          </p>
+          </p> -->
         </div>
         <aside class="lg:col-span-4">
           <div class="rounded-3xl border border-slate-200 bg-slate-50 p-8">

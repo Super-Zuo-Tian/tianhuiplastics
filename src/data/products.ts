@@ -28,176 +28,66 @@ export type ProductFamily = {
   cover: string;
 };
 
+/** Cover photos for PE, PP, ABS and PS — used on the homepage, catalogue and family pages */
+export const productFamilyImages: Record<string, string> = {
+  pe: "/images/products/pe-1.webp",
+  polypropylene: "/images/products/pp-1.webp",
+  abs: "/images/products/abs-1.webp",
+  polystyrene: "/images/products/ps-1.webp",
+};
+
 export const productFamilies: ProductFamily[] = [
   {
-    slug: "polystyrene",
-    name: "Polystyrene (PS)",
-    cnName: "聚苯乙烯",
-    abbreviation: "PS",
+    slug: "pe",
+    name: "Polyethylene (PE)",
+    cnName: "聚乙烯",
+    abbreviation: "PE",
     summary:
-      "GPPS and HIPS resins with stable rheology for packaging, appliances and consumer goods.",
+      "Linear (LLDPE), high-pressure (LDPE) and low-pressure (HDPE) polyethylene grades for film, pipe, blow moulding, rotomoulding and injection.",
     description:
-      "Polystyrene is a versatile thermoplastic widely used in packaging, electronics housings and household goods. TIANHUI supplies general-purpose polystyrene (GPPS) and high-impact polystyrene (HIPS) grades sourced from leading Chinese petrochemical producers, with full traceability and stable monthly volumes.",
+      "Polyethylene is TIANHUI's broadest product line, spanning LLDPE, LDPE and HDPE. Together they cover film, packaging, pipe, blow moulding, rotomoulding and injection applications, sourced from leading Chinese petrochemical producers with full traceability and stable monthly volumes.",
     applications: [
-      "Disposable tableware and food packaging",
-      "Refrigerator and TV housings",
-      "Toys and stationery",
-      "Optical and lighting components",
+      "Packaging and agricultural film",
+      "Pressure pipes and conduits",
+      "Blow-moulded bottles and drums",
+      "Rotomoulded tanks, caps and housewares",
     ],
     grades: [
       {
-        name: "GPPS",
+        name: "LLDPE — Linear Low-Density Polyethylene",
         description:
-          "General-purpose polystyrene with excellent transparency and gloss; suitable for injection moulding and extrusion.",
+          "Combines toughness, tear resistance and excellent processability — rotomoulding, blown / stretch film and injection grades for packaging, agriculture and rotomoulded products.",
         applications: [
-          "Transparent packaging",
-          "Disposable cutlery",
-          "Optical articles",
+          "Stretch and shrink films",
+          "Agricultural and greenhouse films",
+          "Rotomoulded water tanks",
+          "Toys and housewares",
         ],
       },
       {
-        name: "HIPS",
+        name: "LDPE — Low-Density Polyethylene",
         description:
-          "High-impact polystyrene modified with rubber for improved toughness, used in appliances and structural parts.",
+          "High-pressure process resin with outstanding clarity, flexibility and seal strength — film, injection and heavy-duty packaging grades.",
         applications: [
-          "Refrigerator liners",
-          "Television back covers",
-          "Toy parts",
-        ],
-      },
-    ],
-    cover: "from-sky-100 via-white to-slate-100",
-  },
-  {
-    slug: "hdpe",
-    name: "HDPE — High-Density Polyethylene",
-    cnName: "低压聚乙烯",
-    abbreviation: "HDPE",
-    summary:
-      "Low-pressure polyethylene grades for pipes, blow moulding, films and injection moulding.",
-    description:
-      "HDPE (referred to as 低压聚乙烯 in China) offers excellent stiffness, chemical resistance and processability. TIANHUI carries a complete portfolio for pipe extrusion, raffia, film, blow moulding and injection moulding, supporting both bulk industrial users and converters.",
-    applications: [
-      "PE100 / PE80 pressure pipes",
-      "Detergent and industrial bottles",
-      "Heavy-duty films and bags",
-      "Crates, caps and housewares",
-    ],
-    grades: [
-      {
-        name: "Pipe Grade",
-        description:
-          "PE80 / PE100 black-pigmented compounds for water and gas pipeline extrusion.",
-        applications: ["Water supply pipes", "Gas pipes", "Cable conduits"],
-      },
-      {
-        name: "Raffia Grade",
-        description:
-          "Low-pressure raffia HDPE for woven bag tapes and ropes with high tensile strength.",
-        applications: ["Woven bags", "Ropes and nets"],
-      },
-      {
-        name: "Film Grade",
-        description:
-          "HDPE film grades for shopping bags, T-shirt bags and lamination layers.",
-        applications: ["Shopping bags", "Carrier bags", "Lamination film"],
-      },
-      {
-        name: "Blow-Moulding Grade",
-        description:
-          "Bimodal HDPE for industrial containers, drums and chemical packaging.",
-        applications: [
-          "1L–200L containers",
-          "Detergent bottles",
-          "Lubricant drums",
+          "Food and laminated packaging film",
+          "Shrink film and overwrap",
+          "Heavy-duty industrial bags",
+          "Cable insulation and coatings",
         ],
       },
       {
-        name: "Injection Grade",
+        name: "HDPE — High-Density Polyethylene",
         description:
-          "Easy-flow HDPE injection grades for caps, crates and housewares.",
-        applications: ["Closures", "Crates", "Houseware parts"],
+          "Excellent stiffness, chemical resistance and processability — pipe, raffia, film, blow-moulding and injection grades for industrial users and converters.",
+        applications: [
+          "PE100 / PE80 pressure pipes",
+          "Detergent and industrial bottles",
+          "Heavy-duty films and bags",
+          "Crates, caps and housewares",
+        ],
       },
     ],
     cover: "from-emerald-50 via-white to-slate-100",
-  },
-  {
-    slug: "lldpe",
-    name: "LLDPE — Linear Low-Density Polyethylene",
-    cnName: "线性聚乙烯",
-    abbreviation: "LLDPE",
-    summary:
-      "Linear PE for rotomoulding, blown film, stretch film and injection moulding.",
-    description:
-      "LLDPE combines toughness, tear resistance and excellent processability. TIANHUI supplies rotomoulding, film and injection grades suitable for agricultural film, packaging and rotomoulded tanks across global markets.",
-    applications: [
-      "Stretch and shrink films",
-      "Agricultural and greenhouse films",
-      "Rotomoulded water tanks and tools",
-      "Toys and housewares",
-    ],
-    grades: [
-      {
-        name: "Rotomoulding Grade",
-        description:
-          "Powder grade LLDPE with balanced impact and processability for rotomoulded products.",
-        applications: ["Water tanks", "Kayaks", "Outdoor furniture"],
-      },
-      {
-        name: "Film Grade",
-        description:
-          "High-clarity, high-tear-strength LLDPE film grades for packaging and agriculture.",
-        applications: ["Packaging films", "Agricultural films", "Stretch film"],
-      },
-      {
-        name: "Injection Grade",
-        description:
-          "Easy-flow injection LLDPE for thin-walled and flexible parts.",
-        applications: ["Lids and closures", "Toys", "Houseware"],
-      },
-    ],
-    cover: "from-cyan-50 via-white to-slate-100",
-  },
-  {
-    slug: "ldpe",
-    name: "LDPE — Low-Density Polyethylene",
-    cnName: "高压聚乙烯",
-    abbreviation: "LDPE",
-    summary:
-      "High-pressure polyethylene grades for films, injection moulding and heavy packaging.",
-    description:
-      "LDPE (高压聚乙烯) is produced through a high-pressure process and provides outstanding clarity, flexibility and seal strength. TIANHUI offers film, injection and heavy-duty packaging grades for converters across packaging, construction and agricultural sectors.",
-    applications: [
-      "Food and laminated packaging film",
-      "Shrink film and overwrap",
-      "Heavy-duty industrial bags",
-      "Cable insulation and coatings",
-    ],
-    grades: [
-      {
-        name: "Film Grade",
-        description:
-          "LDPE film grades with excellent clarity and seal performance.",
-        applications: ["Food packaging", "Lamination", "Shrink film"],
-      },
-      {
-        name: "Injection Grade",
-        description:
-          "LDPE injection grades for flexible parts, lids and squeeze bottles.",
-        applications: ["Lids and caps", "Squeeze containers", "Toys"],
-      },
-      {
-        name: "Heavy Packaging Grade",
-        description:
-          "Heavy-duty LDPE grades for cement bags, fertiliser bags and industrial packaging.",
-        applications: [
-          "Cement and chemical bags",
-          "Fertiliser packaging",
-          "Industrial liners",
-        ],
-      },
-    ],
-    cover: "from-indigo-50 via-white to-slate-100",
   },
   {
     slug: "polypropylene",
@@ -286,6 +176,45 @@ export const productFamilies: ProductFamily[] = [
       },
     ],
     cover: "from-rose-50 via-white to-slate-100",
+  },
+  {
+    slug: "polystyrene",
+    name: "Polystyrene (PS)",
+    cnName: "聚苯乙烯",
+    abbreviation: "PS",
+    summary:
+      "GPPS and HIPS resins with stable rheology for packaging, appliances and consumer goods.",
+    description:
+      "Polystyrene is a versatile thermoplastic widely used in packaging, electronics housings and household goods. TIANHUI supplies general-purpose polystyrene (GPPS) and high-impact polystyrene (HIPS) grades sourced from leading Chinese petrochemical producers, with full traceability and stable monthly volumes.",
+    applications: [
+      "Disposable tableware and food packaging",
+      "Refrigerator and TV housings",
+      "Toys and stationery",
+      "Optical and lighting components",
+    ],
+    grades: [
+      {
+        name: "GPPS",
+        description:
+          "General-purpose polystyrene with excellent transparency and gloss; suitable for injection moulding and extrusion.",
+        applications: [
+          "Transparent packaging",
+          "Disposable cutlery",
+          "Optical articles",
+        ],
+      },
+      {
+        name: "HIPS",
+        description:
+          "High-impact polystyrene modified with rubber for improved toughness, used in appliances and structural parts.",
+        applications: [
+          "Refrigerator liners",
+          "Television back covers",
+          "Toy parts",
+        ],
+      },
+    ],
+    cover: "from-sky-100 via-white to-slate-100",
   },
 ];
 

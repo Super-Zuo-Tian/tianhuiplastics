@@ -1,5 +1,7 @@
 export const site = {
   name: "TIANHUI Group",
+  nameZh: "天晖集团",            // Logo 旁第一行
+  nameEn: "TIANHUI GROUP",       // Logo 旁第二行（全大写）
   shortName: "TIANHUI",
   /** 完整品牌 logo（页头、页脚）；JPG 兼容性最好，SVG 见 /tianhui-logo.svg */
   logoSrc: "/logo-2.svg",
@@ -9,10 +11,10 @@ export const site = {
   legalName: "TIANHUI (Hebei) Supply Chain Management Group Co., Ltd.",
   tagline: "Reliable Plastic Resin Solutions for the World",
   description:
-    "TIANHUI Group is an integrated plastic resin trading and supply chain company based in Qinhuangdao, China. We supply PE, PP, PS, ABS and SBS resins to global manufacturers.",
+    "TIANHUI Group is an integrated plastic resin trading and supply chain company based in Qinhuangdao, China. Wesupply PE, PP, ABS and PS resins to global manufacturers.",
   email: "customer@tianhuiplastics.com",
-  phone: "+86 13012185678",
-  address: "Tianhui Logistics Park, Qinhuangdao, Hebei, China",
+  phone: "+44 7709954687",
+  address: "No.40 Yansai Avenue, Haigang District, Qinhuangdao City, Hebei Province, China",
   founded: 2004,
   domain: "tianhuiplastics.com",
 };
@@ -72,24 +74,9 @@ export const primaryNav: NavItem[] = [
         description: "Core resin product lines",
       },
       {
-        label: "Polystyrene (PS)",
-        href: "/products/polystyrene/",
-        description: "GPPS, HIPS",
-      },
-      {
-        label: "HDPE",
-        href: "/products/hdpe/",
-        description: "Pipe, blow-moulding, film, injection",
-      },
-      {
-        label: "LLDPE",
-        href: "/products/lldpe/",
-        description: "Rotomoulding, film, injection grades",
-      },
-      {
-        label: "LDPE",
-        href: "/products/ldpe/",
-        description: "Film, injection, heavy packaging grades",
+        label: "Polyethylene (PE)",
+        href: "/products/pe/",
+        description: "LLDPE, LDPE, HDPE",
       },
       {
         label: "Polypropylene (PP)",
@@ -100,6 +87,11 @@ export const primaryNav: NavItem[] = [
         label: "ABS Resin",
         href: "/products/abs/",
         description: "General-purpose ABS grades",
+      },
+      {
+        label: "Polystyrene (PS)",
+        href: "/products/polystyrene/",
+        description: "GPPS, HIPS",
       },
     ],
   },

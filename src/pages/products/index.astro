@@ -4,7 +4,7 @@ import Container from "../../components/Container.astro";
 import PageHero from "../../components/PageHero.astro";
 import SectionHeading from "../../components/SectionHeading.astro";
 import InquiryCTA from "../../components/InquiryCTA.astro";
-import { productFamilies } from "../../data/products";
+import { productFamilies, productFamilyImages } from "../../data/products";
 import { images } from "../../data/images";
 
 const services = [
@@ -33,12 +33,12 @@ const services = [
 
 <BaseLayout
   title="Products & Services"
-  description="Explore TIANHUI's six core resin families — PS, HDPE, LLDPE, LDPE, PP and ABS — together with our integrated supply chain services."
+  description="Explore TIANHUI's four core resin families — PE (LLDPE, LDPE, HDPE), PP, ABS and PS — together with our integrated supply chain services."
 >
   <PageHero
     eyebrow="Products"
     title="Products & Services"
-    description="Six resin families. Nearly 1,000 grades in stock. Backed by an integrated supply chain and a bilingual export team."
+    description="Four resin families. Nearly 1,000 grades in stock. Backed by an integrated supply chain and a bilingual export team."
     breadcrumb={[
       { label: "Home", href: "/" },
       { label: "Products & Services" },
@@ -53,7 +53,7 @@ const services = [
       <SectionHeading
         eyebrow="Core Portfolio"
         title="An end-to-end resin offering"
-        description="TIANHUI's product strategy is centred on six resin families that together cover most of the converter market — from commodity packaging grades to engineering-grade ABS. We pair this catalogue with sourcing, warehousing and export services so customers can buy with confidence."
+        description="TIANHUI's product strategy is centred on four resin families — PE, PP, ABS and PS — that together cover most of the converter market, from commodity packaging grades to engineering-grade ABS. We pair this catalogue with sourcing, warehousing and export services so customers can buy with confidence."
       />
     </Container>
   </section>
@@ -64,9 +64,9 @@ const services = [
       <SectionHeading
         eyebrow="Resin Families"
         title="Browse by resin family"
-        description="Each family page lists subcategories, typical applications and grade descriptions. Replace the cover gradients with product photos as you populate detail content."
+        description="Each family page lists subcategories, typical applications and grade descriptions."
       />
-      <ul class="mt-14 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+      <ul class="mt-14 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
         {
           productFamilies.map((family) => (
             <li>
@@ -74,16 +74,14 @@ const services = [
                 href={`/products/${family.slug}/`}
                 class="group flex h-full flex-col overflow-hidden rounded-3xl border border-slate-200 bg-white shadow-sm transition hover:-translate-y-1 hover:shadow-xl"
               >
-                <div
-                  class:list={[
-                    "relative flex h-36 items-center justify-center bg-gradient-to-br",
-                    family.cover,
-                  ]}
-                >
-                  <span class="text-5xl font-semibold tracking-tight text-slate-800/70">
-                    {family.abbreviation}
-                  </span>
-                  <span class="absolute top-4 right-4 rounded-full bg-white/80 px-3 py-1 text-[10px] font-semibold tracking-wider text-slate-700 uppercase backdrop-blur">
+                <div class="relative aspect-square overflow-hidden bg-slate-100">
+                  <img
+                    src={productFamilyImages[family.slug]}
+                    alt={`${family.name} resin pellets`}
+                    class="absolute inset-0 size-full object-cover transition duration-500 group-hover:scale-105"
+                    loading="lazy"
+                  />
+                  <span class="absolute top-4 right-4 rounded-full bg-white/90 px-3 py-1 text-[10px] font-semibold tracking-wider text-slate-700 uppercase backdrop-blur">
                     {family.grades.length} grade group
                     {family.grades.length === 1 ? "" : "s"}
                   </span>
