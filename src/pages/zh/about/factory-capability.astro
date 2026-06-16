@@ -1,85 +1,85 @@
 ---
-import BaseLayout from "../../layouts/BaseLayout.astro";
-import Container from "../../components/Container.astro";
-import PageHero from "../../components/PageHero.astro";
-import SubNav from "../../components/SubNav.astro";
-import SectionHeading from "../../components/SectionHeading.astro";
-import InquiryCTA from "../../components/InquiryCTA.astro";
-import { aboutLinks } from "../../data/navSections";
-import { images } from "../../data/images";
+import BaseLayout from "../../../layouts/BaseLayout.astro";
+import Container from "../../../components/Container.astro";
+import PageHero from "../../../components/PageHero.astro";
+import SubNav from "../../../components/SubNav.astro";
+import SectionHeading from "../../../components/SectionHeading.astro";
+import InquiryCTA from "../../../components/InquiryCTA.astro";
+import { aboutLinksZh } from "../../../data/navSections";
+import { images } from "../../../data/images";
 
 const capabilityStats = [
-  { value: "30,000 m²", label: "Total built area" },
-  { value: "CNY 200M", label: "Capital invested in 2019" },
-  { value: "300+", label: "Warehouses nationwide" },
-  { value: "24/7", label: "Logistics operations" },
+  { value: "30,000 m²", label: "建筑总面积" },
+  { value: "2 亿元", label: "2019 年投资额" },
+  { value: "300+", label: "全国仓储网点" },
+  { value: "24/7", label: "物流运营" },
 ];
 
 const facilities = [
   {
-    title: "Sales Operations Centre",
+    title: "销售运营中心",
     description:
-      "Domestic and export sales teams organised by resin family, supported by bilingual account managers and digital quotation tools.",
+      "按树脂系列划分的国内与外贸销售团队，配备双语客户经理与数字化报价工具。",
     image: images.office1,
   },
   {
-    title: "Reception Hall",
+    title: "接待大厅",
     description:
-      "A spacious reception hall with access control, welcoming visiting customers and partners.",
+      "宽敞的接待大厅与安检通道，迎接来访的客户与合作伙伴。",
     image: images.lobby2,
   },
   {
-    title: "Logistics & Freight",
+    title: "物流与货运",
     description:
-      "Multi-bay loading docks with 24/7 operations, dedicated truck fleet partners and direct port connections via Qinhuangdao Port.",
+      "多车位装卸平台，全天候作业，拥有合作车队与直达秦皇岛港的运输通道。",
     image: images.trucks,
   },
   {
-    title: "After-sales Service",
+    title: "售后服务",
     description:
-      "On-site quality inspection, application support and a structured customer feedback loop for every shipment.",
+      "对每一批货物提供现场质量检验、应用支持与结构化的客户反馈闭环。",
     image: images.office2,
   },
   {
-    title: "Network Freight Platform",
+    title: "网络货运平台",
     description:
-      "Digital freight matching system connecting shippers and licensed carriers to optimise transportation cost and timing.",
+      "连接货主与持牌承运方的数字化货运撮合系统，优化运输成本与时效。",
     image: images.freightPlatform,
   },
   {
-    title: "Headquarters Campus",
+    title: "总部园区",
     description:
-      "A modern headquarters reflecting the group's scale, with a grand lobby and full-service amenities for staff and visitors.",
+      "现代化总部园区与宽敞大堂，为员工与来访客户提供完善的配套设施。",
     image: images.lobbyLogoWall,
   },
 ];
 
 const amenities = [
-  { title: "Library & reading room", image: images.library },
-  { title: "Staff canteen", image: images.canteen },
-  { title: "Basketball court", image: images.basketball },
-  { title: "Badminton court", image: images.badminton },
+  { title: "图书与阅览室", image: images.library },
+  { title: "员工餐厅", image: images.canteen },
+  { title: "篮球场", image: images.basketball },
+  { title: "羽毛球场", image: images.badminton },
 ];
 ---
 
 <BaseLayout
-  title="Factory & Capability"
-  description="TIANHUI Logistics Park covers 30,000 m² in Qinhuangdao with integrated sales, warehousing, logistics, R&D and after-sales facilities."
+  title="园区与能力"
+  description="天晖物流园区位于秦皇岛，占地约 30,000 平方米，集销售、仓储、物流、研发与售后服务于一体。"
 >
   <PageHero
-    eyebrow="About TIANHUI"
-    title="Factory & Capability"
-    description="An integrated 30,000 m² logistics park supporting bulk resin trading, supply chain management and international fulfilment — under one roof in Qinhuangdao."
+    eyebrow="关于天晖"
+    title="园区与能力"
+    description="一座占地约 30,000 平方米的一体化物流园区，支撑批量树脂贸易、供应链管理与国际履约——集成于秦皇岛同一园区。"
     breadcrumb={[
-      { label: "Home", href: "/" },
-      { label: "About", href: "/about/company-profile/" },
-      { label: "Factory & Capability" },
+      { label: "首页", href: "/zh/" },
+      { label: "关于我们", href: "/zh/about/company-profile/" },
+      { label: "园区与能力" },
     ]}
     image={images.building2}
     imagePosition="center 55%"
   />
 
-  <SubNav links={aboutLinks} currentHref="/about/factory-capability/" />
+  <SubNav links={aboutLinksZh} currentHref="/zh/about/factory-capability/" label="栏目导航" />
 
   <!-- SECTION: Capability stats -->
   <section id="capability-overview" class="bg-white py-24 sm:py-32">
@@ -87,9 +87,9 @@ const amenities = [
       <div class="grid gap-16 lg:grid-cols-12 lg:items-start">
         <div class="lg:col-span-7">
           <SectionHeading
-            eyebrow="Tianhui E-commerce Logistics Park"
-            title="A 30,000 m² campus, purpose-built for resin trading"
-            description="Commissioned in 2019 with a CNY 200 million investment, the park integrates sales, logistics, R&D, after-sales service and supply chain management into one operational platform — and serves as the group's headquarters today."
+            eyebrow="天晖电子商务物流园区"
+            title="为树脂贸易量身打造的 30,000 平方米园区"
+            description="园区于 2019 年投入使用，投资 2 亿元人民币，将销售、物流、研发、售后服务与供应链管理整合到一个运营平台，现为集团总部所在地。"
           />
         </div>
         <dl class="grid grid-cols-2 gap-4 lg:col-span-5">
@@ -114,7 +114,7 @@ const amenities = [
       <div class="overflow-hidden rounded-3xl shadow-xl ring-1 ring-slate-200">
         <img
           src={images.building1}
-          alt="TIANHUI Logistics Park exterior"
+          alt="天晖物流园区外景"
           class="aspect-[21/9] w-full object-cover"
           loading="lazy"
         />
@@ -126,9 +126,9 @@ const amenities = [
   <section id="facilities" class="bg-slate-50 py-24 sm:py-32">
     <Container>
       <SectionHeading
-        eyebrow="Facilities"
-        title="A campus designed around resin supply"
-        description="Each zone within the park is purpose-built to handle bulk resin flow safely, cleanly and on-time."
+        eyebrow="园区设施"
+        title="围绕树脂供应而设计的园区"
+        description="园区内每个区域均为安全、清洁、按期处理批量树脂物流而专门设计。"
       />
       <div class="mt-16 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
         {
@@ -161,7 +161,7 @@ const amenities = [
           <div class="overflow-hidden rounded-3xl shadow-xl ring-1 ring-slate-200">
             <img
               src={images.lobby1}
-              alt="TIANHUI Group headquarters lobby"
+              alt="天晖集团总部大堂"
               class="aspect-[4/3] w-full object-cover"
               loading="lazy"
             />
@@ -169,9 +169,9 @@ const amenities = [
         </div>
         <div class="lg:col-span-5">
           <SectionHeading
-            eyebrow="Headquarters Lobby"
-            title="A welcoming space for global partners"
-            description="From the grand lobby to the meeting suites and showrooms, our headquarters is designed to host domestic and international partners with the dignity that long-term cooperation deserves."
+            eyebrow="总部大堂"
+            title="迎接全球合作伙伴的开放空间"
+            description="从宽敞大堂到洽谈室与展厅，我们的总部以应有的诚意接待国内外合作伙伴，承载长期合作的价值。"
           />
         </div>
       </div>
@@ -182,9 +182,9 @@ const amenities = [
   <section id="amenities" class="bg-slate-50 py-24 sm:py-32">
     <Container>
       <SectionHeading
-        eyebrow="Staff Amenities"
-        title="A place where our people can thrive"
-        description="The Tianhui Logistics Park houses staff amenities that support a healthy, balanced and engaged workforce."
+        eyebrow="员工配套"
+        title="让员工得以成长的空间"
+        description="天晖物流园区配备员工配套设施，支持健康、平衡且充满活力的团队。"
       />
       <ul class="mt-16 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
         {

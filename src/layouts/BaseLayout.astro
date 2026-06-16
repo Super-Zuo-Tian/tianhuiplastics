@@ -21,10 +21,14 @@ const {
 
 const pageTitle = fullTitle ?? (title === site.name ? `${site.name} — ${site.tagline}` : `${title} | ${site.name}`);
 const canonical = new URL(Astro.url.pathname, Astro.site ?? "https://example.com").toString();
+
+const pathname = Astro.url.pathname;
+const isZh = pathname === "/zh" || pathname.startsWith("/zh/");
+const htmlLang = isZh ? "zh-CN" : "en";
 ---
 
 <!doctype html>
-<html lang="en">
+<html lang={htmlLang}>
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />

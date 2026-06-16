@@ -1,0 +1,206 @@
+---
+import BaseLayout from "../../../layouts/BaseLayout.astro";
+import Container from "../../../components/Container.astro";
+import PageHero from "../../../components/PageHero.astro";
+import SubNav from "../../../components/SubNav.astro";
+import SectionHeading from "../../../components/SectionHeading.astro";
+import InquiryCTA from "../../../components/InquiryCTA.astro";
+import { aboutLinksZh } from "../../../data/navSections";
+import { images } from "../../../data/images";
+
+const milestones = [
+  { value: "2004", label: "始建于秦皇岛" },
+  { value: "近 1,000", label: "在售树脂牌号" },
+  { value: "30,000 m²", label: "物流园区面积" },
+  { value: "300+", label: "全国仓储网点" },
+];
+
+const business = [
+  {
+    title: "塑料原料销售",
+    description:
+      "批量供应 PE、PP、ABS、PS 与 SBS 等树脂系列，牌号近千种，服务国内外加工企业与贸易商。",
+  },
+  {
+    title: "网络货运服务",
+    description:
+      "持牌网络货运平台连接货主与承运方，依托数字化系统与集团物流园区运营。",
+  },
+  {
+    title: "供应链管理",
+    description:
+      "提供采购、仓储、分销、售后与信息共享的端到端服务，与客户协同发展。",
+  },
+  {
+    title: "国际贸易",
+    description:
+      "天晖百耀（河北）国际贸易有限公司作为集团外贸板块，开展面向多个国家和地区的跨境树脂业务。",
+  },
+];
+
+const honours = [
+  "中国服务业企业 500 强",
+  "京津冀百强企业",
+  "京津冀服务业百强企业",
+  "河北省民营企业百强",
+  "河北省服务业百强企业",
+  "中国人民银行金牌诚信客户",
+];
+---
+
+<BaseLayout
+  title="公司简介"
+  description="天晖集团成立于 2004 年，是一家集塑料原料销售、网络货运与国际贸易于一体的多元化企业，总部位于河北省秦皇岛市。"
+>
+  <PageHero
+    eyebrow="关于天晖"
+    title="深耕塑料原料与供应链服务的多元化企业"
+    description="天晖百耀（河北）国际贸易有限公司，隶属于天晖（河北）供应链管理集团，负责推进面向二十多个国家和地区的外贸业务。"
+    breadcrumb={[
+      { label: "首页", href: "/zh/" },
+      { label: "关于我们", href: "/zh/about/company-profile/" },
+      { label: "公司简介" },
+    ]}
+    image={images.building1}
+    imagePosition="center 40%"
+    tall
+  />
+
+  <SubNav links={aboutLinksZh} currentHref="/zh/about/company-profile/" label="栏目导航" />
+
+  <!-- SECTION: Quick facts strip -->
+  <section id="quick-facts" class="border-b border-slate-200 bg-white py-12">
+    <Container>
+      <dl class="grid grid-cols-2 gap-x-8 gap-y-8 sm:grid-cols-4">
+        {
+          milestones.map((m) => (
+            <div>
+              <dd class="text-3xl font-semibold tracking-tight text-slate-900 sm:text-4xl">
+                {m.value}
+              </dd>
+              <dt class="mt-2 text-sm text-slate-500">{m.label}</dt>
+            </div>
+          ))
+        }
+      </dl>
+    </Container>
+  </section>
+
+  <!-- SECTION: Overview -->
+  <section id="overview" class="bg-white py-24 sm:py-32">
+    <Container>
+      <div class="grid gap-16 lg:grid-cols-12 lg:items-start">
+        <div class="lg:col-span-7">
+          <SectionHeading
+            eyebrow="集团概览"
+            title="从秦皇岛经销商成长为全国性供应链平台"
+          />
+          <div class="mt-8 space-y-6 text-base leading-7 text-slate-700">
+            <p>
+              天晖百耀（河北）国际贸易有限公司，是天晖（河北）供应链管理集团有限公司
+              （以下简称"天晖集团"）的子公司，是一家集塑料原料销售与网络货运服务于一体的
+              多元化企业。公司成立于 2004 年，坐落于美丽的滨海城市秦皇岛。
+            </p>
+            <p>
+              2019 年，集团投资 2 亿元人民币建设"天晖电子商务物流园区"，建筑面积约 30,000 平方米。
+              该大型物流产业园集销售、物流、研发、售后服务与供应链管理于一体。在各级领导的关心支持下，
+              园区现已建成并投入运营，成为集团总部所在地。
+            </p>
+            <p>
+              天晖集团下设秦皇岛天晖塑料有限公司、秦皇岛恒杰塑料有限公司、秦皇岛奇恒塑料制品有限公司等子公司，
+              以及赣州天晖塑料有限公司、上海陌名玉来塑料有限公司等十余家异地公司。
+              外贸板块由天晖百耀（河北）国际贸易有限公司负责。
+            </p>
+          </div>
+        </div>
+        <aside class="lg:col-span-5 lg:sticky lg:top-28">
+          <div class="overflow-hidden rounded-3xl shadow-xl ring-1 ring-slate-200">
+            <img
+              src={images.lobby1}
+              alt="天晖集团总部大堂"
+              class="aspect-[4/5] w-full object-cover"
+              loading="lazy"
+            />
+          </div>
+        </aside>
+      </div>
+    </Container>
+  </section>
+
+  <!-- SECTION: Products & network -->
+  <section id="products-network" class="bg-slate-50 py-24 sm:py-32">
+    <Container>
+      <div class="grid gap-16 lg:grid-cols-12">
+        <div class="lg:col-span-5">
+          <SectionHeading
+            eyebrow="产品与网络"
+            title="牌号近千种，覆盖 30+ 省市、300+ 仓储网点"
+          />
+        </div>
+        <div class="space-y-6 text-base leading-7 text-slate-700 lg:col-span-7">
+          <p>
+            公司主营产品包括 PE、PP、ABS、PS 与 SBS 等树脂系列，牌号近千种。
+            拥有专业的营销团队、广泛的产品渠道与庞大的客户群体，提供全链条的营销服务与解决方案。
+          </p>
+          <p>
+            多年来，天晖与多家大型石化生产企业建立了长期稳定的合作关系，
+            成为华北华锦化工、中国石油、中国石化、陕西延长新能源、延长石油（湖北/上海/天津）销售、
+            宁夏宝丰能源集团、中国中煤、山东东方宏业化工等企业的区域经销与长期合作伙伴。
+          </p>
+          <p>
+            秉持与客户"合作共赢"的理念，公司营销网络覆盖北京、天津、河北、山东、河南、山西、陕西、
+            浙江、四川、江西、湖北、湖南、广东、东北三省及内蒙古等 30 多个省市自治区，
+            在主要枢纽城市设有办事处与 300 余个仓储网点。
+          </p>
+        </div>
+      </div>
+    </Container>
+  </section>
+
+  <!-- SECTION: Four pillars -->
+  <section id="business" class="bg-white py-24 sm:py-32">
+    <Container>
+      <SectionHeading
+        eyebrow="核心业务"
+        title="支撑客户的四大业务板块"
+        description="从上游采购到下游交付，天晖提供端到端的树脂供应体验。"
+      />
+      <div class="mt-16 grid gap-6 md:grid-cols-2">
+        {
+          business.map((item) => (
+            <article class="rounded-3xl border border-slate-200 bg-slate-50 p-8 shadow-sm transition hover:-translate-y-0.5 hover:bg-white hover:shadow-lg">
+              <h3 class="text-lg font-semibold text-slate-900">{item.title}</h3>
+              <p class="mt-3 text-sm leading-7 text-slate-600">{item.description}</p>
+            </article>
+          ))
+        }
+      </div>
+    </Container>
+  </section>
+
+  <!-- SECTION: Honours -->
+  <section id="honours" class="bg-slate-50 py-24 sm:py-32">
+    <Container>
+      <div class="grid gap-12 lg:grid-cols-12 lg:items-center">
+        <div class="lg:col-span-5">
+          <SectionHeading
+            eyebrow="资质荣誉"
+            title="获得行业与社会的认可"
+            description="2020 年，天晖被列为河北省委重点支持企业、河北省“双百强”企业，并获评中国人民银行金牌诚信客户。"
+          />
+        </div>
+        <ul class="grid gap-3 sm:grid-cols-2 lg:col-span-7">
+          {
+            honours.map((h) => (
+              <li class="rounded-2xl border border-slate-200 bg-white px-5 py-4 text-sm font-medium text-slate-800 shadow-sm">
+                {h}
+              </li>
+            ))
+          }
+        </ul>
+      </div>
+    </Container>
+  </section>
+
+  <InquiryCTA />
+</BaseLayout>

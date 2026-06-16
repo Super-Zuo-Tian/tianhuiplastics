@@ -1,0 +1,162 @@
+---
+import BaseLayout from "../../../layouts/BaseLayout.astro";
+import Container from "../../../components/Container.astro";
+import PageHero from "../../../components/PageHero.astro";
+import SectionHeading from "../../../components/SectionHeading.astro";
+import InquiryCTA from "../../../components/InquiryCTA.astro";
+import { images } from "../../../data/images";
+import PartnerLogos from "../../../components/PartnerLogos.astro";
+
+const upstream = [
+  "中国石油",
+  "中国石化",
+  "中国中煤",
+  "陕西延长新能源",
+  "延长石油（湖北/上海/天津）销售",
+  "宁夏宝丰能源集团",
+  "华北华锦化工",
+  "山东东方宏业化工",
+];
+
+const downstream = [
+  "快消品包装品牌",
+  "管材与管件制造商",
+  "家电整机厂",
+  "汽车一级供应商",
+  "农膜生产企业",
+  "工业编织袋加工企业",
+];
+
+const partnerCategories = [
+  {
+    title: "上游石化合作",
+    description:
+      "与国内大型石化生产企业保持长期稳定的合作，使天晖在 PE、PP、PS 与 ABS 等树脂上获得稳定的资源供应。",
+    bullets: upstream,
+  },
+  {
+    title: "下游加工网络",
+    description:
+      "面向包装、家电、管材挤出、汽车内饰与农膜等领域的加工企业供货，覆盖国内外市场。",
+    bullets: downstream,
+  },
+  {
+    title: "物流与服务伙伴",
+    description:
+      "持牌内陆承运方、港口仓库、船运公司与检验机构共同构成延展的履约网络。",
+    bullets: [
+      "持牌网络货运承运方",
+      "集装箱班轮公司",
+      "港口仓储",
+      "第三方检验（SGS、BV、CCIC）",
+    ],
+  },
+];
+---
+
+<BaseLayout
+  title="长期战略合作伙伴"
+  description="天晖与石化生产企业、加工企业及物流伙伴的长期合作，为全球树脂贸易提供稳定基础。"
+>
+  <PageHero
+    eyebrow="市场与营销"
+    title="长期战略合作伙伴"
+    description="稳定的树脂供应、可靠的物流与不断增长的需求——建立在与国内石化生产企业及日常服务的加工企业之间的长期合作之上。"
+    breadcrumb={[
+      { label: "首页", href: "/zh/" },
+      { label: "市场与营销" },
+      { label: "长期战略合作伙伴" },
+    ]}
+    image={images.annualMeeting}
+    imagePosition="center 40%"
+  />
+
+  <!-- SECTION: Intro -->
+  <section id="intro" class="bg-white py-24 sm:py-28">
+    <Container>
+      <SectionHeading
+        eyebrow="网络优势"
+        title="三个层面的长期合作"
+        description="天晖的市场地位建立在与上游石化生产企业、下游加工企业以及物流与服务伙伴网络的长期协作之上。"
+      />
+    </Container>
+  </section>
+
+  <!-- SECTION: Partner pillars -->
+  <section id="partners" class="bg-slate-50 py-24 sm:py-28">
+    <Container>
+      <div class="grid gap-6 md:grid-cols-3">
+        {
+          partnerCategories.map((cat) => (
+            <article class="flex h-full flex-col rounded-3xl border border-slate-200 bg-white p-8 shadow-sm">
+              <h3 class="text-lg font-semibold text-slate-900">{cat.title}</h3>
+              <p class="mt-3 text-sm leading-7 text-slate-600">{cat.description}</p>
+              <ul class="mt-6 space-y-2 text-sm text-slate-700">
+                {cat.bullets.map((b) => (
+                  <li class="flex gap-3">
+                    <span class="mt-2 size-1.5 flex-none rounded-full bg-brand-600" />
+                    <span>{b}</span>
+                  </li>
+                ))}
+              </ul>
+            </article>
+          ))
+        }
+      </div>
+    </Container>
+  </section>
+
+  <!-- SECTION: Partner logos -->
+  <PartnerLogos
+    title="长期合作伙伴"
+    partners={[
+      { name: "中国石油", logo: "/partner-1.svg" },
+      { name: "中国石化", logo: "/partner-2.svg" },
+      { name: "中国中煤", logo: "/partner-3.svg" },
+      { name: "延长石油", logo: "/partner-4.svg" },
+      { name: "宝丰能源", logo: "/partner-5.svg" },
+    ]}
+  />
+
+  <!-- SECTION: Why partner with TIANHUI -->
+  <section id="why-partner" class="bg-slate-50 py-24 sm:py-28">
+    <Container>
+      <div class="grid gap-12 lg:grid-cols-12 lg:items-center">
+        <div class="lg:col-span-6">
+          <SectionHeading
+            eyebrow="成为合作伙伴"
+            title="与天晖共同成长"
+            description="无论您是寻求全国经销网络的石化生产企业、寻找稳定树脂供应的加工企业，还是拓展跨境服务的物流服务商，天晖都乐于携手合作。"
+          />
+        </div>
+        <div class="lg:col-span-6">
+          <div class="rounded-3xl border border-slate-200 bg-white p-10 shadow-sm">
+            <ul class="space-y-4 text-base leading-7 text-slate-700">
+              <li class="flex gap-3">
+                <span class="mt-2 size-2 flex-none rounded-full bg-brand-600"></span>
+                直接对接 PE、PP、PS、ABS 与 SBS 的近千种树脂牌号。
+              </li>
+              <li class="flex gap-3">
+                <span class="mt-2 size-2 flex-none rounded-full bg-brand-600"></span>
+                自有 30,000 平方米物流园区，保障库存与履约稳定。
+              </li>
+              <li class="flex gap-3">
+                <span class="mt-2 size-2 flex-none rounded-full bg-brand-600"></span>
+                双语外贸团队，熟悉国际单证操作。
+              </li>
+            </ul>
+            <a
+              href="/zh/contact/"
+              class="mt-8 inline-flex items-center gap-2 rounded-full bg-slate-900 px-5 py-2.5 text-sm font-semibold text-white hover:bg-brand-700"
+            >
+              开启合作洽谈
+              <span aria-hidden="true">&rarr;</span>
+            </a>
+          </div>
+        </div>
+      </div>
+    </Container>
+  </section>
+
+  <InquiryCTA />
+</BaseLayout>

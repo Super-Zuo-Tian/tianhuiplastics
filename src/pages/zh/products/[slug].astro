@@ -1,0 +1,187 @@
+---
+import BaseLayout from "../../../layouts/BaseLayout.astro";
+import Container from "../../../components/Container.astro";
+import SectionHeading from "../../../components/SectionHeading.astro";
+import InquiryCTA from "../../../components/InquiryCTA.astro";
+import { productFamilies, productFamilyImages } from "../../../data/products";
+
+export async function getStaticPaths() {
+  return productFamilies.map((family) => ({
+    params: { slug: family.slug },
+    props: { family },
+  }));
+}
+
+const { family } = Astro.props;
+
+const heroVisual = {
+  src: productFamilyImages[family.slug],
+  position: "center" as const,
+};
+---
+
+<BaseLayout
+  title={family.cnName}
+  description={family.summaryZh ?? family.summary}
+>
+  <section class="relative isolate overflow-hidden bg-slate-950">
+    <div class="absolute inset-0 -z-10 bg-[radial-gradient(60%_120%_at_0%_0%,rgba(59,102,245,0.35),transparent),radial-gradient(60%_120%_at_100%_100%,rgba(15,31,107,0.55),transparent)]" />
+    <div class="absolute inset-0 -z-10 opacity-30 [background-image:linear-gradient(to_right,rgba(255,255,255,0.08)_1px,transparent_1px),linear-gradient(to_bottom,rgba(255,255,255,0.08)_1px,transparent_1px)] [background-size:48px_48px]" />
+    <Container class="py-20 sm:py-24 lg:py-28">
+      <nav aria-label="Breadcrumb" class="mb-6">
+        <ol class="flex flex-wrap items-center gap-2 text-xs font-medium text-slate-400">
+          <li class="flex items-center gap-2">
+            <a href="/zh/" class="transition hover:text-white">首页</a>
+            <span class="text-slate-600">/</span>
+          </li>
+          <li class="flex items-center gap-2">
+            <a href="/zh/products/" class="transition hover:text-white">产品中心</a>
+            <span class="text-slate-600">/</span>
+          </li>
+          <li><span class="text-slate-200">{family.abbreviation}</span></li>
+        </ol>
+      </nav>
+      <div class="grid gap-10 lg:grid-cols-12 lg:items-end">
+        <div class="lg:col-span-7">
+          <p class="text-sm font-semibold tracking-[0.2em] text-brand-300 uppercase">
+            树脂 · {family.abbreviation}
+          </p>
+          <h1 class="mt-3 max-w-4xl text-4xl font-semibold tracking-tight text-white sm:text-5xl lg:text-6xl">
+            {family.cnName}
+          </h1>
+          <p class="mt-6 max-w-3xl text-lg leading-8 text-slate-200 sm:text-xl">
+            {family.summaryZh ?? family.summary}
+          </p>
+          <div class="mt-10 flex flex-wrap gap-3">
+            {
+              family.grades.map((grade) => (
+                <a
+                  href={`#${grade.name.toLowerCase().replace(/[^a-z0-9]+/g, "-")}`}
+                  class="rounded-full border border-white/20 bg-white/5 px-4 py-1.5 text-xs font-semibold text-white transition hover:bg-white/10"
+                >
+                  {grade.nameZh ?? grade.name}
+                </a>
+              ))
+            }
+          </div>
+        </div>
+        <div class="lg:col-span-5">
+          <div class="relative overflow-hidden rounded-3xl border border-white/15 bg-white/[0.03] shadow-2xl">
+            <img
+              src={heroVisual.src}
+              alt={`${family.cnName}树脂材料`}
+              class="aspect-[4/3] w-full object-cover"
+              style={`object-position: ${heroVisual.position ?? "center"}`}
+              loading="eager"
+            />
+            <div class="absolute inset-0 bg-gradient-to-t from-slate-950/45 via-transparent to-transparent"></div>
+            <span class="absolute right-4 bottom-4 rounded-full bg-white/90 px-3 py-1 text-xs font-semibold tracking-[0.14em] text-slate-900 uppercase">
+              {family.abbreviation}
+            </span>
+          </div>
+        </div>
+      </div>
+    </Container>
+  </section>
+
+  <!-- SECTION: Overview -->
+  <section id="overview" class="bg-white py-24 sm:py-28">
+    <Container>
+      <div class="grid gap-12 lg:grid-cols-12">
+        <div class="lg:col-span-8">
+          <SectionHeading
+            eyebrow="概览"
+            title={`关于${family.cnName}`}
+          />
+          <p class="mt-6 text-base leading-7 text-slate-700">
+            {family.descriptionZh ?? family.description}
+          </p>
+        </div>
+        <aside class="lg:col-span-4">
+          <div class="rounded-3xl border border-slate-200 bg-slate-50 p-8">
+            <p class="text-xs font-semibold tracking-wider text-brand-700 uppercase">
+              典型应用
+            </p>
+            <ul class="mt-5 space-y-3 text-sm text-slate-700">
+              {
+                (family.applicationsZh ?? family.applications).map((app) => (
+                  <li class="flex gap-3">
+                    <span class="mt-2 size-1.5 flex-none rounded-full bg-brand-600" />
+                    <span>{app}</span>
+                  </li>
+                ))
+              }
+            </ul>
+          </div>
+        </aside>
+      </div>
+    </Container>
+  </section>
+
+  <!-- SECTION: Grades / Subcategories -->
+  <section id="grades" class="bg-slate-50 py-24 sm:py-28">
+    <Container>
+      <SectionHeading
+        eyebrow="牌号与子类别"
+        title={`${family.abbreviation} 牌号组`}
+        description={`下列每个牌号组对应天晖${family.cnName}产品线中的一个子类别。可根据需要替换为具体品牌的数据表与参数。`}
+      />
+      <div class="mt-14 grid gap-6 md:grid-cols-2">
+        {
+          family.grades.map((grade) => {
+            const anchor = grade.name.toLowerCase().replace(/[^a-z0-9]+/g, "-");
+            return (
+              <article id={anchor} class="rounded-3xl border border-slate-200 bg-white p-8 shadow-sm">
+                <div class="flex items-center gap-3">
+                  <span class="inline-flex size-10 items-center justify-center rounded-xl bg-brand-600/10 text-sm font-semibold text-brand-700">
+                    {family.abbreviation}
+                  </span>
+                  <h3 class="text-lg font-semibold text-slate-900">{grade.nameZh ?? grade.name}</h3>
+                </div>
+                {(grade.descriptionZh ?? grade.description) && (
+                  <p class="mt-4 text-sm leading-7 text-slate-600">{grade.descriptionZh ?? grade.description}</p>
+                )}
+                {(grade.applicationsZh ?? grade.applications) && (grade.applicationsZh ?? grade.applications)!.length > 0 && (
+                  <div class="mt-6">
+                    <p class="text-xs font-semibold tracking-wider text-slate-500 uppercase">
+                      典型用途
+                    </p>
+                    <ul class="mt-3 flex flex-wrap gap-2">
+                      {(grade.applicationsZh ?? grade.applications)!.map((app) => (
+                        <li class="rounded-full bg-slate-100 px-3 py-1 text-xs font-medium text-slate-700">
+                          {app}
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                )}
+                {grade.specs && grade.specs.length > 0 && (
+                  <div class="mt-6 overflow-hidden rounded-2xl border border-slate-200">
+                    <table class="w-full text-sm">
+                      <thead class="bg-slate-50 text-left text-xs font-semibold tracking-wider text-slate-500 uppercase">
+                        <tr>
+                          <th class="px-4 py-3">指标</th>
+                          <th class="px-4 py-3">数值</th>
+                        </tr>
+                      </thead>
+                      <tbody class="divide-y divide-slate-100">
+                        {grade.specs.map((spec) => (
+                          <tr>
+                            <td class="px-4 py-3 text-slate-600">{spec.property}</td>
+                            <td class="px-4 py-3 font-medium text-slate-900">{spec.value}</td>
+                          </tr>
+                        ))}
+                      </tbody>
+                    </table>
+                  </div>
+                )}
+              </article>
+            );
+          })
+        }
+      </div>
+    </Container>
+  </section>
+
+  <InquiryCTA />
+</BaseLayout>

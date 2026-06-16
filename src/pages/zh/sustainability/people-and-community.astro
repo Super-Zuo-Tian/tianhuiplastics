@@ -1,0 +1,230 @@
+---
+import BaseLayout from "../../../layouts/BaseLayout.astro";
+import Container from "../../../components/Container.astro";
+import PageHero from "../../../components/PageHero.astro";
+import SubNav from "../../../components/SubNav.astro";
+import SectionHeading from "../../../components/SectionHeading.astro";
+import InquiryCTA from "../../../components/InquiryCTA.astro";
+import { sustainabilityLinksZh } from "../../../data/navSections";
+import { images } from "../../../data/images";
+
+const peoplePillars = [
+  {
+    title: "安全与包容的职场",
+    description:
+      "我们围绕员工安全设计场所与流程，定期培训、改善工效，对歧视零容忍。",
+  },
+  {
+    title: "持续学习",
+    description:
+      "通过职能培训、跨部门轮岗以及专门的图书与阅览室，支持同事的职业成长。",
+  },
+  {
+    title: "健康与休闲",
+    description:
+      "园区内设篮球场、羽毛球场、餐厅与阅览室，帮助同事保持健康、平衡与活力。",
+  },
+];
+
+const amenities = [
+  {
+    title: "篮球场",
+    image: images.basketball,
+    description: "室内标准篮球场，可用于日常运动与友谊赛。",
+  },
+  {
+    title: "羽毛球场",
+    image: images.badminton,
+    description: "多场地羽毛球场，供员工比赛与休闲。",
+  },
+  {
+    title: "图书与阅览室",
+    image: images.library,
+    description: "安静的阅读、学习与小组讨论空间。",
+  },
+  {
+    title: "员工餐厅",
+    image: images.canteen,
+    description: "宽敞的员工餐厅，每个工作日提供健康餐食。",
+  },
+];
+
+const teamMoments = [
+  {
+    image: images.teamBuilding,
+    label: "2023 年团建活动",
+  },
+  {
+    image: images.basketballMatch,
+    label: "员工篮球赛",
+  },
+  {
+    image: images.badmintonMatch,
+    label: "员工羽毛球赛",
+  },
+  {
+    image: images.annualMeeting,
+    label: "年度客户答谢会",
+  },
+];
+
+const communityActions = [
+  {
+    title: "本地就业",
+    description:
+      "天晖是秦皇岛的长期雇主，优先本地招聘，并为多代家庭提供支持。",
+  },
+  {
+    title: "慈善捐赠",
+    description:
+      "自集团成立以来，已累计向慈善事业捐款超过 300 万元人民币——而这只是开始。",
+  },
+  {
+    title: "与公益组织合作",
+    description:
+      "我们与本地公益组织在教育、养老与环保项目上开展合作。",
+  },
+];
+---
+
+<BaseLayout
+  title="员工与社区"
+  description="天晖对员工与本地社区的承诺——从安全与学习，到体育、教育与志愿服务。"
+>
+  <PageHero
+    eyebrow="社会责任"
+    title="员工与社区"
+    description="员工是天晖的发动机。我们投入于员工福祉，也投入于所经营的社区。"
+    breadcrumb={[
+      { label: "首页", href: "/zh/" },
+      { label: "社会责任" },
+      { label: "员工与社区" },
+    ]}
+    image={images.basketballMatch}
+    imagePosition="center 60%"
+  />
+
+  <SubNav links={sustainabilityLinksZh} currentHref="/zh/sustainability/people-and-community/" label="栏目导航" />
+
+  <!-- SECTION: Our people -->
+  <section id="people" class="bg-white py-24 sm:py-32">
+    <Container>
+      <SectionHeading
+        eyebrow="我们的员工"
+        title="员工是公司的核心"
+        description="从仓库一线到外贸前台，天晖由每天坚守岗位的人共同建设。我们致力于为他们提供安全、公平且有回报的工作环境。"
+      />
+      <div class="mt-16 grid gap-6 md:grid-cols-3">
+        {
+          peoplePillars.map((p) => (
+            <article class="rounded-3xl border border-slate-200 bg-slate-50 p-8">
+              <h3 class="text-lg font-semibold text-slate-900">{p.title}</h3>
+              <p class="mt-3 text-sm leading-7 text-slate-600">{p.description}</p>
+            </article>
+          ))
+        }
+      </div>
+    </Container>
+  </section>
+
+  <!-- SECTION: Amenities -->
+  <section id="amenities" class="bg-slate-50 py-24 sm:py-32">
+    <Container>
+      <SectionHeading
+        eyebrow="园区配套"
+        title="工作、运动与学习兼具的空间"
+        description="天晖物流园区配备园区配套设施，支持健康、平衡且充满活力的团队。"
+      />
+      <ul class="mt-16 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+        {
+          amenities.map((a) => (
+            <li class="overflow-hidden rounded-3xl border border-slate-200 bg-white shadow-sm transition hover:-translate-y-1 hover:shadow-lg">
+              <div class="aspect-[4/3] w-full overflow-hidden bg-slate-100">
+                <img
+                  src={a.image}
+                  alt={a.title}
+                  class="size-full object-cover"
+                  loading="lazy"
+                />
+              </div>
+              <div class="p-6">
+                <h3 class="text-base font-semibold text-slate-900">{a.title}</h3>
+                <p class="mt-2 text-sm leading-6 text-slate-600">{a.description}</p>
+              </div>
+            </li>
+          ))
+        }
+      </ul>
+    </Container>
+  </section>
+
+  <!-- SECTION: Community -->
+  <section id="community" class="bg-white py-24 sm:py-32">
+    <Container>
+      <div class="grid gap-16 lg:grid-cols-12 lg:items-center">
+        <div class="lg:col-span-6">
+          <div class="overflow-hidden rounded-3xl shadow-xl ring-1 ring-slate-200">
+            <img
+              src={images.teamGroupPhoto}
+              alt="天晖集团年度团队合影"
+              class="aspect-[4/3] w-full object-cover"
+              loading="lazy"
+            />
+          </div>
+        </div>
+        <div class="lg:col-span-6">
+          <SectionHeading
+            eyebrow="社区"
+            title="扎根于我们称之为家的地方"
+            description="秦皇岛是天晖诞生之地，我们也在这里持续投入长期的社区关系。"
+          />
+          <ul class="mt-8 space-y-5">
+            {
+              communityActions.map((c) => (
+                <li class="rounded-2xl border border-slate-200 bg-slate-50 p-5">
+                  <h3 class="text-base font-semibold text-slate-900">{c.title}</h3>
+                  <p class="mt-2 text-sm leading-6 text-slate-600">{c.description}</p>
+                </li>
+              ))
+            }
+          </ul>
+        </div>
+      </div>
+    </Container>
+  </section>
+
+  <!-- SECTION: Moments from the team -->
+  <section id="moments" class="bg-slate-50 py-24 sm:py-32">
+    <Container>
+      <SectionHeading
+        eyebrow="精彩瞬间"
+        title="来自团队与伙伴的影像"
+      />
+      <ul class="mt-16 grid gap-6 sm:grid-cols-2">
+        {
+          teamMoments.map((m) => (
+            <li class="overflow-hidden rounded-3xl shadow-sm ring-1 ring-slate-200">
+              <div class="aspect-[16/10] w-full overflow-hidden bg-slate-100">
+                <img
+                  src={m.image}
+                  alt={m.label}
+                  class="size-full object-cover"
+                  loading="lazy"
+                />
+              </div>
+              <p class="bg-white px-6 py-4 text-sm font-medium text-slate-800">
+                {m.label}
+              </p>
+            </li>
+          ))
+        }
+      </ul>
+    </Container>
+  </section>
+
+  <InquiryCTA
+    title="有意在社区工作上开展合作？"
+    description="如果您代表我们经营区域内的学校、公益组织或社区机构，欢迎与我们联系。"
+    primaryLabel="与我们联系"
+  />
+</BaseLayout>

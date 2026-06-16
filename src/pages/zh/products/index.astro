@@ -1,0 +1,130 @@
+---
+import BaseLayout from "../../../layouts/BaseLayout.astro";
+import Container from "../../../components/Container.astro";
+import PageHero from "../../../components/PageHero.astro";
+import SectionHeading from "../../../components/SectionHeading.astro";
+import InquiryCTA from "../../../components/InquiryCTA.astro";
+import { productFamilies, productFamilyImages } from "../../../data/products";
+import { images } from "../../../data/images";
+
+const services = [
+  {
+    title: "树脂批量贸易",
+    description:
+      "PE、PP、PS、ABS 与 SBS 的月度供应稳定，提供多种包装形式（25 公斤袋、吨袋、散装柜）。",
+  },
+  {
+    title: "采购与寻源",
+    description:
+      "与国内大型石化生产企业保持直接合作，降低采购风险，提升报价响应速度。",
+  },
+  {
+    title: "仓储与物流",
+    description:
+      "自有 30,000 平方米物流园区，为各树脂系列设置专门区域，并提供全天候出库作业。",
+  },
+  {
+    title: "出口与单证",
+    description:
+      "双语外贸团队为每批货物处理 COA、MSDS、发票、装箱单及报关单证。",
+  },
+];
+---
+
+<BaseLayout
+  title="产品与服务"
+  description="了解天晖四大核心树脂系列——PE（LLDPE、LDPE、HDPE）、PP、ABS 与 PS，以及一体化供应链服务。"
+>
+  <PageHero
+    eyebrow="产品中心"
+    title="产品与服务"
+    description="四大树脂系列，常备牌号近千种，依托一体化供应链与双语外贸团队。"
+    breadcrumb={[
+      { label: "首页", href: "/zh/" },
+      { label: "产品与服务" },
+    ]}
+    image={images.resinPelletsGrid}
+    imagePosition="center"
+  />
+
+  <!-- SECTION: Intro -->
+  <section id="intro" class="bg-white py-24 sm:py-28">
+    <Container>
+      <SectionHeading
+        eyebrow="核心产品组合"
+        title="端到端的树脂供应"
+        description="天晖的产品策略围绕 PE、PP、ABS、PS 四大树脂系列展开，覆盖从通用包装级到工程级 ABS 的多数加工市场需求。我们将产品目录与寻源、仓储、出口服务相结合，让客户放心采购。"
+      />
+    </Container>
+  </section>
+
+  <!-- SECTION: Product family cards -->
+  <section id="families" class="bg-slate-50 py-24 sm:py-28">
+    <Container>
+      <SectionHeading
+        eyebrow="树脂系列"
+        title="按树脂系列浏览"
+        description="每个系列页面列出子类别、典型应用与牌号说明。"
+      />
+      <ul class="mt-14 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+        {
+          productFamilies.map((family) => (
+            <li>
+              <a
+                href={`/zh/products/${family.slug}/`}
+                class="group flex h-full flex-col overflow-hidden rounded-3xl border border-slate-200 bg-white shadow-sm transition hover:-translate-y-1 hover:shadow-xl"
+              >
+                <div class="relative aspect-square overflow-hidden bg-slate-100">
+                  <img
+                    src={productFamilyImages[family.slug]}
+                    alt={`${family.cnName}树脂颗粒`}
+                    class="absolute inset-0 size-full object-cover transition duration-500 group-hover:scale-105"
+                    loading="lazy"
+                  />
+                  <span class="absolute top-4 right-4 rounded-full bg-white/90 px-3 py-1 text-[10px] font-semibold tracking-wider text-slate-700 uppercase backdrop-blur">
+                    {family.grades.length} 个牌号组
+                  </span>
+                </div>
+                <div class="flex flex-1 flex-col p-6">
+                  <h3 class="text-lg font-semibold text-slate-900">
+                    {family.cnName}
+                  </h3>
+                  <p class="mt-3 flex-1 text-sm leading-6 text-slate-600">
+                    {family.summaryZh}
+                  </p>
+                  <span class="mt-5 inline-flex items-center gap-2 text-sm font-semibold text-brand-700 group-hover:text-brand-800">
+                    查看 {family.abbreviation} 牌号
+                    <span aria-hidden="true">&rarr;</span>
+                  </span>
+                </div>
+              </a>
+            </li>
+          ))
+        }
+      </ul>
+    </Container>
+  </section>
+
+  <!-- SECTION: Services -->
+  <section id="services" class="bg-white py-24 sm:py-28">
+    <Container>
+      <SectionHeading
+        eyebrow="服务"
+        title="不止于树脂本身"
+        description="可靠的树脂供应商交付的不只是材料。天晖的服务让您的采购、物流与质量团队运转顺畅。"
+      />
+      <div class="mt-14 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+        {
+          services.map((service) => (
+            <article class="rounded-3xl border border-slate-200 bg-slate-50 p-8 transition hover:bg-white hover:shadow-md">
+              <h3 class="text-base font-semibold text-slate-900">{service.title}</h3>
+              <p class="mt-3 text-sm leading-7 text-slate-600">{service.description}</p>
+            </article>
+          ))
+        }
+      </div>
+    </Container>
+  </section>
+
+  <InquiryCTA />
+</BaseLayout>

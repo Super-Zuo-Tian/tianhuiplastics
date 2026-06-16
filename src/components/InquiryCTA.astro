@@ -8,15 +8,39 @@ interface Props {
   primaryHref?: string;
   secondaryLabel?: string;
   secondaryHref?: string;
+  lang?: "en" | "zh";
 }
 
+const pathname = Astro.url.pathname;
+const isZh = (Astro.props.lang ?? (pathname === "/zh" || pathname.startsWith("/zh/") ? "zh" : "en")) === "zh";
+
+const defaults = isZh
+  ? {
+      title: "需要天晖为您供应树脂原料？",
+      description:
+        "请告知所需牌号、起订量与目的港口，我们的团队将在一个工作日内回复。",
+      primaryLabel: "提交询价",
+      primaryHref: "/zh/contact/",
+      secondaryLabel: "浏览产品",
+      secondaryHref: "/zh/products/",
+    }
+  : {
+      title: "Ready to source resins from TIANHUI?",
+      description:
+        "Tell us your grade, MOQ and destination port. Our export team will respond within one business day.",
+      primaryLabel: "Send an inquiry",
+      primaryHref: "/contact/",
+      secondaryLabel: "Explore products",
+      secondaryHref: "/products/",
+    };
+
 const {
-  title = "Ready to source resins from TIANHUI?",
-  description = "Tell us your grade, MOQ and destination port. Our export team will respond within one business day.",
-  primaryLabel = "Send an inquiry",
-  primaryHref = "/contact/",
-  secondaryLabel = "Explore products",
-  secondaryHref = "/products/",
+  title = defaults.title,
+  description = defaults.description,
+  primaryLabel = defaults.primaryLabel,
+  primaryHref = defaults.primaryHref,
+  secondaryLabel = defaults.secondaryLabel,
+  secondaryHref = defaults.secondaryHref,
 } = Astro.props;
 ---
 

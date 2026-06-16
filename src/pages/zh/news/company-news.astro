@@ -1,0 +1,77 @@
+---
+import BaseLayout from "../../../layouts/BaseLayout.astro";
+import Container from "../../../components/Container.astro";
+import PageHero from "../../../components/PageHero.astro";
+import SubNav from "../../../components/SubNav.astro";
+import SectionHeading from "../../../components/SectionHeading.astro";
+import NewsCard from "../../../components/NewsCard.astro";
+import InquiryCTA from "../../../components/InquiryCTA.astro";
+import { newsLinksZh } from "../../../data/navSections";
+import { getPostsByCategory } from "../../../data/news";
+import { images } from "../../../data/images";
+
+const posts = getPostsByCategory("company");
+const [featured, ...rest] = posts;
+---
+
+<BaseLayout
+  title="公司新闻"
+  description="天晖集团的企业动态、展会活动与合作发布。"
+>
+  <PageHero
+    eyebrow="新闻资讯"
+    title="公司新闻"
+    description="天晖集团的企业动态、展会活动与合作发布。"
+    breadcrumb={[
+      { label: "首页", href: "/zh/" },
+      { label: "新闻资讯" },
+      { label: "公司新闻" },
+    ]}
+    image={images.annualMeeting}
+    imagePosition="center 30%"
+  />
+
+  <SubNav links={newsLinksZh} currentHref="/zh/news/company-news/" label="栏目导航" />
+
+  <!-- SECTION: Featured -->
+  <section id="featured" class="bg-white py-24 sm:py-28">
+    <Container>
+      <SectionHeading
+        eyebrow="最新"
+        title="天晖近期动态"
+        description="来自企业、展会与合作活动的最新消息。"
+      />
+      {
+        featured && (
+          <div class="mt-12 grid gap-6 lg:grid-cols-3">
+            <NewsCard post={featured} featured />
+            {rest.slice(0, 2).map((post) => (
+              <NewsCard post={post} />
+            ))}
+          </div>
+        )
+      }
+    </Container>
+  </section>
+
+  <!-- SECTION: Archive -->
+  {
+    rest.length > 2 && (
+      <section id="archive" class="bg-slate-50 py-24 sm:py-28">
+        <Container>
+          <SectionHeading
+            eyebrow="往期"
+            title="更多公司新闻"
+          />
+          <div class="mt-12 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+            {rest.slice(2).map((post) => (
+              <NewsCard post={post} />
+            ))}
+          </div>
+        </Container>
+      </section>
+    )
+  }
+
+  <InquiryCTA />
+</BaseLayout>

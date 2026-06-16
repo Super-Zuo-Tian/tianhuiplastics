@@ -1,9 +1,17 @@
 ---
-import { site } from "../data/site";
+import { site, ui, footerSectionsZh } from "../data/site";
+
+interface Props {
+  lang?: "en" | "zh";
+}
+
+const pathname = Astro.url.pathname;
+const isZh = (Astro.props.lang ?? (pathname === "/zh" || pathname.startsWith("/zh/") ? "zh" : "en")) === "zh";
+const t = isZh ? ui.zh : ui.en;
 
 const year = new Date().getFullYear();
 
-const footerSections: { title: string; links: { label: string; href: string }[] }[] = [
+const footerSectionsEn: { title: string; links: { label: string; href: string }[] }[] = [
   {
     title: "About",
     links: [
@@ -55,6 +63,8 @@ const footerSections: { title: string; links: { label: string; href: string }[] 
   },
 ];
 
+const footerSections = isZh ? footerSectionsZh : footerSectionsEn;
+
 const social = [
   // {
   //   name: "LinkedIn",
@@ -84,7 +94,7 @@ const social = [
     <div class="grid gap-12 lg:grid-cols-6">
       <div class="lg:col-span-2">
         <a
-          href="/"
+          href={t.home}
           class="group inline-flex items-center gap-3 transition hover:opacity-90"
         >
           <!-- 若 logo 需要白底，只包图片 -->
@@ -107,11 +117,11 @@ const social = [
           </span>
         </a>
         <p class="mt-6 max-w-md text-sm leading-7 text-slate-400">
-          {site.description}
+          {t.description}
         </p>
         <dl class="mt-8 space-y-3 text-sm">
           <div class="flex gap-3">
-            <dt class="w-20 flex-none text-slate-500">Email</dt>
+            <dt class="w-20 flex-none text-slate-500">{t.footerEmail}</dt>
             <dd>
               <a href={`mailto:${site.email}`} class="text-slate-200 hover:text-white">
                 {site.email}
@@ -119,12 +129,12 @@ const social = [
             </dd>
           </div>
           <div class="flex gap-3">
-            <dt class="w-20 flex-none text-slate-500">Phone</dt>
+            <dt class="w-20 flex-none text-slate-500">{t.footerPhone}</dt>
             <dd class="text-slate-200">{site.phone}</dd>
           </div>
           <div class="flex gap-3">
-            <dt class="w-20 flex-none text-slate-500">Address</dt>
-            <dd class="text-slate-200">{site.address}</dd>
+            <dt class="w-20 flex-none text-slate-500">{t.footerAddress}</dt>
+            <dd class="text-slate-200">{isZh ? site.addressZh : site.address}</dd>
           </div>
         </dl>
       </div>
@@ -156,7 +166,7 @@ const social = [
       class="mt-14 flex flex-col items-start justify-between gap-6 border-t border-slate-800 pt-8 sm:flex-row sm:items-center"
     >
       <p class="text-xs text-slate-500">
-        © {year} {site.legalName}. All rights reserved.
+        © {year} {isZh ? site.legalNameZh : site.legalName}. {t.rights}
       </p>
       <div class="flex items-center gap-5">
         {

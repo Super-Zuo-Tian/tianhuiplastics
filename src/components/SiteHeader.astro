@@ -1,7 +1,25 @@
 ---
-import { primaryNav, site } from "../data/site";
+import { primaryNav, primaryNavZh, site, ui } from "../data/site";
 
-const navItems = primaryNav;
+interface Props {
+  /** 语言；缺省时按 URL 自动判断 */
+  lang?: "en" | "zh";
+}
+
+const pathname = Astro.url.pathname;
+const isZh = (Astro.props.lang ?? (pathname === "/zh" || pathname.startsWith("/zh/") ? "zh" : "en")) === "zh";
+
+const navItems = isZh ? primaryNavZh : primaryNav;
+const t = isZh ? ui.zh : ui.en;
+
+const enHref = isZh
+  ? pathname.replace(/^\/zh(\/|$)/, "/") || "/"
+  : pathname;
+const zhHref = isZh
+  ? pathname
+  : pathname === "/"
+    ? "/zh/"
+    : `/zh${pathname.endsWith("/") ? pathname : `${pathname}/`}`;
 ---
 
 <header class="sticky top-0 z-40 border-b border-slate-200/70 bg-white/85 backdrop-blur">
@@ -10,7 +28,7 @@ const navItems = primaryNav;
     class="mx-auto flex w-full max-w-[1680px] items-center justify-between gap-6 px-6 py-4 sm:px-8 lg:px-12 xl:px-16"
   >
     <div class="flex shrink-0 items-center">
-      <a href="/" class="group flex items-center gap-3 transition hover:opacity-90">
+      <a href={t.home} class="group flex items-center gap-3 transition hover:opacity-90">
         <img 
         src={site.logoSrc} 
         alt={site.logoAlt} 
@@ -38,7 +56,7 @@ const navItems = primaryNav;
         commandfor="mobile-menu"
         class="-m-2.5 inline-flex items-center justify-center rounded-md p-2.5 text-slate-700"
       >
-        <span class="sr-only">Open main menu</span>
+        <span class="sr-only">{t.openMenu}</span>
         <svg
           viewBox="0 0 24 24"
           fill="none"
@@ -123,12 +141,41 @@ const navItems = primaryNav;
       }
     </ul>
 
-    <div class="hidden lg:flex">
+    <div class="hidden items-center gap-3 lg:flex">
+      <div
+        class="inline-flex items-center rounded-full border border-slate-200 bg-slate-50 p-0.5 text-xs font-semibold tracking-wide"
+        role="group"
+        aria-label="Language"
+      >
+        {
+          isZh ? (
+            <a
+              href={enHref}
+              class="rounded-full px-2.5 py-1.5 text-slate-500 transition hover:text-slate-900"
+            >
+              EN
+            </a>
+            <span class="rounded-full bg-white px-2.5 py-1.5 text-slate-900 shadow-sm ring-1 ring-slate-900/5">
+              中文
+            </span>
+          ) : (
+            <span class="rounded-full bg-white px-2.5 py-1.5 text-slate-900 shadow-sm ring-1 ring-slate-900/5">
+              EN
+            </span>
+            <a
+              href={zhHref}
+              class="rounded-full px-2.5 py-1.5 text-slate-500 transition hover:text-slate-900"
+            >
+              中文
+            </a>
+          )
+        }
+      </div>
       <a
-        href="/contact/"
+        href={t.contact}
         class="inline-flex items-center gap-2 rounded-full bg-slate-900 px-4 py-2 text-sm font-semibold text-white transition hover:bg-brand-700"
       >
-        Get a Quote
+        {t.quote}
         <span aria-hidden="true">&rarr;</span>
       </a>
     </div>
@@ -141,7 +188,7 @@ const navItems = primaryNav;
           class="fixed inset-y-0 right-0 z-50 w-full overflow-y-auto bg-white p-6 sm:max-w-sm sm:ring-1 sm:ring-slate-900/10"
         >
           <div class="flex items-center justify-between">
-            <a href="/" class="block">
+            <a href={t.home} class="block">
               <img
                 src={site.logoSrc}
                 alt={site.logoAlt}
@@ -158,7 +205,7 @@ const navItems = primaryNav;
               commandfor="mobile-menu"
               class="-m-2.5 rounded-md p-2.5 text-slate-700"
             >
-              <span class="sr-only">Close menu</span>
+              <span class="sr-only">{t.closeMenu}</span>
               <svg
                 viewBox="0 0 24 24"
                 fill="none"
@@ -231,12 +278,41 @@ const navItems = primaryNav;
                   })
                 }
               </div>
-              <div class="py-6">
+              <div class="space-y-4 py-6">
+                <div
+                  class="inline-flex items-center rounded-full border border-slate-200 bg-slate-50 p-0.5 text-sm font-semibold tracking-wide"
+                  role="group"
+                  aria-label="Language"
+                >
+                  {
+                    isZh ? (
+                      <a
+                        href={enHref}
+                        class="rounded-full px-3 py-2 text-slate-500 transition hover:text-slate-900"
+                      >
+                        EN
+                      </a>
+                      <span class="rounded-full bg-white px-3 py-2 text-slate-900 shadow-sm ring-1 ring-slate-900/5">
+                        中文
+                      </span>
+                    ) : (
+                      <span class="rounded-full bg-white px-3 py-2 text-slate-900 shadow-sm ring-1 ring-slate-900/5">
+                        EN
+                      </span>
+                      <a
+                        href={zhHref}
+                        class="rounded-full px-3 py-2 text-slate-500 transition hover:text-slate-900"
+                      >
+                        中文
+                      </a>
+                    )
+                  }
+                </div>
                 <a
-                  href="/contact/"
+                  href={t.contact}
                   class="-mx-3 block rounded-lg bg-slate-900 px-3 py-2.5 text-center text-base font-semibold text-white hover:bg-brand-700"
                 >
-                  Get a Quote
+                  {t.quote}
                 </a>
               </div>
             </div>

@@ -1,0 +1,273 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import Container from "../../components/Container.astro";
+import PageHero from "../../components/PageHero.astro";
+import SectionHeading from "../../components/SectionHeading.astro";
+import { site, primaryNavZh } from "../../data/site";
+import { images } from "../../data/images";
+
+const formSuccess = Astro.url.searchParams.get("success") === "1";
+const formRedirect = new URL("/zh/contact/?success=1#inquiry", Astro.site ?? Astro.url).href;
+
+const productOptions = primaryNavZh
+  .find((item) => item.label === "产品中心")
+  ?.children?.filter((c) => c.href !== "/zh/products/") ?? [];
+
+const channels = [
+  {
+    label: "外贸询价",
+    value: site.email,
+    href: `mailto:${site.email}`,
+    icon: "M2.25 6.75c0-1.243 1.007-2.25 2.25-2.25h15c1.243 0 2.25 1.007 2.25 2.25v10.5c0 1.243-1.007 2.25-2.25 2.25h-15a2.25 2.25 0 0 1-2.25-2.25V6.75Zm2.25 0v.243l7.5 4.5 7.5-4.5V6.75H4.5Z",
+  },
+  {
+    label: "电话",
+    value: site.phone,
+    href: `tel:${site.phone.replace(/\s+/g, "")}`,
+    icon: "M2.25 6.75c0-1.243 1.007-2.25 2.25-2.25h2.25l1.5 4.5-2.25 1.5a12.057 12.057 0 0 0 6.75 6.75l1.5-2.25 4.5 1.5v2.25c0 1.243-1.007 2.25-2.25 2.25h-2.25C8.65 21 3 15.35 3 8.25V6.75Z",
+  },
+  {
+    label: "总部",
+    value: site.addressZh,
+    icon: "M11.42 21.815a.998.998 0 0 0 1.16 0C13.91 20.882 20 15.5 20 10a8 8 0 1 0-16 0c0 5.5 6.09 10.882 7.42 11.815ZM12 12a2 2 0 1 0 0-4 2 2 0 0 0 0 4Z",
+  },
+  {
+    label: "工作时间",
+    value: "周一至周五 · 09:00–18:00（UTC+8）",
+    icon: "M12 6v6l4 2m6-2a10 10 0 1 1-20 0 10 10 0 0 1 20 0Z",
+  },
+];
+---
+
+<BaseLayout
+  title="联系我们"
+  description="联系天晖集团，获取树脂报价、采购询价与合作机会。我们的团队会在 1-3 个工作日内回复。"
+>
+  <PageHero
+    eyebrow="联系我们"
+    title="聊聊树脂吧"
+    description="请告知牌号、数量、包装与目的港，我们的双语外贸团队将在一个工作日内回复。"
+    breadcrumb={[
+      { label: "首页", href: "/zh/" },
+      { label: "联系我们" },
+    ]}
+    image={images.building2}
+    imagePosition="center 65%"
+  />
+
+  <!-- SECTION: Contact channels -->
+  <section id="channels" class="bg-white py-20 sm:py-24">
+    <Container>
+      <ul class="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+        {
+          channels.map((channel) => (
+            <li class="rounded-3xl border border-slate-200 bg-slate-50 p-6 shadow-sm">
+              <span class="inline-flex size-10 items-center justify-center rounded-xl bg-brand-600 text-white">
+                <svg
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="1.8"
+                  aria-hidden="true"
+                  class="size-5"
+                >
+                  <path d={channel.icon} stroke-linecap="round" stroke-linejoin="round" />
+                </svg>
+              </span>
+              <p class="mt-4 text-xs font-semibold tracking-wider text-slate-500 uppercase">
+                {channel.label}
+              </p>
+              {channel.href ? (
+                <a
+                  href={channel.href}
+                  class="mt-2 block text-base font-semibold text-slate-900 hover:text-brand-700"
+                >
+                  {channel.value}
+                </a>
+              ) : (
+                <p class="mt-2 text-base font-semibold text-slate-900">{channel.value}</p>
+              )}
+            </li>
+          ))
+        }
+      </ul>
+    </Container>
+  </section>
+
+  <!-- SECTION: Inquiry form -->
+  <section id="inquiry" class="bg-slate-50 py-24 sm:py-28">
+    <Container>
+      <div class="grid gap-12 lg:grid-cols-12">
+        <div class="lg:col-span-5">
+          <SectionHeading
+            eyebrow="询价"
+            title="索取报价"
+            description="请尽可能提供详细信息（树脂系列、牌号、数量、包装与目的港），以便我们更快地为您准备精准报价。"
+          />
+          <ul class="mt-8 space-y-4 text-base leading-7 text-slate-700">
+            <li class="flex gap-3">
+              <span class="mt-2 size-2 flex-none rounded-full bg-brand-600"></span>
+              外贸团队在 1-3 个工作日内回复。
+            </li>
+            <li class="flex gap-3">
+              <span class="mt-2 size-2 flex-none rounded-full bg-brand-600"></span>
+              以美元按 FOB / CFR / CIF 方式报价。
+            </li>
+            <li class="flex gap-3">
+              <span class="mt-2 size-2 flex-none rounded-full bg-brand-600"></span>
+              可应要求安排样品袋。
+            </li>
+          </ul>
+        </div>
+        <div class="lg:col-span-7">
+          {
+            formSuccess && (
+              <div
+                class="mb-6 rounded-2xl border border-green-200 bg-green-50 px-5 py-4 text-sm text-green-800"
+                role="status"
+              >
+                感谢您——我们已收到您的询价，外贸团队将在一个工作日内回复。
+              </div>
+            )
+          }
+          <form
+            method="POST"
+            action="https://api.web3forms.com/submit"
+            class="rounded-3xl border border-slate-200 bg-white p-8 shadow-sm sm:p-10"
+          >
+            <input
+              type="hidden"
+              name="access_key"
+              value="97a0c591-f8d3-4c2f-917e-70d128ab78ae"
+            />
+            <input type="hidden" name="subject" value="新询价 — 天晖官网" />
+            <input type="hidden" name="from_name" value="天晖官网联系表单" />
+            <input type="hidden" name="redirect" value={formRedirect} />
+            <input type="checkbox" name="botcheck" class="hidden" tabindex="-1" autocomplete="off" />
+
+            <div class="grid gap-5 sm:grid-cols-2">
+              <label class="block text-sm">
+                <span class="font-medium text-slate-700">姓名 *</span>
+                <input
+                  type="text"
+                  name="name"
+                  required
+                  class="mt-2 w-full rounded-xl border border-slate-300 bg-white px-4 py-2.5 text-sm shadow-sm placeholder:text-slate-400 focus:border-brand-600 focus:ring-2 focus:ring-brand-200 focus:outline-none"
+                  placeholder="张三"
+                />
+              </label>
+              <label class="block text-sm">
+                <span class="font-medium text-slate-700">公司 *</span>
+                <input
+                  type="text"
+                  name="company"
+                  required
+                  class="mt-2 w-full rounded-xl border border-slate-300 bg-white px-4 py-2.5 text-sm shadow-sm placeholder:text-slate-400 focus:border-brand-600 focus:ring-2 focus:ring-brand-200 focus:outline-none"
+                  placeholder="贵公司名称"
+                />
+              </label>
+              <label class="block text-sm">
+                <span class="font-medium text-slate-700">工作邮箱 *</span>
+                <input
+                  type="email"
+                  name="email"
+                  required
+                  class="mt-2 w-full rounded-xl border border-slate-300 bg-white px-4 py-2.5 text-sm shadow-sm placeholder:text-slate-400 focus:border-brand-600 focus:ring-2 focus:ring-brand-200 focus:outline-none"
+                  placeholder="you@company.com"
+                />
+              </label>
+              <label class="block text-sm">
+                <span class="font-medium text-slate-700">电话 / WhatsApp</span>
+                <input
+                  type="tel"
+                  name="phone"
+                  class="mt-2 w-full rounded-xl border border-slate-300 bg-white px-4 py-2.5 text-sm shadow-sm placeholder:text-slate-400 focus:border-brand-600 focus:ring-2 focus:ring-brand-200 focus:outline-none"
+                  placeholder="+86 xxx xxxx xxxx"
+                />
+              </label>
+              <label class="block text-sm">
+                <span class="font-medium text-slate-700">国家 / 目的港</span>
+                <input
+                  type="text"
+                  name="destination"
+                  class="mt-2 w-full rounded-xl border border-slate-300 bg-white px-4 py-2.5 text-sm shadow-sm placeholder:text-slate-400 focus:border-brand-600 focus:ring-2 focus:ring-brand-200 focus:outline-none"
+                  placeholder="例如：越南 胡志明市"
+                />
+              </label>
+              <label class="block text-sm">
+                <span class="font-medium text-slate-700">意向树脂</span>
+                <select
+                  name="resin"
+                  class="mt-2 w-full rounded-xl border border-slate-300 bg-white px-4 py-2.5 text-sm shadow-sm focus:border-brand-600 focus:ring-2 focus:ring-brand-200 focus:outline-none"
+                >
+                  <option value="">请选择树脂系列</option>
+                  {
+                    productOptions.map((option) => (
+                      <option value={option.label}>{option.label}</option>
+                    ))
+                  }
+                  <option value="其他">其他 / 混合</option>
+                </select>
+              </label>
+              <label class="block text-sm sm:col-span-2">
+                <span class="font-medium text-slate-700">数量与包装</span>
+                <input
+                  type="text"
+                  name="quantity"
+                  class="mt-2 w-full rounded-xl border border-slate-300 bg-white px-4 py-2.5 text-sm shadow-sm placeholder:text-slate-400 focus:border-brand-600 focus:ring-2 focus:ring-brand-200 focus:outline-none"
+                  placeholder="例如：1 x 40'HQ，25 公斤袋"
+                />
+              </label>
+              <label class="block text-sm sm:col-span-2">
+                <span class="font-medium text-slate-700">询价详情 *</span>
+                <textarea
+                  name="message"
+                  required
+                  rows="5"
+                  class="mt-2 w-full rounded-xl border border-slate-300 bg-white px-4 py-2.5 text-sm shadow-sm placeholder:text-slate-400 focus:border-brand-600 focus:ring-2 focus:ring-brand-200 focus:outline-none"
+                  placeholder="请说明您的应用、目标价位、贸易术语、交期等。"
+                ></textarea>
+              </label>
+            </div>
+
+            <div class="mt-8 flex flex-wrap items-center justify-between gap-4">
+              <p class="text-xs text-slate-500">
+                提交本表单即表示您同意天晖就您的询价与您联系。
+              </p>
+              <button
+                type="submit"
+                class="inline-flex items-center gap-2 rounded-full bg-slate-900 px-6 py-3 text-sm font-semibold text-white transition hover:bg-brand-700"
+              >
+                提交询价
+                <span aria-hidden="true">&rarr;</span>
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </Container>
+  </section>
+
+  <!-- SECTION: Map -->
+  <section id="map" class="bg-slate-50 py-24 sm:py-28">
+    <Container>
+      <SectionHeading
+        eyebrow="位置"
+        title="在秦皇岛找到我们"
+        description="天晖物流园区位于河北秦皇岛，毗邻秦皇岛港，连接全国物流网络，交通便利。"
+      />
+      <div
+        class="mt-12 aspect-[16/7] overflow-hidden rounded-3xl border border-slate-200 bg-gradient-to-br from-brand-50 via-white to-slate-100 ring-1 ring-slate-200"
+      >
+      <iframe
+      title="天晖物流园区 — 秦皇岛"
+      src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3057.0743859531085!2d119.55554907639508!3d39.98444297151256!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x358b9ad7f63aeb5f%3A0xb7e8bdb8ec5ec8c7!2z5aSp5pmW5aGR5paZ!5e0!3m2!1sen!2ssg!4v1779779583934!5m2!1sen!2ssg"
+      class="h-full w-full border-0"
+      loading="lazy"
+      referrerpolicy="no-referrer-when-downgrade"
+      allowfullscreen
+      ></iframe>
+      </div>
+    </Container>
+  </section>
+</BaseLayout>

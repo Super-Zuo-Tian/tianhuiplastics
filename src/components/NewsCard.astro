@@ -8,14 +8,27 @@ interface Props {
 
 const { post, featured = false } = Astro.props;
 
-const dateLabel = new Date(post.date).toLocaleDateString("en-US", {
+const pathname = Astro.url.pathname;
+const isZh = pathname === "/zh" || pathname.startsWith("/zh/");
+
+const dateLabel = new Date(post.date).toLocaleDateString(isZh ? "zh-CN" : "en-US", {
   year: "numeric",
-  month: "short",
+  month: isZh ? "long" : "short",
   day: "numeric",
 });
 
-const categoryLabel = post.category === "company" ? "Company News" : "Global News";
-const href = `/news/posts/${post.slug}/`;
+const categoryLabel = isZh
+  ? post.category === "company"
+    ? "公司新闻"
+    : "全球资讯"
+  : post.category === "company"
+    ? "Company News"
+    : "Global News";
+const href = `${isZh ? "/zh" : ""}/news/posts/${post.slug}/`;
+const title = isZh ? post.titleZh ?? post.title : post.title;
+const excerpt = isZh ? post.excerptZh ?? post.excerpt : post.excerpt;
+const tags = isZh ? post.tagsZh ?? post.tags : post.tags;
+const readMore = isZh ? "阅读全文" : "Read article";
 ---
 
 <article
@@ -37,15 +50,15 @@ const href = `/news/posts/${post.slug}/`;
         featured ? "text-2xl sm:text-3xl" : "text-lg",
       ]}
     >
-      {post.title}
+      {title}
     </h3>
     <p class:list={["mt-4 flex-1 leading-7 text-slate-600", featured ? "text-base" : "text-sm"]}>
-      {post.excerpt}
+      {excerpt}
     </p>
     {
-      post.tags && post.tags.length > 0 && (
+      tags && tags.length > 0 && (
         <ul class="mt-6 flex flex-wrap gap-2">
-          {post.tags.map((tag) => (
+          {tags.map((tag) => (
             <li class="rounded-full bg-slate-100 px-3 py-1 text-xs font-medium text-slate-700">
               {tag}
             </li>
@@ -54,7 +67,7 @@ const href = `/news/posts/${post.slug}/`;
       )
     }
     <span class="mt-6 inline-flex items-center gap-2 text-sm font-semibold text-brand-700 group-hover:text-brand-800">
-      Read article <span aria-hidden="true">&rarr;</span>
+      {readMore} <span aria-hidden="true">&rarr;</span>
     </span>
   </a>
 </article>

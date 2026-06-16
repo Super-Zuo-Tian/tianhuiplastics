@@ -1,0 +1,513 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import Container from "../../components/Container.astro";
+import SectionHeading from "../../components/SectionHeading.astro";
+import InquiryCTA from "../../components/InquiryCTA.astro";
+import { productFamilies, productFamilyImages } from "../../data/products";
+import { newsPosts } from "../../data/news";
+import { ui } from "../../data/site";
+import { images } from "../../data/images";
+
+const stats = [
+  { value: "2004", label: "始建于秦皇岛" },
+  { value: "近 1,000", label: "在售树脂牌号" },
+  { value: "30,000 m²", label: "天晖物流园区" },
+  { value: "300+", label: "全国仓储网点" },
+  { value: "30+", label: "覆盖省市自治区" },
+  { value: "20+", label: "出口目的地" },
+];
+
+const honours = [
+  "中国服务业企业 500 强",
+  "京津冀百强企业",
+  "京津冀服务业百强企业",
+  "河北省服务业百强企业",
+  "河北省百强企业",
+];
+
+const services = [
+  {
+    title: "塑料原料供应",
+    description:
+      "PE、PP、ABS、PS、SBS 等树脂系列，常备牌号近千种，满足多行业用料需求。",
+  },
+  {
+    title: "稳定可靠的渠道",
+    description:
+      "与国内多家大型石化生产企业保持长期稳定的采购合作，货源渠道可靠、供应有保障。",
+  },
+  {
+    title: "全国仓储网络",
+    description:
+      "在 30 多个省市自治区设有办事处与 300 余个仓储网点，便于就近发货、降低物流成本。",
+  },
+  {
+    title: "一体化供应链",
+    description:
+      "提供采购、仓储、物流、分销与售后的全链条服务，实现资源与信息共享。",
+  },
+  {
+    title: "国际贸易服务",
+    description:
+      "提供进出口代理、国际采购与跨境物流服务，协助客户开拓海外市场。",
+  },
+  {
+    title: "定制方案与研发支持",
+    description:
+      "结合客户生产工艺，提供针对性的产品方案、应用指导与研发支持。",
+  },
+  {
+    title: "网络货运与物流",
+    description:
+      "依托集团物流园区与数字化网络货运平台，提升运输透明度并优化成本。",
+  },
+  {
+    title: "7×24 客户服务",
+    description:
+      "围绕订单、物流与售后提供全天候客户服务，让合作更顺畅、更省心。",
+  },
+];
+
+const recentNews = newsPosts.slice(0, 3);
+const t = ui.zh;
+---
+
+<BaseLayout description={t.description}>
+  <!-- SECTION: Hero -->
+  <section
+    id="hero"
+    class="relative isolate flex min-h-[78vh] items-center overflow-hidden bg-slate-950"
+  >
+    <img
+      src={images.building1}
+      alt="天晖物流园区总部大楼"
+      class="absolute inset-0 -z-20 size-full object-cover"
+      loading="eager"
+    />
+    <div
+      class="absolute inset-0 -z-10 bg-gradient-to-r from-slate-950/85 via-slate-950/55 to-slate-950/10"
+    >
+    </div>
+    <div
+      class="absolute inset-0 -z-10 bg-gradient-to-t from-slate-950/70 via-transparent to-slate-950/30"
+    >
+    </div>
+    <Container class="relative py-32">
+      <div class="max-w-3xl">
+        <h1 class="mt-8 text-5xl font-semibold tracking-tight text-white sm:text-6xl lg:text-7xl">
+          多元化经营<br />深耕塑料供应链服务。
+        </h1>
+        <p class="mt-8 max-w-2xl text-lg leading-8 text-slate-200 sm:text-xl">
+          天晖以塑料原料销售为主业，致力于在塑料行业供应链服务领域持续发展，
+          为国内及二十多个国家和地区的加工企业与贸易商提供原料与服务。
+        </p>
+        <div class="mt-10 flex flex-wrap items-center gap-4">
+          <a
+            href="/zh/contact/"
+            class="inline-flex items-center gap-2 rounded-full bg-white px-6 py-3.5 text-sm font-semibold text-slate-900 shadow-sm transition hover:bg-slate-100"
+          >
+            获取报价
+            <span aria-hidden="true">&rarr;</span>
+          </a>
+          <a
+            href="/zh/products/"
+            class="inline-flex items-center gap-2 rounded-full border border-white/30 px-6 py-3.5 text-sm font-semibold text-white transition hover:bg-white/10"
+          >
+            浏览产品目录
+          </a>
+        </div>
+      </div>
+    </Container>
+  </section>
+
+  <!-- SECTION: Honours marquee -->
+  <section id="honours" class="overflow-hidden border-y border-slate-200 bg-white py-10">
+    <Container>
+      <div class="mb-6 flex items-end justify-between gap-6">
+        <div>
+          <p class="text-sm font-semibold uppercase tracking-[0.2em] text-brand-600">
+            企业荣誉
+          </p>
+          <h2 class="mt-2 text-2xl font-semibold tracking-tight text-slate-950 sm:text-3xl">
+            获得的企业荣誉
+          </h2>
+        </div>
+      </div>
+    </Container>
+
+    <div class="relative mx-auto w-screen max-w-[1600px] overflow-hidden px-6 sm:px-8 lg:px-12">
+      <div class="pointer-events-none absolute left-0 top-0 z-10 h-full w-20 bg-gradient-to-r from-white to-transparent"></div>
+      <div class="pointer-events-none absolute right-0 top-0 z-10 h-full w-20 bg-gradient-to-l from-white to-transparent"></div>
+
+      <div class="flex w-max animate-honours-marquee gap-4">
+        {[...honours, ...honours].map((h) => (
+          <div class="flex w-fit shrink-0 items-center gap-4 rounded-full border border-slate-200 bg-slate-50 px-7 py-4 shadow-sm">
+            <span
+              class="size-2.5 shrink-0 rounded-full bg-brand-600"
+              aria-hidden="true"
+            />
+            <span class="whitespace-nowrap text-sm font-medium text-slate-800 sm:text-base">
+              {h}
+            </span>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- SECTION: About the group -->
+  <section id="about" class="bg-white py-24 sm:py-32">
+    <Container>
+      <div class="grid gap-16 lg:grid-cols-12 lg:items-center">
+        <div class="lg:col-span-5">
+          <SectionHeading
+            eyebrow="关于我们"
+            title="二十年塑料树脂贸易与供应链服务经验"
+          />
+          <div class="mt-8 space-y-6 text-base leading-7 text-slate-700">
+            <p>
+              天晖集团成立于 2004 年，坐落于河北省秦皇岛市，是一家集塑料原料销售与网络货运服务于一体的多元化企业。
+              2019 年，集团投资 2 亿元人民币建设"天晖电子商务物流园区"——一座占地约 30,000 平方米、
+              集销售、物流、研发、售后服务与供应链管理于一体的园区，现为公司总部所在地。
+            </p>
+            <p>
+              公司主营产品包括 PE、PP、ABS、PS 与 SBS 等树脂系列，牌号近千种。
+              依托专业的营销团队、广泛的渠道与庞大的客户群体，为全球的加工企业、贸易商与品牌商
+              提供全链条的营销服务与解决方案。
+            </p>
+          </div>
+          <a
+            href="/zh/about/company-profile/"
+            class="mt-10 inline-flex items-center gap-2 rounded-full bg-slate-900 px-5 py-3 text-sm font-semibold text-white transition hover:bg-brand-700"
+          >
+            了解天晖 <span aria-hidden="true">&rarr;</span>
+          </a>
+        </div>
+        <div class="lg:col-span-7">
+          <div class="relative overflow-hidden rounded-3xl shadow-xl ring-1 ring-slate-200">
+            <img
+              src={images.lobby1}
+              alt="天晖集团总部大堂"
+              class="aspect-[4/3] w-full object-cover"
+              loading="lazy"
+            />
+            <div
+              class="pointer-events-none absolute inset-0 bg-gradient-to-t from-slate-900/30 to-transparent"
+            >
+            </div>
+          </div>
+        </div>
+      </div>
+    </Container>
+  </section>
+
+  <!-- SECTION: Product lines -->
+  <section id="products" class="bg-slate-50 py-24 sm:py-32">
+    <Container>
+      <div class="flex flex-wrap items-end justify-between gap-8">
+        <SectionHeading
+          eyebrow="核心业务"
+          title="四大树脂系列，牌号近千种"
+          description="从 PE、PP 到 ABS、PS，天晖提供较为完整的树脂产品组合，品质稳定、来源可追溯、按期交付。"
+        />
+
+        <a
+          href="/zh/products/"
+          class="text-sm font-semibold text-brand-700 hover:text-brand-800"
+        >
+          查看完整目录 <span aria-hidden="true">&rarr;</span>
+        </a>
+      </div>
+
+      <div class="mt-14 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
+        {
+          productFamilies.slice(0, 4).map((family) => (
+            <a
+              href={`/zh/products/${family.slug}/`}
+              class="group relative min-h-[420px] overflow-hidden rounded-3xl bg-slate-900 shadow-sm ring-1 ring-slate-200 transition duration-300 hover:-translate-y-1 hover:shadow-xl"
+            >
+              <img
+                src={productFamilyImages[family.slug]}
+                alt={`${family.cnName}树脂颗粒`}
+                class="absolute inset-0 size-full object-cover transition duration-700 group-hover:scale-105"
+                loading="lazy"
+              />
+
+              <div class="absolute inset-0 bg-gradient-to-b from-slate-950/75 via-slate-950/35 to-slate-950/80"></div>
+
+              <div class="relative flex h-full min-h-[420px] flex-col p-6 text-white">
+                <div>
+                  <h3 class="mt-5 text-xl font-semibold leading-snug text-white">
+                    {family.cnName}
+                  </h3>
+
+                  <p class="mt-4 text-sm leading-6 text-white/85 line-clamp-4">
+                    {family.summaryZh}
+                  </p>
+                </div>
+
+                <div class="mt-auto flex items-center justify-between">
+                  <span class="text-sm font-semibold text-white">
+                    了解 {family.abbreviation}
+                  </span>
+
+                  <span
+                    class="flex size-11 items-center justify-center rounded-full border border-white/80 text-xl leading-none text-white transition group-hover:bg-white group-hover:text-slate-900"
+                    aria-hidden="true"
+                  >
+                    →
+                  </span>
+                </div>
+              </div>
+            </a>
+          ))
+        }
+      </div>
+    </Container>
+  </section>
+
+  <!-- SECTION: Services -->
+  <section id="services" class="bg-white py-24 sm:py-32">
+    <Container>
+      <SectionHeading
+        eyebrow="我们的服务"
+        title="从采购到售后的一站式服务"
+        description="天晖专注于提供较为齐全的塑料原料、一体化供应链服务、专业的国际贸易以及定制化营销支持。"
+      />
+      <div class="mt-16 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+        {
+          services.map((service, idx) => (
+            <article class="group flex h-full flex-col rounded-3xl border border-slate-200 bg-slate-50 p-7 transition hover:-translate-y-1 hover:bg-white hover:shadow-lg">
+              <span class="text-xs font-semibold tracking-[0.2em] text-brand-700 uppercase">
+                0{idx + 1}
+              </span>
+              <h3 class="mt-4 text-base font-semibold text-slate-900">
+                {service.title}
+              </h3>
+              <p class="mt-3 flex-1 text-sm leading-6 text-slate-600">
+                {service.description}
+              </p>
+            </article>
+          ))
+        }
+      </div>
+    </Container>
+  </section>
+
+  <!-- SECTION: Logistics park photo strip -->
+  <section
+    id="logistics-park"
+    class="relative isolate overflow-hidden bg-slate-950 py-24 sm:py-32"
+  >
+    <img
+      src={images.building3}
+      alt="天晖物流园区"
+      class="absolute inset-0 -z-20 size-full object-cover opacity-30"
+      loading="lazy"
+    />
+    <div class="absolute inset-0 -z-10 bg-slate-950/70"></div>
+    <Container>
+      <div class="grid gap-12 lg:grid-cols-12 lg:items-center">
+        <div class="lg:col-span-7">
+          <SectionHeading
+            eyebrow="天晖电子商务物流园区"
+            title="秦皇岛 30,000 平方米一体化运营基地"
+            description="园区于 2019 年投入使用，投资 2 亿元人民币，集销售、物流、研发、售后服务与供应链管理于一体，现为集团总部所在地。"
+            invert
+          />
+          <a
+            href="/zh/about/factory-capability/"
+            class="mt-10 inline-flex items-center gap-2 rounded-full border border-white/30 px-5 py-3 text-sm font-semibold text-white transition hover:bg-white/10"
+          >
+            走进物流园区
+            <span aria-hidden="true">&rarr;</span>
+          </a>
+        </div>
+        <ul class="grid gap-4 lg:col-span-5">
+          {
+            [
+              ["销售运营中心", "双语外贸团队与数字化报价"],
+              ["集中仓储", "为各树脂系列设置室内外仓储区"],
+              ["物流与货运", "全天候出库 + 网络货运平台"],
+              ["售后服务", "为每一批货物提供质量跟踪"],
+            ].map(([title, desc]) => (
+              <li class="rounded-2xl border border-white/10 bg-white/[0.04] p-5 backdrop-blur">
+                <p class="text-sm font-semibold text-white">{title}</p>
+                <p class="mt-1 text-xs leading-5 text-slate-300">{desc}</p>
+              </li>
+            ))
+          }
+        </ul>
+      </div>
+    </Container>
+  </section>
+
+  <!-- SECTION: Partners (auto-scrolling marquee) -->
+  <section class="bg-white py-12 sm:py-20">
+    <Container>
+      <h2 class="text-center text-lg/8 font-semibold text-slate-800">
+        长期战略合作伙伴
+      </h2>
+      <div class="partner-marquee relative mt-10 overflow-hidden">
+        <div
+          class="pointer-events-none absolute inset-y-0 left-0 z-10 w-12 bg-gradient-to-r from-white to-transparent sm:w-24"
+        >
+        </div>
+        <div
+          class="pointer-events-none absolute inset-y-0 right-0 z-10 w-12 bg-gradient-to-l from-white to-transparent sm:w-24"
+        >
+        </div>
+        <ul class="partner-marquee__track flex w-max items-center gap-4 sm:gap-4">
+          {
+            (() => {
+              const partners = [
+                { name: "中国石油", logo: "/partners/partner-1.webp" },
+                { name: "中国石化", logo: "/partners/partner-2.webp" },
+                { name: "中国中煤", logo: "/partners/partner-3.webp" },
+                { name: "延长石油", logo: "/partners/partner-4.webp" },
+                { name: "宝丰能源", logo: "/partners/partner-5.webp" },
+                { name: "中煤能源", logo: "/partners/chinacoal_logo.webp" },
+                { name: "国家能源集团", logo: "/partners/chnenergy_logo.webp" },
+                { name: "东华能源", logo: "/partners/donghuannegyuan_logo.webp" },
+                { name: "恒力石化", logo: "/partners/henglishihua_logo.webp" },
+              ];
+              return [...partners, ...partners].map((partner, index) => (
+                <li class="shrink-0">
+                  <img
+                    src={partner.logo}
+                    alt={partner.name}
+                    width="360"
+                    height="150"
+                    loading="lazy"
+                    aria-hidden={index >= partners.length}
+                    class="h-8 w-auto object-contain sm:h-12"
+                  />
+                </li>
+              ));
+            })()
+          }
+        </ul>
+      </div>
+    </Container>
+  </section>
+
+  <style>
+    .partner-marquee__track {
+      animation: partner-scroll 28s linear infinite;
+    }
+    .partner-marquee:hover .partner-marquee__track {
+      animation-play-state: paused;
+    }
+    @keyframes partner-scroll {
+      from {
+        transform: translateX(0);
+      }
+      to {
+        transform: translateX(-50%);
+      }
+    }
+    .animate-honours-marquee {
+      animation: honours-marquee 28s linear infinite;
+    }
+    .animate-honours-marquee:hover {
+      animation-play-state: paused;
+    }
+    @keyframes honours-marquee {
+      from { transform: translateX(0); }
+      to { transform: translateX(-50%); }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      .partner-marquee__track,
+      .animate-honours-marquee {
+        animation: none;
+        flex-wrap: wrap;
+        justify-content: center;
+        width: 100%;
+      }
+    }
+  </style>
+
+  <!-- SECTION: International trade highlight -->
+  <section
+    id="international-trade"
+    class="bg-slate-50 py-24 sm:py-32"
+  >
+    <Container>
+      <div class="grid gap-12 lg:grid-cols-12 lg:items-center">
+        <div class="order-2 lg:order-1 lg:col-span-7">
+          <div class="overflow-hidden rounded-3xl shadow-lg ring-1 ring-slate-200">
+            <img
+              src={images.vietnamMeeting}
+              alt="天晖参加海外客户洽谈"
+              class="aspect-[4/3] w-full object-cover"
+              loading="lazy"
+            />
+          </div>
+        </div>
+        <div class="order-1 lg:order-2 lg:col-span-5">
+          <SectionHeading
+            eyebrow="国际贸易"
+            title="贸易网络覆盖多个国家和地区"
+            description="天晖向越南、印度尼西亚、巴基斯坦、孟加拉国、新加坡、土耳其、坦桑尼亚、澳大利亚及南美洲等地出口树脂，并从阿联酋、卡塔尔、美国、韩国与伊朗等地进口部分专用牌号。"
+          />
+          <a
+            href="/zh/international-trade/market-introduction/"
+            class="mt-8 inline-flex items-center gap-2 text-sm font-semibold text-brand-700 hover:text-brand-800"
+          >
+            我们服务的市场 <span aria-hidden="true">&rarr;</span>
+          </a>
+        </div>
+      </div>
+    </Container>
+  </section>
+
+  <!-- SECTION: News -->
+  <section id="news" class="bg-white py-24 sm:py-32">
+    <Container>
+      <div class="flex flex-wrap items-end justify-between gap-6">
+        <SectionHeading
+          eyebrow="新闻动态"
+          title="天晖最新动态"
+          description="企业动态、展会活动以及来自各市场的行业资讯。"
+        />
+        <a
+          href="/zh/news/company-news/"
+          class="text-sm font-semibold text-brand-700 hover:text-brand-800"
+        >
+          查看全部新闻 <span aria-hidden="true">&rarr;</span>
+        </a>
+      </div>
+      <ul class="mt-12 grid gap-6 md:grid-cols-3">
+        {
+          recentNews.map((post) => (
+            <li>
+              <a
+                href={`/zh/news/posts/${post.slug}/`}
+                class="group flex h-full flex-col rounded-3xl border border-slate-200 bg-slate-50/40 p-7 transition hover:bg-white hover:shadow-md"
+              >
+                <span class="text-xs font-semibold tracking-[0.2em] text-brand-700 uppercase">
+                  {post.category === "company" ? "公司新闻" : "全球资讯"}
+                </span>
+                <h3 class="mt-3 text-lg font-semibold text-slate-900 group-hover:text-brand-700">
+                  {post.titleZh ?? post.title}
+                </h3>
+                <p class="mt-3 flex-1 text-sm leading-6 text-slate-600">
+                  {post.excerptZh ?? post.excerpt}
+                </p>
+                <time class="mt-6 text-xs text-slate-500" datetime={post.date}>
+                  {new Date(post.date).toLocaleDateString("zh-CN", {
+                    year: "numeric",
+                    month: "long",
+                    day: "numeric",
+                  })}
+                </time>
+              </a>
+            </li>
+          ))
+        }
+      </ul>
+    </Container>
+  </section>
+
+  <InquiryCTA />
+</BaseLayout>
