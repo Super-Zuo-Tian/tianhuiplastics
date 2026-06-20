@@ -11,7 +11,6 @@ import { getPostsByCategory } from "../../../data/news";
 import { images } from "../../../data/images";
 
 const posts = getPostsByCategory("global");
-const [featured, ...rest] = posts;
 ---
 
 <BaseLayout
@@ -33,49 +32,28 @@ const [featured, ...rest] = posts;
 
   <SubNav links={newsLinksZh} currentHref="/zh/news/global-news/" label="栏目导航" />
 
-  <!-- SECTION: Featured -->
-  <section id="featured" class="bg-white py-24 sm:py-28">
+  <section id="global-news" class="bg-white py-24 sm:py-28">
     <Container>
       <SectionHeading
-        eyebrow="最新"
+        eyebrow="业内"
         title="来自世界各地的行业动态"
         description="精选与 PE、PP、PS、ABS 市场相关的行业新闻、市场动态与政策进展。"
       />
       {
-        featured && (
-          <div class="mt-12 grid gap-6 lg:grid-cols-3">
-            <NewsCard post={featured} featured />
-            {rest.slice(0, 2).map((post) => (
-              <NewsCard post={post} />
+        posts.length > 0 ? (
+          <div class="mt-12 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4">
+            {posts.map((post) => (
+              <NewsCard post={post} uniform />
             ))}
           </div>
-        )
-      }
-      {
-        !featured && (
+        ) : (
           <p class="mt-12 rounded-3xl border border-dashed border-slate-300 bg-slate-50 p-12 text-center text-sm text-slate-500">
-            暂无全球资讯。可在 <code>src/data/news.ts</code> 中添加文章。
+            暂无全球资讯。
           </p>
         )
       }
     </Container>
   </section>
-
-  <!-- SECTION: Archive -->
-  {
-    rest.length > 2 && (
-      <section id="archive" class="bg-slate-50 py-24 sm:py-28">
-        <Container>
-          <SectionHeading eyebrow="往期" title="更多全球资讯" />
-          <div class="mt-12 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-            {rest.slice(2).map((post) => (
-              <NewsCard post={post} />
-            ))}
-          </div>
-        </Container>
-      </section>
-    )
-  }
 
   <InquiryCTA />
 </BaseLayout>

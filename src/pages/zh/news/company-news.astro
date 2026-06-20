@@ -11,7 +11,8 @@ import { getPostsByCategory } from "../../../data/news";
 import { images } from "../../../data/images";
 
 const posts = getPostsByCategory("company");
-const [featured, ...rest] = posts;
+const latest = posts.slice(0, 4);
+const archive = posts.slice(4);
 ---
 
 <BaseLayout
@@ -42,11 +43,10 @@ const [featured, ...rest] = posts;
         description="来自企业、展会与合作活动的最新消息。"
       />
       {
-        featured && (
-          <div class="mt-12 grid gap-6 lg:grid-cols-3">
-            <NewsCard post={featured} featured />
-            {rest.slice(0, 2).map((post) => (
-              <NewsCard post={post} />
+        latest.length > 0 && (
+          <div class="mt-12 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4">
+            {latest.map((post) => (
+              <NewsCard post={post} compact />
             ))}
           </div>
         )
@@ -56,7 +56,7 @@ const [featured, ...rest] = posts;
 
   <!-- SECTION: Archive -->
   {
-    rest.length > 2 && (
+    archive.length > 0 && (
       <section id="archive" class="bg-slate-50 py-24 sm:py-28">
         <Container>
           <SectionHeading
@@ -64,7 +64,7 @@ const [featured, ...rest] = posts;
             title="更多公司新闻"
           />
           <div class="mt-12 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-            {rest.slice(2).map((post) => (
+            {archive.map((post) => (
               <NewsCard post={post} />
             ))}
           </div>

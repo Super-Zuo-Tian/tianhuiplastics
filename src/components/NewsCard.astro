@@ -4,9 +4,11 @@ import type { NewsPost } from "../data/news";
 interface Props {
   post: NewsPost;
   featured?: boolean;
+  compact?: boolean;
+  uniform?: boolean;
 }
 
-const { post, featured = false } = Astro.props;
+const { post, featured = false, compact = false, uniform = false } = Astro.props;
 
 const pathname = Astro.url.pathname;
 const isZh = pathname === "/zh" || pathname.startsWith("/zh/");
@@ -33,12 +35,36 @@ const readMore = isZh ? "阅读全文" : "Read article";
 
 <article
   class:list={[
-    "group flex h-full flex-col rounded-3xl border border-slate-200 bg-white shadow-sm transition hover:-translate-y-1 hover:shadow-xl",
+    "group flex flex-col overflow-hidden rounded-3xl border border-slate-200 bg-white shadow-sm transition hover:-translate-y-1 hover:shadow-xl",
+    uniform ? "h-[420px]" : "h-full",
     featured ? "lg:col-span-2" : "",
   ]}
 >
-  <a href={href} class="flex flex-1 flex-col p-8">
-    <div class="flex items-center gap-3 text-xs">
+  {
+    post.cover ? (
+      <a href={href} class="block shrink-0 overflow-hidden">
+        <img
+          src={post.cover}
+          alt=""
+          class:list={[
+            "w-full object-cover transition duration-500 group-hover:scale-105",
+            uniform ? "h-40" : compact ? "h-36" : featured ? "h-56 sm:h-72" : "h-44",
+          ]}
+          loading="lazy"
+        />
+      </a>
+    ) : (
+      uniform && <div class="h-40 shrink-0 bg-gradient-to-br from-slate-100 to-slate-200" aria-hidden="true" />
+    )
+  }
+  <a
+    href={href}
+    class:list={[
+      "flex min-h-0 flex-1 flex-col",
+      uniform ? "p-5" : compact ? "p-5" : "p-8",
+    ]}
+  >
+    <div class="flex shrink-0 items-center gap-3 text-xs">
       <span class="rounded-full bg-brand-50 px-3 py-1 font-semibold tracking-wider text-brand-700 uppercase">
         {categoryLabel}
       </span>
@@ -46,17 +72,25 @@ const readMore = isZh ? "阅读全文" : "Read article";
     </div>
     <h3
       class:list={[
-        "mt-5 font-semibold text-slate-900 group-hover:text-brand-700",
-        featured ? "text-2xl sm:text-3xl" : "text-lg",
+        "shrink-0 font-semibold text-slate-900 group-hover:text-brand-700",
+        uniform ? "mt-4 line-clamp-2 min-h-[3.25rem] text-base leading-snug" : "mt-5",
+        !uniform && (compact ? "line-clamp-2 text-base" : featured ? "text-2xl sm:text-3xl" : "text-lg"),
       ]}
     >
       {title}
     </h3>
-    <p class:list={["mt-4 flex-1 leading-7 text-slate-600", featured ? "text-base" : "text-sm"]}>
+    <p
+      class:list={[
+        "text-slate-600",
+        uniform
+          ? "mt-3 line-clamp-3 min-h-[4.5rem] flex-1 text-sm leading-6"
+          : ["mt-4 flex-1 leading-7", compact ? "line-clamp-2 text-xs" : featured ? "text-base" : "text-sm"],
+      ]}
+    >
       {excerpt}
     </p>
     {
-      tags && tags.length > 0 && (
+      tags && tags.length > 0 && !compact && !uniform && (
         <ul class="mt-6 flex flex-wrap gap-2">
           {tags.map((tag) => (
             <li class="rounded-full bg-slate-100 px-3 py-1 text-xs font-medium text-slate-700">
@@ -66,7 +100,12 @@ const readMore = isZh ? "阅读全文" : "Read article";
         </ul>
       )
     }
-    <span class="mt-6 inline-flex items-center gap-2 text-sm font-semibold text-brand-700 group-hover:text-brand-800">
+    <span
+      class:list={[
+        "inline-flex shrink-0 items-center gap-2 text-sm font-semibold text-brand-700 group-hover:text-brand-800",
+        uniform ? "mt-auto pt-4" : "mt-6",
+      ]}
+    >
       {readMore} <span aria-hidden="true">&rarr;</span>
     </span>
   </a>

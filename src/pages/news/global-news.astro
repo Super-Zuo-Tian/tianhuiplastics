@@ -11,7 +11,6 @@ import { getPostsByCategory } from "../../data/news";
 import { images } from "../../data/images";
 
 const posts = getPostsByCategory("global");
-const [featured, ...rest] = posts;
 ---
 
 <BaseLayout
@@ -33,49 +32,28 @@ const [featured, ...rest] = posts;
 
   <SubNav links={newsLinks} currentHref="/news/global-news/" />
 
-  <!-- SECTION: Featured -->
-  <section id="featured" class="bg-white py-24 sm:py-28">
+  <section id="global-news" class="bg-white py-24 sm:py-28">
     <Container>
       <SectionHeading
-        eyebrow="Latest"
+        eyebrow="Industry"
         title="Industry updates from around the world"
         description="Curated industry news, market intelligence and policy developments relevant to PE, PP, PS and ABS markets."
       />
       {
-        featured && (
-          <div class="mt-12 grid gap-6 lg:grid-cols-3">
-            <NewsCard post={featured} featured />
-            {rest.slice(0, 2).map((post) => (
-              <NewsCard post={post} />
+        posts.length > 0 ? (
+          <div class="mt-12 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4">
+            {posts.map((post) => (
+              <NewsCard post={post} uniform />
             ))}
           </div>
-        )
-      }
-      {
-        !featured && (
+        ) : (
           <p class="mt-12 rounded-3xl border border-dashed border-slate-300 bg-slate-50 p-12 text-center text-sm text-slate-500">
-            No global news entries yet. Add posts in <code>src/data/news.ts</code>.
+            No global news entries yet.
           </p>
         )
       }
     </Container>
   </section>
-
-  <!-- SECTION: Archive -->
-  {
-    rest.length > 2 && (
-      <section id="archive" class="bg-slate-50 py-24 sm:py-28">
-        <Container>
-          <SectionHeading eyebrow="Archive" title="More global news" />
-          <div class="mt-12 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-            {rest.slice(2).map((post) => (
-              <NewsCard post={post} />
-            ))}
-          </div>
-        </Container>
-      </section>
-    )
-  }
 
   <InquiryCTA />
 </BaseLayout>

@@ -4,6 +4,7 @@ import Container from "../../../../components/Container.astro";
 import PageHero from "../../../../components/PageHero.astro";
 import InquiryCTA from "../../../../components/InquiryCTA.astro";
 import { newsPosts } from "../../../../data/news";
+import { getArticleContentOrFallback } from "../../../../data/newsContent";
 import { images } from "../../../../data/images";
 
 export async function getStaticPaths() {
@@ -14,6 +15,7 @@ export async function getStaticPaths() {
 }
 
 const { post } = Astro.props;
+const article = getArticleContentOrFallback(post, "zh");
 
 const title = post.titleZh ?? post.title;
 const excerpt = post.excerptZh ?? post.excerpt;
@@ -29,6 +31,8 @@ const dateLabel = new Date(post.date).toLocaleDateString("zh-CN", {
 const related = newsPosts
   .filter((p) => p.slug !== post.slug && p.category === post.category)
   .slice(0, 3);
+
+const heroImage = post.cover ?? (post.category === "company" ? images.annualMeeting : images.citySkyline);
 ---
 
 <BaseLayout title={title} description={excerpt}>
@@ -41,7 +45,7 @@ const related = newsPosts
       { label: "新闻资讯" },
       { label: categoryLabel, href: categoryHref },
     ]}
-    image={post.category === "company" ? images.annualMeeting : images.citySkyline}
+    image={heroImage}
     imagePosition="center 35%"
   >
     <p class="mt-6 text-sm text-slate-300">
@@ -49,31 +53,12 @@ const related = newsPosts
     </p>
   </PageHero>
 
-  <!-- SECTION: Article body placeholder -->
   <section id="article" class="bg-white py-20 sm:py-24">
     <Container class="max-w-3xl">
-      <div class="prose prose-slate prose-lg max-w-none text-slate-700">
-        <p class="text-lg leading-8">
-          {excerpt}
-        </p>
-        <p>
-          这里是文章正文占位内容。请将本段替换为
-          <em>{title}</em> 的完整文章内容。本区域内可继续使用
-          <code>&lt;p&gt;</code>、<code>&lt;h2&gt;</code>、
-          <code>&lt;ul&gt;</code> 等标准标签。
-        </p>
-        <h2>要点</h2>
-        <ul>
-          <li>请用原文中的具体细节替换此列表。</li>
-          <li>可使用 <code>&lt;img src="/news/...&gt;</code> 添加图片。</li>
-          <li>在相关处链接到对应的产品与页面。</li>
-        </ul>
-        <h2>后续展望</h2>
-        <p>
-          可在文末加入展望、行动号召或相关引用。当迁移到 Markdown 或 CMS 时，
-          本模板可复用于渲染任意文章。
-        </p>
-      </div>
+      <div
+        class="prose prose-slate prose-lg max-w-none text-slate-700 prose-img:rounded-2xl prose-img:shadow-md"
+        set:html={article.contentHtml}
+      />
 
       {
         tags && tags.length > 0 && (
